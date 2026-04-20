@@ -369,10 +369,11 @@ export function ValorPillsBlock() {
       initial="hidden"
       whileInView="visible"
       viewport={{ once: true, margin: "-60px" }}
-      className="flex w-full flex-wrap items-center justify-between gap-y-3"
+      className="flex w-full flex-nowrap items-center gap-3 overflow-x-auto pb-2 md:flex-wrap md:justify-between md:overflow-x-visible md:pb-0 scrollbar-none"
+      style={{ WebkitOverflowScrolling: "touch" }}
     >
       {VALORES.map((valor, i) => (
-        <motion.div key={`${valor}-${i}`} variants={valoreItem}>
+        <motion.div key={`${valor}-${i}`} variants={valoreItem} className="flex-shrink-0">
           <ValorPill valor={valor} />
         </motion.div>
       ))}
@@ -461,10 +462,11 @@ export default function MissionVision() {
           initial="hidden"
           whileInView="visible"
           viewport={{ once: true, margin: "-60px" }}
-          className="flex flex-wrap items-center justify-center gap-3"
+          className="flex flex-nowrap items-center gap-3 overflow-x-auto pb-2 md:flex-wrap md:justify-center md:overflow-x-visible md:pb-0 scrollbar-none"
+          style={{ WebkitOverflowScrolling: "touch" }}
         >
           {VALORES.map((valor, i) => (
-            <motion.div key={`${valor}-${i}`} variants={valoreItem}>
+            <motion.div key={`${valor}-${i}`} variants={valoreItem} className="flex-shrink-0">
               <ValorPill valor={valor} />
             </motion.div>
           ))}

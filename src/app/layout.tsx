@@ -108,6 +108,8 @@ export default function RootLayout({
           stiffness={520} 
           damping={38} 
           mass={0.6}
+          hideOnMobile={true}
+          hideOnTablet={true}
         />
         <ClickSpark
           sparkColor="#5C1010"

@@ -145,7 +145,7 @@ export default function Hero() {
         <div className="absolute inset-0 bg-[linear-gradient(90deg,rgba(24,24,21,0.32),transparent_20%,transparent_80%,rgba(24,24,21,0.3))]" />
       </motion.div>
 
-      <div className="relative z-10 flex h-full flex-col items-center justify-start gap-5 px-6 pt-[18vh] text-center">
+      <div className="relative z-10 flex h-full flex-col items-center justify-end gap-5 px-6 pb-10 md:pb-16 text-center">
         <motion.div
           initial={prefersReducedMotion ? false : { opacity: 0, y: 22, filter: "blur(12px)" }}
           animate={
@@ -173,8 +173,8 @@ export default function Hero() {
         >
           <h1
             ref={titleRef}
-            className="max-w-5xl font-bold leading-[0.95] text-white"
-            style={{ fontFamily: '"Play Grotesk", "Figtree", sans-serif', letterSpacing: '-0.025em', fontSize: '3.4rem', opacity: 0.9 }}
+            className="max-w-3xl font-bold leading-[0.95] text-white"
+            style={{ fontFamily: '"Play Grotesk", "Figtree", sans-serif', letterSpacing: '-0.025em', fontSize: 'clamp(1.6rem, 4.5vw, 2.8rem)', opacity: 0.9 }}
           >
             {HERO_TEXT}
           </h1>

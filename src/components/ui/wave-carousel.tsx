@@ -1,5 +1,6 @@
 "use client"
 
+import React from "react"
 import Image from "next/image"
 import { useRef } from "react"
 import { motion, useAnimationFrame } from "framer-motion"
@@ -38,9 +39,22 @@ export default function WaveCarousel({
   cardHeight = 400,
   gap = 36,
   speed = 90,
-  amplitude = 42,
+  amplitude = 18,
 }: WaveCarouselProps) {
-  const ITEM_W = cardWidth + gap
+  // Responsive: smaller on mobile
+  const [isMobile, setIsMobile] = React.useState(false)
+  React.useEffect(() => {
+    const check = () => setIsMobile(window.innerWidth < 640)
+    check()
+    window.addEventListener("resize", check)
+    return () => window.removeEventListener("resize", check)
+  }, [])
+
+  const rCardWidth = isMobile ? Math.round(cardWidth * 0.72) : cardWidth
+  const rCardHeight = isMobile ? Math.round(cardHeight * 0.72) : cardHeight
+  const rAmplitude = isMobile ? Math.round(amplitude * 0.5) : amplitude
+  const rGap = isMobile ? Math.round(gap * 0.7) : gap
+  const ITEM_W = rCardWidth + rGap
   const totalWidth = items.length * ITEM_W
 
   /** 3 copies → seamless infinite loop */
@@ -74,12 +88,12 @@ export default function WaveCarousel({
     const vw = window.innerWidth
     cardRefs.current.forEach((wrapper, i) => {
       if (!wrapper) return
-      const cardCenterX = scrollRef.current + i * ITEM_W + cardWidth / 2
+      const cardCenterX = scrollRef.current + i * ITEM_W + rCardWidth / 2
       // normalise to 0–2π across one viewport width — *2.5 = more cycles = faster bounce
       const phase = (cardCenterX / vw) * Math.PI * 2 * 2.5
-      const y = amplitude * Math.sin(phase)
-      // tilt follows wave slope
-      const tilt = 5 * Math.cos(phase)
+      const y = rAmplitude * Math.sin(phase)
+      // tilt follows wave slope — reduced on mobile
+      const tilt = (isMobile ? 2 : 5) * Math.cos(phase)
       wrapper.style.transform = `translateY(${y}px) rotateZ(${tilt}deg)`
     })
   })
@@ -112,7 +126,7 @@ export default function WaveCarousel({
       style={{
         width: "100vw",
         /* +30 for hover lift headroom */
-        height: cardHeight + amplitude * 2 + 48 + 30,
+        height: rCardHeight + rAmplitude * 2 + 48 + 30,
         overflowX: "clip",
         overflowY: "visible",
         position: "relative",
@@ -159,9 +173,9 @@ export default function WaveCarousel({
           display: "flex",
           alignItems: "center",
           position: "absolute",
-          top: amplitude,
+          top: rAmplitude,
           left: 0,
-          gap: gap,
+          gap: rGap,
           willChange: "transform",
           userSelect: "none",
         }}
@@ -173,7 +187,7 @@ export default function WaveCarousel({
               cardRefs.current[i] = el
             }}
             style={{
-              width: cardWidth,
+              width: rCardWidth,
               flexShrink: 0,
               willChange: "transform",
             }}
@@ -185,8 +199,8 @@ export default function WaveCarousel({
                 transition: { type: "spring", stiffness: 300, damping: 22 },
               }}
               style={{
-                width: cardWidth,
-                height: cardHeight,
+                width: rCardWidth,
+                height: rCardHeight,
                 borderRadius: 36,
                 overflow: "hidden",
                 position: "relative",
@@ -197,7 +211,7 @@ export default function WaveCarousel({
                 src={item.image}
                 alt={item.title}
                 fill
-                sizes={`${cardWidth}px`}
+                sizes={`${rCardWidth}px`}
                 className="object-cover object-top"
                 draggable={false}
               />

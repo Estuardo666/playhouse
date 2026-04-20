@@ -32,9 +32,10 @@ function SlideTabs({
   return (
     <div
       ref={containerRef}
-      className="flex w-full items-center gap-1 p-1 rounded-full border border-black/[0.12] bg-transparent"
+      className="w-full overflow-x-auto scrollbar-none"
       role="tablist"
     >
+      <div className="flex min-w-max items-center gap-1 rounded-full border border-black/[0.12] bg-transparent p-1 md:min-w-0 md:w-full">
       {tabs.map((tab) => {
         const isActive = tab.key === activeKey
         return (
@@ -43,7 +44,7 @@ function SlideTabs({
             role="tab"
             aria-selected={isActive}
             onClick={() => onChange(tab.key)}
-            className="relative flex-1 px-4 py-2 rounded-full text-[11px] font-bold uppercase tracking-widest transition-colors text-center"
+            className="relative flex-shrink-0 md:flex-1 px-4 py-2 rounded-full text-[11px] font-bold uppercase tracking-widest transition-colors text-center"
             style={{
               fontFamily: GS,
               letterSpacing: "0.14em",
@@ -64,6 +65,7 @@ function SlideTabs({
           </button>
         )
       })}
+      </div>
     </div>
   )
 }
@@ -81,7 +83,7 @@ function TabContent({ tab }: { tab: WorkshopTab }) {
       >
         {/* Objectives / Outcomes — 3 image cards */}
         {tab.items && (
-          <div className="grid grid-cols-3 gap-3 mt-5 items-stretch">
+          <div className="grid grid-cols-1 sm:grid-cols-3 gap-3 mt-5 items-stretch">
             {tab.items.map((item, i) => (
               <div key={i} className="flex flex-col gap-2 h-full">
                 <div
@@ -174,9 +176,6 @@ function WorkshopCard({ workshop, index }: { workshop: Workshop; index: number }
       ref={cardRef}
       {...blurFade(0.1 + index * 0.08)}
       className="grid grid-cols-1 md:grid-cols-[1fr_2fr] gap-8 md:gap-12 items-stretch py-14"
-      style={{
-        borderTop: index === 0 ? "none" : undefined,
-      }}
     >
       {/* left — image: fixed height, does not grow with tab content */}
       <div
@@ -198,7 +197,7 @@ function WorkshopCard({ workshop, index }: { workshop: Workshop; index: number }
       </div>
 
       {/* right — content */}
-      <div className="flex flex-col gap-4 p-14" style={{ background: "rgba(0,0,0,0.06)", borderRadius: 40, height: 640 }}>
+      <div className="flex flex-col gap-4 p-8 md:p-14" style={{ background: "rgba(0,0,0,0.06)", borderRadius: 40, height: "auto", minHeight: 0 }}>
         <h3
           style={{
             fontFamily: GS,
