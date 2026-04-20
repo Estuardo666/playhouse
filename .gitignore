@@ -1,8 +1,12 @@
 node_modules/
 .next/
+.claude/
+.agents/
+caveman/
 dist/
 build/
 *.log
 .env
 .env.local
 .DS_Store
+tsconfig.tsbuildinfo
