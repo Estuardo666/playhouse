@@ -1,6 +1,5 @@
 "use client"
 
-import Link from "next/link"
 import Image from "next/image"
 import { motion } from "framer-motion"
 
@@ -89,7 +88,7 @@ export default function Footer() {
             {/* socials row */}
             <motion.div {...blurFade(0.2)} className="flex flex-wrap gap-x-5 gap-y-2">
               {SOCIALS.map((s) => (
-                <Link
+                <a
                   key={s.label}
                   href={s.href}
                   target="_blank"
@@ -98,7 +97,7 @@ export default function Footer() {
                   style={{ fontFamily: GS, color: "rgba(255,255,255,0.32)" }}
                 >
                   {s.label}
-                </Link>
+                </a>
               ))}
             </motion.div>
           </div>
@@ -123,7 +122,7 @@ export default function Footer() {
                 <ul className="flex flex-col gap-3">
                   {SOCIALS.map((s, i) => (
                     <motion.li key={s.label} {...blurFade(0.1 + i * 0.04)}>
-                      <Link
+                      <a
                         href={s.href}
                         target="_blank"
                         rel="noopener noreferrer"
@@ -131,7 +130,7 @@ export default function Footer() {
                         style={{ fontFamily: GS, color: "rgba(255,255,255,0.62)" }}
                       >
                         {s.handle}
-                      </Link>
+                      </a>
                     </motion.li>
                   ))}
                 </ul>

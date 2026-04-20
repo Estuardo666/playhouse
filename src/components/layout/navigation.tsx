@@ -2,7 +2,7 @@
 
 import Image from "next/image"
 import Link from "next/link"
-import { useEffect, useState } from "react"
+import { MouseEvent, useEffect, useState } from "react"
 import { motion } from "framer-motion"
 import { GradualBlur } from "@/components/ui/gradual-blur"
 
@@ -19,11 +19,12 @@ export default function Navigation() {
   const [scrolled, setScrolled] = useState(false)
   const [activeSection, setActiveSection] = useState("")
 
-  const handleNavClick = (e: React.MouseEvent<HTMLAnchorElement>, href: string) => {
+  const handleNavClick = (e: MouseEvent<HTMLAnchorElement>, href: string) => {
     e.preventDefault()
     const targetId = href.replace("#", "")
     const element = document.getElementById(targetId)
     if (element) {
+      window.history.pushState(null, "", href)
       element.scrollIntoView({ behavior: "smooth", block: "start" })
     }
   }
@@ -96,7 +97,7 @@ export default function Navigation() {
           <ul className="hidden gap-2 md:flex">
             {leftLinks.map((link) => (
               <li key={link.href}>
-                <Link
+                <a
                   href={link.href}
                   onClick={(e) => handleNavClick(e, link.href)}
                   className={`inline-flex items-center rounded-full px-3 py-1.5 text-sm font-medium transition-all ${
@@ -106,7 +107,7 @@ export default function Navigation() {
                   }`}
                 >
                   {link.label}
-                </Link>
+                </a>
               </li>
             ))}
           </ul>
@@ -127,7 +128,7 @@ export default function Navigation() {
           <ul className="hidden gap-2 md:flex">
             {rightLinks.map((link) => (
               <li key={link.href}>
-                <Link
+                <a
                   href={link.href}
                   onClick={(e) => handleNavClick(e, link.href)}
                   className={`inline-flex items-center rounded-full px-3 py-1.5 text-sm font-medium transition-all ${
@@ -137,7 +138,7 @@ export default function Navigation() {
                   }`}
                 >
                   {link.label}
-                </Link>
+                </a>
               </li>
             ))}
           </ul>
