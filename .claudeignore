@@ -1,0 +1,12 @@
+node_modules/
+dist/
+.next/
+logs/
+assets/
+public/assets/
+coverage/
+*.log
+.env.local
+.env.production
+tsconfig.tsbuildinfo
+caveman/

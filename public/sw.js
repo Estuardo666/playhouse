@@ -1,0 +1,1 @@
+/* no-op service worker placeholder for local development */

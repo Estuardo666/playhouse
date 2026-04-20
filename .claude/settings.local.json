@@ -1,0 +1,10 @@
+{
+  "permissions": {
+    "allow": [
+      "WebFetch(domain:framer.com)",
+      "WebFetch(domain:www.framer.com)",
+      "Bash(npx next *)",
+      "Bash(npx tsc *)"
+    ]
+  }
+}
