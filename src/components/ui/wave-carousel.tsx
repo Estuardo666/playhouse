@@ -22,6 +22,8 @@ type WaveCarouselProps = {
   gap?: number
   /** px / second */
   speed?: number
+  /** auto-scroll track */
+  autoScroll?: boolean
   /** reverse horizontal direction */
   reverse?: boolean
   /** vertical sine amplitude in px */
@@ -41,6 +43,7 @@ export default function WaveCarousel({
   cardHeight = 400,
   gap = 36,
   speed = 90,
+  autoScroll = true,
   reverse = false,
   amplitude = 18,
 }: WaveCarouselProps) {
@@ -76,7 +79,7 @@ export default function WaveCarousel({
 
   /* ─── animation loop ─── */
   useAnimationFrame((_, delta) => {
-    if (!isDragging.current) {
+    if (autoScroll && !isDragging.current) {
       const step = (speed * delta) / 1000
       scrollRef.current += reverse ? step : -step
       // seamless wrap
@@ -126,6 +129,8 @@ export default function WaveCarousel({
     }
 
     if (dragAxis.current !== "x") return
+
+    e.preventDefault()
 
     let next = dragStartScroll.current + dx
     if (next > 0) next -= totalWidth
@@ -190,6 +195,7 @@ export default function WaveCarousel({
         position: "relative",
         cursor: "grab",
         touchAction: "pan-y",
+        overscrollBehaviorX: "contain",
       }}
       onPointerDown={onPointerDown}
       onPointerMove={onPointerMove}

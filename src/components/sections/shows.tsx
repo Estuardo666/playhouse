@@ -91,14 +91,16 @@ function ParallaxSliderPro({ images }: { images: ShowGalleryImage[] }) {
   }, [])
 
   const onPointerDown = (e: React.PointerEvent<HTMLDivElement>) => {
+    e.preventDefault()
     isDragging.current = true
     dragStartY.current = e.clientY
     dragStartScroll.current = scrollTarget.current
     if (snapTimer.current) clearTimeout(snapTimer.current)
-    ;(e.target as HTMLElement).setPointerCapture(e.pointerId)
+    e.currentTarget.setPointerCapture(e.pointerId)
   }
   const onPointerMove = (e: React.PointerEvent) => {
     if (!isDragging.current) return
+    e.preventDefault()
     scrollTarget.current = dragStartScroll.current + (dragStartY.current - e.clientY)
   }
   const onPointerUp = () => {
@@ -123,7 +125,11 @@ function ParallaxSliderPro({ images }: { images: ShowGalleryImage[] }) {
     <div
       ref={containerRef}
       className="relative overflow-hidden rounded-2xl select-none cursor-grab active:cursor-grabbing"
-      style={{ height: "clamp(360px, 44vw, 540px)" }}
+      style={{
+        height: "clamp(360px, 44vw, 540px)",
+        touchAction: "none",
+        overscrollBehavior: "contain",
+      }}
       onPointerEnter={() => { isHovered.current = true }}
       onPointerLeave={() => { isHovered.current = false; onPointerUp() }}
       onPointerDown={onPointerDown}

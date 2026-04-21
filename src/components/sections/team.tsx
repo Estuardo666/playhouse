@@ -165,8 +165,8 @@ export default function Team() {
       >
         {isMobileViewport ? (
           <div className="flex flex-col gap-2">
-            <WaveCarousel items={topCarouselItems} />
-            <WaveCarousel items={bottomCarouselItems} reverse />
+            <WaveCarousel items={topCarouselItems} autoScroll={false} />
+            <WaveCarousel items={bottomCarouselItems} autoScroll={false} reverse />
           </div>
         ) : (
           <WaveCarousel items={carouselItems} />
