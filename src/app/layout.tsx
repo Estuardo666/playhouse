@@ -22,7 +22,7 @@ const playfair = Playfair_Display({
 
 export const metadata: Metadata = {
   title: {
-    default: "PlayHouse | Educational Theatre",
+    default: "PlayHouse – Teatro Educativo en Inglés | Loja, Ecuador",
     template: "%s | PlayHouse",
   },
   icons: {
@@ -31,39 +31,43 @@ export const metadata: Metadata = {
     apple: "/media/favicon.png",
   },
   description:
-    "PlayHouse combines theatre, music, pedagogy, and English in transformative educational experiences. Discover our shows, workshops, and artistic residencies.",
+    "Teatro educativo en inglés en Loja: shows musicales, talleres creativos y experiencias escénicas que combinan arte, pedagogía e inglés para niños y jóvenes en Ecuador.",
   keywords: [
-    "educational theatre",
-    "english for kids",
-    "theatre workshops",
-    "educational theatre",
-    "playhouse",
-    "performing arts education",
+    "teatro educativo en inglés",
+    "teatro educativo Loja",
+    "teatro educativo Loja Ecuador",
+    "talleres de teatro Loja",
+    "teatro en inglés niños Loja",
+    "shows musicales en inglés Ecuador",
+    "playhouse teatro Loja",
+    "educational theatre Loja Ecuador",
+    "teatro infantil Loja",
+    "performing arts education Ecuador",
   ],
   authors: [{ name: "PlayHouse Team" }],
   creator: "PlayHouse",
   openGraph: {
     type: "website",
-    locale: "en_US",
+    locale: "es_EC",
     url: "https://playhouse.com",
     siteName: "PlayHouse",
-    title: "PlayHouse | Educational Theatre",
+    title: "PlayHouse – Teatro Educativo en Inglés | Loja, Ecuador",
     description:
-      "Theatre, music, pedagogy, and English in immersive experiences for children and young people.",
+      "Teatro educativo en inglés en Loja. Shows musicales, talleres y experiencias escénicas para niños y jóvenes. Arte, pedagogía e inglés en un mismo escenario.",
     images: [
       {
         url: "/og-hero.jpg",
         width: 1200,
         height: 630,
-        alt: "PlayHouse - Educational Theatre",
+        alt: "PlayHouse – Teatro Educativo en Inglés, Loja Ecuador",
       },
     ],
   },
   twitter: {
     card: "summary_large_image",
-    title: "PlayHouse | Educational Theatre",
+    title: "PlayHouse – Teatro Educativo en Inglés | Loja, Ecuador",
     description:
-      "Discover PlayHouse: theatre, music, and pedagogy in English to transform education.",
+      "Teatro educativo en inglés en Loja: shows musicales, talleres y experiencias escénicas para niños y jóvenes.",
     images: ["/twitter-hero.jpg"],
   },
   robots: {

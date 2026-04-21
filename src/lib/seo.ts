@@ -8,14 +8,17 @@ export interface SeoProps {
 }
 
 export function generateSeo({
-  title = "PlayHouse | Teatro Educativo Interactivo",
-  description = "PlayHouse combina teatro, música, pedagogía e inglés en experiencias educativas transformadoras.",
+  title = "PlayHouse – Teatro Educativo en Inglés | Loja, Ecuador",
+  description = "Teatro educativo en inglés en Loja: shows musicales, talleres creativos y experiencias escénicas que combinan arte, pedagogía e inglés para niños y jóvenes en Ecuador.",
   image = "/og-hero.jpg",
   keywords = [
-    "teatro educativo",
-    "inglés niños", 
-    "educational theatre",
-    "playhouse",
+    "teatro educativo en inglés",
+    "teatro educativo Loja",
+    "teatro educativo Loja Ecuador",
+    "talleres de teatro Loja",
+    "shows musicales en inglés Ecuador",
+    "playhouse teatro Loja",
+    "educational theatre Loja Ecuador",
   ],
 }: SeoProps): Metadata {
   return {

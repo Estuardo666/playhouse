@@ -305,7 +305,7 @@ export default function Workshops() {
               color: "#181815",
             }}
           >
-            Learn through the stage
+            Theatre Workshops in English
           </motion.h2>
 
           <motion.p

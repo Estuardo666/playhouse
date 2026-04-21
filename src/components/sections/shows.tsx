@@ -433,7 +433,7 @@ export default function Shows() {
               letterSpacing: "-0.045em",
             }}
           >
-            Stories that come alive on stage
+            Musical Shows in English for All Ages
           </motion.h2>
 
           <motion.p

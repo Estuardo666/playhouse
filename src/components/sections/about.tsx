@@ -32,6 +32,7 @@ export default function About() {
     <section
       id="about"
       className="bg-white px-4 py-24 md:px-10"
+      aria-labelledby="about-heading"
     >
       <div className="mx-auto flex flex-col items-center gap-12 text-center" style={{ maxWidth: "1260px" }}>
 
@@ -57,16 +58,17 @@ export default function About() {
           ))}
         </motion.div>
 
-        {/* Main headline paragraph */}
-        <motion.p
+        {/* Main headline — section H2 for SEO */}
+        <motion.h2
+          id="about-heading"
           {...fadeUp(0.18)}
           className="max-w-4xl text-[1.9rem] font-light leading-[1.2] text-neutral-700 md:text-[2.2rem]"
           style={{ fontFamily: GS, letterSpacing: "-0.03em" }}
         >
-          PLAYHOUSE – Educational Theatre is a pioneering project in educational theatre in English{" "}
-          <strong className="font-bold text-neutral-900">that combines art, music, and pedagogy</strong>{" "}
+          PLAYHOUSE – Educational Theatre is a pioneering project in educational theatre in English{” ”}
+          <strong className="font-bold text-neutral-900">that combines art, music, and pedagogy</strong>{” ”}
           to offer immersive and creative learning experiences.
-        </motion.p>
+        </motion.h2>
 
         {/* Extended block */}
         <motion.div
