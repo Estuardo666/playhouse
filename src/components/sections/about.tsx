@@ -65,8 +65,8 @@ export default function About() {
           className="max-w-4xl text-[1.9rem] font-light leading-[1.2] text-neutral-700 md:text-[2.2rem]"
           style={{ fontFamily: GS, letterSpacing: "-0.03em" }}
         >
-          PLAYHOUSE – Educational Theatre is a pioneering project in educational theatre in English{” ”}
-          <strong className="font-bold text-neutral-900">that combines art, music, and pedagogy</strong>{” ”}
+          PLAYHOUSE – Educational Theatre is a pioneering project in educational theatre in English{" "}
+          <strong className="font-bold text-neutral-900">that combines art, music, and pedagogy</strong>{" "}
           to offer immersive and creative learning experiences.
         </motion.h2>
 
