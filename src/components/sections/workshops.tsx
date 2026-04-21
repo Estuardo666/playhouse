@@ -124,7 +124,7 @@ function WorkshopDetailModal({
     <AnimatePresence mode="wait">
       {isOpen && displayed && (
         <motion.div
-          className="fixed inset-0 z-[90] flex items-center justify-center p-4 md:p-6"
+          className="fixed inset-0 z-[120] flex items-start justify-center px-4 pb-4 pt-24 md:px-6 md:pb-6 md:pt-28"
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
           exit={{ opacity: 0 }}
@@ -141,7 +141,7 @@ function WorkshopDetailModal({
           />
 
           <motion.div
-            className="relative z-[91] flex max-h-[90dvh] w-full max-w-[1240px] flex-col overflow-hidden rounded-[2rem] bg-[#f3f1ee]"
+            className="relative z-[121] flex max-h-[calc(100dvh-7.5rem)] w-full max-w-[1240px] flex-col overflow-hidden rounded-[1.45rem] bg-[#f3f1ee] md:max-h-[calc(100dvh-9rem)] md:rounded-[2rem]"
             initial={{ opacity: 0, y: 32, scale: 0.93, filter: "blur(8px)" }}
             animate={{ opacity: 1, y: 0, scale: 1, filter: "blur(0px)" }}
             exit={{
@@ -207,8 +207,8 @@ function WorkshopDetailModal({
                   {displayed!.description}
                 </p>
 
-                <div className="mt-6 rounded-full border border-black/10 bg-white/40 p-1">
-                  <div className="flex flex-wrap items-center gap-1">
+                <div className="mt-6 w-full rounded-[1rem] border border-black/10 bg-white/40 p-1 md:rounded-full">
+                  <div className="flex w-full flex-col items-stretch gap-1 md:flex-row md:flex-wrap md:items-center">
                     {[
                       { key: "objectives", label: "Specific Objectives" },
                       { key: "methodology", label: "Methodology" },
@@ -219,7 +219,7 @@ function WorkshopDetailModal({
                         <button
                           key={tab.key}
                           onClick={() => setActiveTab(tab.key as DetailTab)}
-                          className="relative rounded-full px-4 py-2 text-[0.69rem] font-bold uppercase tracking-[0.16em]"
+                          className="relative w-full rounded-[0.8rem] px-4 py-2 text-center text-[0.69rem] font-bold uppercase tracking-[0.16em] md:w-auto md:rounded-full"
                           style={{
                             fontFamily: GS,
                             color: isActive ? "#fff" : "#686868",

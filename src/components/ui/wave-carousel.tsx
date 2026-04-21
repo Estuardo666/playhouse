@@ -70,7 +70,9 @@ export default function WaveCarousel({
   const scrollRef = useRef(0)
   const isDragging = useRef(false)
   const dragStartX = useRef(0)
+  const dragStartY = useRef(0)
   const dragStartScroll = useRef(0)
+  const dragAxis = useRef<"x" | "y" | null>(null)
 
   /* ─── animation loop ─── */
   useAnimationFrame((_, delta) => {
@@ -106,13 +108,25 @@ export default function WaveCarousel({
   const onPointerDown = (e: React.PointerEvent<HTMLDivElement>) => {
     isDragging.current = true
     dragStartX.current = e.clientX
+    dragStartY.current = e.clientY
     dragStartScroll.current = scrollRef.current
+    dragAxis.current = null
     e.currentTarget.setPointerCapture(e.pointerId)
   }
 
   const onPointerMove = (e: React.PointerEvent) => {
     if (!isDragging.current) return
+
     const dx = e.clientX - dragStartX.current
+    const dy = e.clientY - dragStartY.current
+
+    if (!dragAxis.current) {
+      if (Math.abs(dx) < 6 && Math.abs(dy) < 6) return
+      dragAxis.current = Math.abs(dx) > Math.abs(dy) ? "x" : "y"
+    }
+
+    if (dragAxis.current !== "x") return
+
     let next = dragStartScroll.current + dx
     if (next > 0) next -= totalWidth
     if (next < -totalWidth * 2) next += totalWidth
@@ -121,6 +135,46 @@ export default function WaveCarousel({
 
   const onPointerUp = () => {
     isDragging.current = false
+    dragAxis.current = null
+  }
+
+  const onTouchStart = (e: React.TouchEvent<HTMLDivElement>) => {
+    const touch = e.touches[0]
+    if (!touch) return
+    isDragging.current = true
+    dragStartX.current = touch.clientX
+    dragStartY.current = touch.clientY
+    dragStartScroll.current = scrollRef.current
+    dragAxis.current = null
+  }
+
+  const onTouchMove = (e: React.TouchEvent<HTMLDivElement>) => {
+    if (!isDragging.current) return
+
+    const touch = e.touches[0]
+    if (!touch) return
+
+    const dx = touch.clientX - dragStartX.current
+    const dy = touch.clientY - dragStartY.current
+
+    if (!dragAxis.current) {
+      if (Math.abs(dx) < 6 && Math.abs(dy) < 6) return
+      dragAxis.current = Math.abs(dx) > Math.abs(dy) ? "x" : "y"
+    }
+
+    if (dragAxis.current !== "x") return
+
+    e.preventDefault()
+
+    let next = dragStartScroll.current + dx
+    if (next > 0) next -= totalWidth
+    if (next < -totalWidth * 2) next += totalWidth
+    scrollRef.current = next
+  }
+
+  const onTouchEnd = () => {
+    isDragging.current = false
+    dragAxis.current = null
   }
 
   /* ─── render ─── */
@@ -142,6 +196,10 @@ export default function WaveCarousel({
       onPointerUp={onPointerUp}
       onPointerCancel={onPointerUp}
       onPointerLeave={onPointerUp}
+      onTouchStart={onTouchStart}
+      onTouchMove={onTouchMove}
+      onTouchEnd={onTouchEnd}
+      onTouchCancel={onTouchEnd}
     >
       {/* left fade */}
       <div
