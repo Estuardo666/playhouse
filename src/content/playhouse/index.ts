@@ -66,14 +66,14 @@ export interface PlayhouseContent {
 export const playhouseContent = {
   en: {
     hero: {
-      title: "PlayHouse",
+      title: "Playhouse",
       subtitle: "Interactive educational theatre blending music, pedagogy, and English learning",
       ctaPrimary: "Discover Our Shows",
       ctaSecondary: "Book a Workshop",
     },
     about: {
-      title: "About PlayHouse",
-      description: "PlayHouse creates immersive theatrical experiences that transform English learning into an artistic adventure. Our methodology combines drama techniques, music, and pedagogy to engage children and youth in meaningful language acquisition.",
+      title: "About Playhouse",
+      description: "Playhouse creates immersive theatrical experiences that transform English learning into an artistic adventure. Our methodology combines drama techniques, music, and pedagogy to engage children and youth in meaningful language acquisition.",
       stats: [
         { label: "Shows Created", value: "25+" },
         { label: "Workshops Delivered", value: "150+" },
@@ -158,7 +158,7 @@ export const playhouseContent = {
     gallery: [
       {
         image: "/media/gallery/gallery-1.jpg",
-        alt: "Children participating in a PlayHouse performance",
+        alt: "Children participating in a Playhouse performance",
         caption: "Stage moments that invite participation and imagination.",
       },
       {
@@ -169,7 +169,7 @@ export const playhouseContent = {
     ],
     team: [
       {
-        name: "PlayHouse Creative Team",
+        name: "Playhouse Creative Team",
         role: "Artists, educators, and facilitators",
         image: "/media/team/team-1.jpg",
         bio: "A multidisciplinary team with experience in theatre, music education, and bilingual pedagogy.",
@@ -182,23 +182,23 @@ export const playhouseContent = {
       },
     ],
     contact: {
-      title: "Bring PlayHouse to Your Community",
+      title: "Bring Playhouse to Your Community",
       subtitle: "We collaborate with schools, cultural spaces, teachers, and families.",
-      email: "hello@playhouse.com",
+      email: "hello@Playhouse.com",
       phone: "+34 600 000 000",
       address: "Barcelona, Spain",
     },
   } as const,
   es: {
     hero: {
-      title: "PlayHouse",
+      title: "Playhouse",
       subtitle: "Teatro educativo interactivo que combina música, pedagogía y aprendizaje de inglés",
       ctaPrimary: "Descubre Nuestros Shows",
       ctaSecondary: "Reserva un Taller",
     },
     about: {
-      title: "Sobre PlayHouse",
-      description: "PlayHouse crea experiencias teatrales inmersivas que transforman el aprendizaje del inglés en una aventura artística. Nuestra metodología combina técnicas dramáticas, música y pedagogía para involucrar a niños y jóvenes en la adquisición significativa del idioma.",
+      title: "Sobre Playhouse",
+      description: "Playhouse crea experiencias teatrales inmersivas que transforman el aprendizaje del inglés en una aventura artística. Nuestra metodología combina técnicas dramáticas, música y pedagogía para involucrar a niños y jóvenes en la adquisición significativa del idioma.",
       stats: [
         { label: "Shows Creados", value: "25+" },
         { label: "Talleres Realizados", value: "150+" },
@@ -283,7 +283,7 @@ export const playhouseContent = {
     gallery: [
       {
         image: "/media/gallery/gallery-1.jpg",
-        alt: "Niños participando en una función de PlayHouse",
+        alt: "Niños participando en una función de Playhouse",
         caption: "Escenas pensadas para activar imaginación, escucha y participación.",
       },
       {
@@ -294,7 +294,7 @@ export const playhouseContent = {
     ],
     team: [
       {
-        name: "Equipo Creativo PlayHouse",
+        name: "Equipo Creativo Playhouse",
         role: "Artistas, educadores y facilitadores",
         image: "/media/team/team-1.jpg",
         bio: "Un equipo multidisciplinar con experiencia en artes escénicas, educación musical y pedagogía bilingüe.",
@@ -307,7 +307,7 @@ export const playhouseContent = {
       },
     ],
     contact: {
-      title: "Lleva PlayHouse a Tu Comunidad",
+      title: "Lleva Playhouse a Tu Comunidad",
       subtitle: "Colaboramos con escuelas, espacios culturales, docentes y familias.",
       email: "hola@playhouse.com",
       phone: "+34 600 000 000",

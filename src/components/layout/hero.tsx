@@ -9,7 +9,7 @@ import { ScrollTrigger } from "gsap/ScrollTrigger"
 gsap.registerPlugin(ScrollTrigger)
 
 const HERO_TEXT =
-  "Teatro educativo en inglés para inspirar, aprender y vivir experiencias inolvidables"
+  "Educational theatre that inspires learning and creates unforgettable experiences."
 const revealEase = [0.22, 1, 0.36, 1] as const
 const contentEase = [0.16, 1, 0.3, 1] as const
 
@@ -173,7 +173,7 @@ export default function Hero() {
             ref={pillRef}
             className="inline-flex items-center rounded-full border border-white/25 px-4 py-1.5 text-[0.65rem] font-medium uppercase tracking-[0.18em] text-white sm:text-xs"
           >
-            El escenario donde el inglés cobra vida
+            Where English comes alive on stage
           </div>
         </motion.div>
         <motion.div

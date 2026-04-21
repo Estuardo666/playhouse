@@ -143,7 +143,7 @@ export default function Navigation() {
           {/* Center logo */}
           <Link href="/" className="flex shrink-0 items-center" aria-label="PlayHouse">
             <Image
-              src="/media/logo para fondo oscuro.png"
+              src="/media/logo 2026.png"
               alt="PlayHouse"
               width={168}
               height={44}
@@ -189,7 +189,7 @@ export default function Navigation() {
           <div className="flex items-center justify-between px-5 py-3">
             <Link href="/" className="flex shrink-0 items-center" aria-label="PlayHouse">
               <Image
-                src="/media/logo para fondo oscuro.png"
+                src="/media/logo 2026.png"
                 alt="PlayHouse"
                 width={140}
                 height={36}

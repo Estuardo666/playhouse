@@ -55,7 +55,7 @@ export default function Footer() {
             {/* large logo */}
             <motion.div {...blurFade(0.06)} className="mb-10">
               <Image
-                src="/media/logo para fondo oscuro.png"
+                src="/media/logo 2026.png"
                 alt="PlayHouse"
                 width={340}
                 height={90}
