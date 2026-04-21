@@ -4,6 +4,7 @@ import About from "@/components/sections/about"
 import Team from "@/components/sections/team"
 import Shows from "@/components/sections/shows"
 import Workshops from "@/components/sections/workshops"
+import Materials from "@/components/sections/materials"
 import Footer from "@/components/sections/footer"
 import SectionDivider from "@/components/ui/section-divider"
 
@@ -28,6 +29,8 @@ export default function MarketingPage() {
         <Shows />
         <SectionDivider bg="#fff" />
         <Workshops />
+        <SectionDivider bg="#fff" />
+        <Materials />
         <Footer />
       </div>
     </div>
