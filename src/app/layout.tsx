@@ -25,6 +25,11 @@ export const metadata: Metadata = {
     default: "PlayHouse | Educational Theatre",
     template: "%s | PlayHouse",
   },
+  icons: {
+    icon: "/media/favicon.png",
+    shortcut: "/media/favicon.png",
+    apple: "/media/favicon.png",
+  },
   description:
     "PlayHouse combines theatre, music, pedagogy, and English in transformative educational experiences. Discover our shows, workshops, and artistic residencies.",
   keywords: [
@@ -93,7 +98,7 @@ export default function RootLayout({
     <html lang="es" suppressHydrationWarning className="scroll-smooth">
       <body
         className={cn(
-          "min-h-screen bg-[#181815] font-sans antialiased",
+          "min-h-screen bg-[#181815] antialiased",
           inter.variable,
           playfair.variable
         )}
@@ -123,7 +128,7 @@ export default function RootLayout({
         <div aria-hidden="true" className="global-grain-overlay" />
         <div className="relative z-10">
           <Navigation />
-          <main className="bg-[#181815]">{children}</main>
+          <main className="flow-root bg-white">{children}</main>
         </div>
       </body>
     </html>

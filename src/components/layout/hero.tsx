@@ -19,6 +19,20 @@ export default function Hero() {
   const pillRef = useRef<HTMLDivElement>(null)
   const prefersReducedMotion = useReducedMotion()
   const [introComplete, setIntroComplete] = useState(false)
+  const [isMobileViewport, setIsMobileViewport] = useState(false)
+
+  useEffect(() => {
+    const updateViewport = () => {
+      setIsMobileViewport(window.innerWidth < 768)
+    }
+
+    updateViewport()
+    window.addEventListener("resize", updateViewport)
+
+    return () => {
+      window.removeEventListener("resize", updateViewport)
+    }
+  }, [])
 
   const { scrollYProgress } = useScroll({
     target: heroRef,
@@ -27,7 +41,7 @@ export default function Hero() {
   const bgParallaxY = useTransform(
     scrollYProgress,
     [0, 0.5, 1],
-    prefersReducedMotion ? [0, 0, 0] : [0, 0, -80]
+    prefersReducedMotion || isMobileViewport ? [0, 0, 0] : [0, 0, -80]
   )
 
   useEffect(() => {
@@ -145,7 +159,7 @@ export default function Hero() {
         <div className="absolute inset-0 bg-[linear-gradient(90deg,rgba(24,24,21,0.32),transparent_20%,transparent_80%,rgba(24,24,21,0.3))]" />
       </motion.div>
 
-      <div className="relative z-10 flex h-full flex-col items-center justify-end gap-5 px-6 pb-10 md:pb-16 text-center">
+      <div className="relative z-10 flex h-full flex-col items-center justify-start gap-5 px-6 pt-24 md:pb-0 md:pt-28 text-center">
         <motion.div
           initial={prefersReducedMotion ? false : { opacity: 0, y: 22, filter: "blur(12px)" }}
           animate={
@@ -174,7 +188,7 @@ export default function Hero() {
           <h1
             ref={titleRef}
             className="max-w-3xl font-bold leading-[0.95] text-white"
-            style={{ fontFamily: '"Play Grotesk", "Figtree", sans-serif', letterSpacing: '-0.025em', fontSize: 'clamp(1.6rem, 4.5vw, 2.8rem)', opacity: 0.9 }}
+            style={{ fontFamily: '"Play Grotesk", "Figtree", sans-serif', letterSpacing: '-0.025em', fontSize: 'clamp(1.6rem, 4.8vw, 3.1rem)', opacity: 0.9 }}
           >
             {HERO_TEXT}
           </h1>
@@ -216,6 +230,7 @@ export default function Hero() {
                 src="/media/bg hero 3.jpg"
                 alt=""
                 fill
+                priority
                 className="object-cover"
                 sizes="100vw"
               />

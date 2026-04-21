@@ -6,8 +6,8 @@ import Image from "next/image"
 import { SHOWS, type Show, type ShowGalleryImage } from "@/content/playhouse/shows"
 
 /* ─────────────── tokens ─────────────── */
-const PG = '"Play Grotesk", "Figtree", sans-serif'
-const GS = '"Figtree", "Inter", sans-serif'
+const PG = '"Play Grotesk", "Google Sans", sans-serif'
+const GS = '"Google Sans", "Inter", sans-serif'
 const ease = [0.34, 1.56, 0.64, 1] as const
 
 const blurFade = (delay = 0) => ({
@@ -21,6 +21,7 @@ const blurFade = (delay = 0) => ({
 function ParallaxSliderPro({ images }: { images: ShowGalleryImage[] }) {
   const n = images.length
   const containerRef = useRef<HTMLDivElement>(null)
+  const [isMobileViewport, setIsMobileViewport] = useState(false)
   const scrollTarget = useRef(0)
   const scrollCurrent = useRef(0)
   const isDragging = useRef(false)
@@ -31,6 +32,15 @@ function ParallaxSliderPro({ images }: { images: ShowGalleryImage[] }) {
   const scheduleSnapRef = useRef<() => void>(() => {})
   const [, rerender] = useState(0)
   const [H, setH] = useState(480)
+
+  useEffect(() => {
+    const updateViewport = () => setIsMobileViewport(window.innerWidth < 768)
+
+    updateViewport()
+    window.addEventListener("resize", updateViewport)
+
+    return () => window.removeEventListener("resize", updateViewport)
+  }, [])
 
   // Observe container height
   useEffect(() => {
@@ -176,6 +186,21 @@ function ParallaxSliderPro({ images }: { images: ShowGalleryImage[] }) {
           />
         </div>
       </div>
+
+      <div
+        aria-hidden="true"
+        className="pointer-events-none absolute inset-x-0 bottom-4 z-20 flex justify-center"
+      >
+        <span
+          className="text-[0.72rem] font-semibold uppercase tracking-[0.22em] text-white"
+          style={{
+            fontFamily: GS,
+            textShadow: "0 1px 10px rgba(0,0,0,0.42)",
+          }}
+        >
+          {isMobileViewport ? "Swipe" : "Scroll"}
+        </span>
+      </div>
     </div>
   )
 }
@@ -187,13 +212,19 @@ function AccordionTab({
   onToggle,
   isLast,
   tabRef,
+  index,
 }: {
   show: Show
   isOpen: boolean
   onToggle: () => void
   isLast: boolean
   tabRef: React.RefObject<HTMLDivElement>
+  index: number
 }) {
+  const logoSrc = index === 1 ? "/media/trash talk logo.png" : "/media/three little pigs logo 2.png"
+  const logoSize = index === 1 ? 84 : 80
+  const logoScale = isOpen ? 1.33 : 1
+
   return (
     <div ref={tabRef} className="relative">
       {/* wavy bottom divider */}
@@ -210,23 +241,21 @@ function AccordionTab({
         className="w-full flex items-center gap-4 md:gap-6 py-6 md:py-8 text-left"
         aria-expanded={isOpen}
       >
-        {/* logo placeholder */}
-        <span
-          className="flex-shrink-0 flex items-center justify-center rounded-lg"
-          style={{
-            width: 44,
-            height: 44,
-            background: "rgba(0,0,0,0.06)",
-            fontFamily: GS,
-            fontSize: 9,
-            fontWeight: 700,
-            letterSpacing: "0.18em",
-            textTransform: "uppercase",
-            color: "rgba(0,0,0,0.25)",
-          }}
+        {/* show logo */}
+        <motion.div
+          className="flex-shrink-0 overflow-hidden rounded-lg bg-white/70"
+          style={{ width: logoSize, height: logoSize }}
+          animate={{ scale: logoScale }}
+          transition={{ duration: 0.28, ease: [0.22, 1, 0.36, 1] }}
         >
-          LOGO
-        </span>
+          <Image
+            src={logoSrc}
+            alt={index === 1 ? "Trash Talk logo" : "Three Little Pigs logo"}
+            width={logoSize}
+            height={logoSize}
+            className="h-full w-full object-contain"
+          />
+        </motion.div>
 
         {/* show title — red when open, dark when closed */}
         <motion.span
@@ -235,7 +264,7 @@ function AccordionTab({
           className="flex-1 min-w-0 leading-none"
           style={{
             fontFamily: GS,
-            fontSize: "clamp(1.6rem, 4vw, 3.8rem)",
+            fontSize: "clamp(2rem, 5.2vw, 3.8rem)",
             fontWeight: 500,
             letterSpacing: "-0.02em",
           }}
@@ -286,7 +315,7 @@ function AccordionTab({
                     transition={{ duration: 0.35, delay: 0.1 }}
                     style={{
                       fontFamily: GS,
-                      fontSize: "clamp(0.8rem, 2vw, 1.9rem)",
+                      fontSize: "clamp(1.35rem, 3vw, 1.9rem)",
                       fontWeight: 600,
                       color: "#545454",
                       letterSpacing: "-0.025em",
@@ -303,7 +332,7 @@ function AccordionTab({
                     transition={{ duration: 0.4, delay: 0.14 }}
                     style={{
                       fontFamily: GS,
-                      fontSize: "clamp(1.05rem, 1.5vw, 1.22rem)",
+                      fontSize: "1.22rem",
                       color: "#5a6370",
                       lineHeight: 1.4,
                       textAlign: "justify",
@@ -374,7 +403,7 @@ export default function Shows() {
       aria-labelledby="shows-heading"
     >
 
-      <div className="relative z-10 mx-auto px-6 pt-16 pb-24 max-w-[1260px]">
+      <div className="relative z-10 mx-auto px-6 pt-24 pb-24 max-w-[1260px]">
         {/* section header — left aligned */}
         <div className="flex flex-col gap-4 max-w-2xl mb-16">
           <motion.div {...blurFade(0)}>
@@ -419,9 +448,9 @@ export default function Shows() {
             className="leading-relaxed"
             style={{
               fontFamily: GS,
-              fontSize: "clamp(1.05rem, 1.5vw, 1.22rem)",
+              fontSize: "1.22rem",
               color: "#181815",
-              lineHeight: 1.6,
+              lineHeight: 1.4,
               textAlign: "justify",
             }}
           >
@@ -446,6 +475,7 @@ export default function Shows() {
               onToggle={() => handleToggle(i)}
               isLast={i === SHOWS.length - 1}
               tabRef={tabRefs.current[i]}
+              index={i}
             />
           ))}
         </motion.div>

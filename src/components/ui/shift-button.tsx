@@ -97,7 +97,7 @@ export default function ShiftButton({
         <span
           style={{
             color: textColor,
-            fontFamily: '"Figtree", "Inter", sans-serif',
+            fontFamily: '"Google Sans", "Inter", sans-serif',
             fontWeight,
             fontSize,
             letterSpacing: "-0.03em",

@@ -1,7 +1,7 @@
 "use client";
 
 import Image from "next/image";
-import { ReactNode, useRef, useState } from "react";
+import { ReactNode, useEffect, useMemo, useRef, useState } from "react";
 import {
   motion,
   AnimatePresence,
@@ -12,8 +12,8 @@ import {
 
 /* ─────────────── tokens ─────────────── */
 const ease = [0.34, 1.56, 0.64, 1] as const;
-const GS = '"Figtree", "Inter", sans-serif';
-const PG = '"Play Grotesk", "Figtree", sans-serif';
+const GS = '"Google Sans", "Inter", sans-serif';
+const PG = '"Play Grotesk", "Google Sans", sans-serif';
 
 /* ─────────────── content ─────────────── */
 const VALORES = [
@@ -87,15 +87,33 @@ const valoreItem = {
 function Magnet({ children, intensity = 1 }: { children: ReactNode; intensity?: number }) {
   const x = useMotionValue(0);
   const y = useMotionValue(0);
+  const [disableMagnet, setDisableMagnet] = useState(false);
+
+  useEffect(() => {
+    const updateDeviceMode = () => {
+      const isMobileViewport = window.innerWidth < 768;
+      const isCoarsePointer = window.matchMedia("(pointer: coarse)").matches;
+      setDisableMagnet(isMobileViewport || isCoarsePointer);
+    };
+
+    updateDeviceMode();
+    window.addEventListener("resize", updateDeviceMode);
+
+    return () => {
+      window.removeEventListener("resize", updateDeviceMode);
+    };
+  }, []);
 
   return (
     <motion.div
-      style={{ x, y, willChange: "transform", display: "inline-block" }}
+      style={{ ...(disableMagnet ? {} : { x, y, willChange: "transform" }), display: "inline-block" }}
       onHoverEnd={() => {
+        if (disableMagnet) return;
         animate(x, 0, { type: "spring", stiffness: 400, damping: 20, mass: 3 });
         animate(y, 0, { type: "spring", stiffness: 400, damping: 20, mass: 3 });
       }}
       onPointerMove={(event) => {
+        if (disableMagnet) return;
         const rect = event.currentTarget.getBoundingClientRect();
         const nextX = (event.clientX - rect.left - rect.width / 2) * intensity;
         const nextY = (event.clientY - rect.top - rect.height / 2) * intensity;
@@ -146,6 +164,91 @@ function ValorPill({
         </span>
       </div>
     </Magnet>
+  );
+}
+
+function ProgressiveEdgeBlur({
+  side,
+  width = "4rem",
+  blurPx = 12,
+}: {
+  side: "left" | "right";
+  width?: string;
+  blurPx?: number;
+}) {
+  const layers = useMemo(() => {
+    const dir = side === "left" ? "to left" : "to right";
+
+    return Array.from({ length: 8 }, (_, i) => {
+      const blur = blurPx / Math.pow(2, 8 - i);
+      const start = (i * 12.5).toFixed(1);
+      const mid1 = (i * 12.5 + 12.5).toFixed(1);
+      const mid2 = (i * 12.5 + 25).toFixed(1);
+      const end = (i * 12.5 + 37.5).toFixed(1);
+      const gradient = [
+        `rgba(0,0,0,0) ${start}%`,
+        `rgba(0,0,0,1) ${mid1}%`,
+        `rgba(0,0,0,1) ${mid2}%`,
+        `rgba(0,0,0,0) ${end}%`,
+      ].join(", ");
+
+      return {
+        blur: `${blur.toFixed(3)}px`,
+        mask: `linear-gradient(${dir}, ${gradient})`,
+      };
+    });
+  }, [side, blurPx]);
+
+  return (
+    <div
+      aria-hidden="true"
+      className="pointer-events-none absolute inset-y-0"
+      style={{ [side]: 0, width, overflow: "hidden" }}
+    >
+      {layers.map((layer, idx) => (
+        <div
+          key={`${side}-${idx}`}
+          style={{
+            position: "absolute",
+            inset: 0,
+            zIndex: idx + 1,
+            backdropFilter: `blur(${layer.blur})`,
+            WebkitBackdropFilter: `blur(${layer.blur})`,
+            maskImage: layer.mask,
+            WebkitMaskImage: layer.mask,
+          }}
+        />
+      ))}
+    </div>
+  );
+}
+
+function PillsMarqueeRow({
+  values,
+  reverse = false,
+}: {
+  values: string[];
+  reverse?: boolean;
+}) {
+  const loopValues = [...values, ...values];
+
+  return (
+    <div className="relative w-full overflow-hidden">
+      <motion.div
+        className="flex w-max items-center gap-3 py-1"
+        animate={{ x: reverse ? ["-50%", "0%"] : ["0%", "-50%"] }}
+        transition={{ duration: 16, repeat: Infinity, ease: "linear" }}
+      >
+        {loopValues.map((valor, i) => (
+          <div key={`${valor}-${i}`} className="flex-shrink-0">
+            <ValorPill valor={valor} />
+          </div>
+        ))}
+      </motion.div>
+
+      <ProgressiveEdgeBlur side="left" />
+      <ProgressiveEdgeBlur side="right" />
+    </div>
   );
 }
 
@@ -363,21 +466,37 @@ export function FlipCardsBlock() {
 }
 
 export function ValorPillsBlock() {
+  const splitIndex = Math.ceil(VALORES.length / 2);
+  const topValues = VALORES.slice(0, splitIndex);
+  const bottomValues = VALORES.slice(splitIndex);
+
   return (
-    <motion.div
-      variants={staggerContainer}
-      initial="hidden"
-      whileInView="visible"
-      viewport={{ once: true, margin: "-60px" }}
-      className="flex w-full flex-nowrap items-center gap-3 overflow-x-auto pb-2 md:flex-wrap md:justify-between md:overflow-x-visible md:pb-0 scrollbar-none"
-      style={{ WebkitOverflowScrolling: "touch" }}
-    >
-      {VALORES.map((valor, i) => (
-        <motion.div key={`${valor}-${i}`} variants={valoreItem} className="flex-shrink-0">
-          <ValorPill valor={valor} />
-        </motion.div>
-      ))}
-    </motion.div>
+    <>
+      <motion.div
+        variants={staggerContainer}
+        initial="hidden"
+        whileInView="visible"
+        viewport={{ once: true, margin: "-60px" }}
+        className="relative left-1/2 w-screen -translate-x-1/2 flex flex-col gap-2 px-0 md:hidden"
+      >
+        <PillsMarqueeRow values={topValues} />
+        <PillsMarqueeRow values={bottomValues} reverse />
+      </motion.div>
+
+      <motion.div
+        variants={staggerContainer}
+        initial="hidden"
+        whileInView="visible"
+        viewport={{ once: true, margin: "-60px" }}
+        className="hidden w-full flex-wrap items-center justify-between gap-3 md:flex"
+      >
+        {VALORES.map((valor, i) => (
+          <motion.div key={`${valor}-${i}`} variants={valoreItem} className="flex-shrink-0">
+            <ValorPill valor={valor} />
+          </motion.div>
+        ))}
+      </motion.div>
+    </>
   );
 }
 
@@ -462,8 +581,7 @@ export default function MissionVision() {
           initial="hidden"
           whileInView="visible"
           viewport={{ once: true, margin: "-60px" }}
-          className="flex flex-nowrap items-center gap-3 overflow-x-auto pb-2 md:flex-wrap md:justify-center md:overflow-x-visible md:pb-0 scrollbar-none"
-          style={{ WebkitOverflowScrolling: "touch" }}
+          className="flex w-full flex-wrap items-center justify-center gap-3"
         >
           {VALORES.map((valor, i) => (
             <motion.div key={`${valor}-${i}`} variants={valoreItem} className="flex-shrink-0">

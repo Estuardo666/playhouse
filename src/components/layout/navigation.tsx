@@ -174,9 +174,8 @@ export default function Navigation() {
 
         {/* ── Mobile: floating pill that expands into menu ── */}
         <motion.div
-          layout
-          animate={{ borderRadius: mobileOpen ? 28 : 9999 }}
-          transition={{ layout: { duration: 0.42, ease: [0.22, 1, 0.36, 1] }, borderRadius: { duration: 0.42, ease: [0.22, 1, 0.36, 1] } }}
+          animate={{ borderRadius: mobileOpen ? 26 : 20 }}
+          transition={{ duration: 0.28, ease: [0.22, 1, 0.36, 1] }}
           className="flex md:hidden w-full flex-col overflow-hidden shadow-2xl"
           style={{
             background: mobileOpen ? "#1a1a18" : scrolled ? "#181815" : "rgba(92,16,16,0.82)",
@@ -236,8 +235,12 @@ export default function Navigation() {
                       <a
                         href={link.href}
                         onClick={(e) => handleNavClick(e, link.href)}
-                        className="flex items-center justify-between px-5 py-3.5 text-[0.95rem] font-medium transition-colors"
-                        style={{ color: activeSection === link.id ? "#ffffff" : "rgba(255,255,255,0.55)" }}
+                        className="flex items-center justify-between px-5 py-3.5 text-[1.2rem] font-medium transition-colors"
+                        style={{
+                          color: activeSection === link.id ? "#ffffff" : "rgba(255,255,255,0.55)",
+                          fontFamily: '"MADE Grotesk", "Play Grotesk", "Figtree", sans-serif',
+                          letterSpacing: "-0.01em",
+                        }}
                       >
                         <span>{link.label}</span>
                         {activeSection === link.id && (

@@ -75,8 +75,11 @@ export function DirectionalCursor({
   );
 
   const [deviceType, setDeviceType] = useState("desktop");
+  const [isMounted, setIsMounted] = useState(false);
+
   useEffect(() => {
     setDeviceType(getDeviceType());
+    setIsMounted(true);
   }, []);
 
   const shouldHideCursor = useMemo(() => {
@@ -430,15 +433,15 @@ export function DirectionalCursor({
     positionCenteredCursor,
   ]);
 
-  if (shouldHideCursor) {
-    return null;
-  }
-
   const ringBoxShadow = useTransform(
     ringGlow,
     [0, 1],
     ["0 0 0px 0px rgba(255,255,255,0)", "0 0 18px 4px rgba(255,255,255,0.18)"]
   );
+
+  if (!isMounted || shouldHideCursor) {
+    return null;
+  }
 
   return (
     <>

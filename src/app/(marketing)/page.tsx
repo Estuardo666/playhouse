@@ -24,9 +24,7 @@ export default function MarketingPage() {
       <div className="relative z-10 isolate bg-white">
         <Hero />
         <About />
-        <SectionDivider bg="#fff" />
         <Team />
-        <SectionDivider bg="#181815" />
         <Shows />
         <SectionDivider bg="#fff" />
         <Workshops />

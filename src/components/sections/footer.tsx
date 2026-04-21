@@ -4,7 +4,7 @@ import Image from "next/image"
 import { motion } from "framer-motion"
 
 /* ─────────────── tokens ─────────────── */
-const GS = '"Figtree", "Inter", sans-serif'
+const GS = '"Google Sans", "Inter", sans-serif'
 
 const blurFade = (delay = 0) => ({
   initial: { opacity: 0, y: 24, filter: "blur(10px)" },

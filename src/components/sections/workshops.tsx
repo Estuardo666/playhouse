@@ -6,8 +6,8 @@ import { motion, AnimatePresence, useScroll, useTransform } from "framer-motion"
 import { WORKSHOPS, type Workshop, type WorkshopTab } from "@/content/playhouse/workshops"
 
 /* ─────────────── tokens ─────────────── */
-const PG = '"Play Grotesk", "Figtree", sans-serif'
-const GS = '"Figtree", "Inter", sans-serif'
+const PG = '"Play Grotesk", "Google Sans", sans-serif'
+const GS = '"Google Sans", "Inter", sans-serif'
 const ease = [0.34, 1.56, 0.64, 1] as const
 
 const blurFade = (delay = 0) => ({
@@ -22,19 +22,22 @@ function SlideTabs({
   tabs,
   activeKey,
   onChange,
+  layoutId,
 }: {
   tabs: WorkshopTab[]
   activeKey: string
   onChange: (key: WorkshopTab["key"]) => void
+  layoutId: string
 }) {
   const containerRef = useRef<HTMLDivElement>(null)
 
   return (
-    <div
-      ref={containerRef}
-      className="w-full overflow-x-auto scrollbar-none"
-      role="tablist"
-    >
+    <div className="w-full">
+      <div
+        ref={containerRef}
+        className="w-full overflow-x-auto scrollbar-none"
+        role="tablist"
+      >
       <div className="flex min-w-max items-center gap-1 rounded-full border border-black/[0.12] bg-transparent p-1 md:min-w-0 md:w-full">
       {tabs.map((tab) => {
         const isActive = tab.key === activeKey
@@ -55,7 +58,7 @@ function SlideTabs({
           >
             {isActive && (
               <motion.span
-                layoutId="tab-pill"
+                layoutId={layoutId}
                 className="absolute inset-0 rounded-full"
                 style={{ background: "#5C1010", zIndex: -1 }}
                 transition={{ type: "spring", stiffness: 420, damping: 36 }}
@@ -65,6 +68,20 @@ function SlideTabs({
           </button>
         )
       })}
+      </div>
+      </div>
+      <div
+        aria-hidden="true"
+        className="mt-2 flex items-center justify-center gap-3 md:hidden"
+      >
+        <span className="text-[0.74rem] text-[#7A7A7A]">←</span>
+        <span
+          className="uppercase text-[0.62rem] font-semibold"
+          style={{ fontFamily: GS, color: "#7A7A7A", letterSpacing: "0.16em" }}
+        >
+          Slide tabs
+        </span>
+        <span className="text-[0.74rem] text-[#7A7A7A]">→</span>
       </div>
     </div>
   )
@@ -175,7 +192,7 @@ function WorkshopCard({ workshop, index }: { workshop: Workshop; index: number }
     <motion.div
       ref={cardRef}
       {...blurFade(0.1 + index * 0.08)}
-      className="grid grid-cols-1 md:grid-cols-[1fr_2fr] gap-8 md:gap-12 items-stretch py-14"
+      className="relative grid grid-cols-1 md:grid-cols-[1fr_2fr] gap-8 md:gap-12 items-stretch py-14"
     >
       {/* left — image: fixed height, does not grow with tab content */}
       <div
@@ -201,7 +218,7 @@ function WorkshopCard({ workshop, index }: { workshop: Workshop; index: number }
         <h3
           style={{
             fontFamily: GS,
-            fontSize: "clamp(1.6rem, 3vw, 2.4rem)",
+            fontSize: "clamp(1.9rem, 3.2vw, 2.6rem)",
             fontWeight: 600,
             lineHeight: 0.9,
             letterSpacing: "-0.045em",
@@ -227,9 +244,9 @@ function WorkshopCard({ workshop, index }: { workshop: Workshop; index: number }
         <p
           style={{
             fontFamily: GS,
-            fontSize: "clamp(1.05rem, 1.5vw, 1.22rem)",
+            fontSize: "1.22rem",
             color: "#181815",
-            lineHeight: 0.95,
+            lineHeight: 1.4,
             textAlign: "justify",
           }}
         >
@@ -242,6 +259,7 @@ function WorkshopCard({ workshop, index }: { workshop: Workshop; index: number }
             tabs={workshop.tabs}
             activeKey={activeTab}
             onChange={setActiveTab}
+            layoutId={`tab-pill-${workshop.id}`}
           />
           <TabContent tab={currentTab} />
         </div>
@@ -258,18 +276,17 @@ export default function Workshops() {
       className="relative w-full overflow-hidden bg-white"
       aria-labelledby="workshops-heading"
     >
-      <div className="relative z-10 mx-auto px-6 pt-24 pb-28 max-w-[1260px]">
+      <div className="relative z-10 mx-auto px-6 pt-24 pb-24 max-w-[1260px]">
 
         {/* section header — centered, no image */}
         <div className="flex flex-col items-center text-center gap-6 mb-20 max-w-3xl mx-auto">
           <motion.div {...blurFade(0)}>
             <span
-              className="inline-flex items-center px-5 py-1.5 rounded-full text-[11px] font-semibold uppercase"
+              className="inline-flex items-center px-5 py-1.5 rounded-full text-[0.72rem] font-semibold uppercase tracking-[0.18em]"
               style={{
                 fontFamily: GS,
                 background: "#5C1010",
                 color: "#fff",
-                letterSpacing: "0.16em",
               }}
             >
               Workshops
@@ -302,9 +319,10 @@ export default function Workshops() {
             {...blurFade(0.14)}
             style={{
               fontFamily: GS,
-              fontSize: "clamp(1.05rem, 1.5vw, 1.22rem)",
+              fontSize: "1.22rem",
               color: "#181815",
               lineHeight: 1.4,
+              textAlign: "justify",
             }}
           >
             At PLAYHOUSE — Educational Theatre, our workshops use the power of theatre to make learning English fun, creative, and memorable. Through games, improvisation, storytelling, music, and stage performance, students explore new ways of expressing themselves while building confidence in their language skills.

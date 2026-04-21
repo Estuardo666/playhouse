@@ -7,7 +7,7 @@ import ShiftButton from "@/components/ui/shift-button"
 import { FlipCardsBlock, ValorPillsBlock } from "@/components/sections/mission-vision"
 
 const ease = [0.34, 1.56, 0.64, 1] as const
-const GS = '"Figtree", "Inter", sans-serif'
+const GS = '"Google Sans", "Inter", sans-serif'
 
 const fadeUp = (delay = 0) => ({
   initial: { opacity: 0, y: 28, filter: "blur(10px)" },
@@ -29,7 +29,7 @@ function FadeBlurParagraph({ children, delay = 0, className = "", style = {} }: 
   const filter = useTransform(scrollYProgress, [0, 1], ["blur(12px)", "blur(0px)"])
 
   return (
-    <motion.p ref={ref} style={{ opacity, y, filter, ...style }} className={className}>
+    <motion.p ref={ref} style={{ opacity, y, filter, ...style }} className={`relative ${className}`.trim()}>
       {children}
     </motion.p>
   )
@@ -144,7 +144,7 @@ export default function About() {
   return (
     <section
       id="about"
-      className="bg-white px-6 py-24 md:px-10"
+      className="bg-white px-4 py-24 md:px-10"
     >
       <div className="mx-auto flex flex-col items-center gap-12 text-center" style={{ maxWidth: "1260px" }}>
 
@@ -187,7 +187,7 @@ export default function About() {
           whileInView="visible"
           viewport={{ once: true, margin: "-60px" }}
           variants={{ hidden: {}, visible: { transition: { staggerChildren: 0.18 } } }}
-          className="w-full rounded-[2rem] p-8 md:p-12"
+          className="w-full rounded-[2rem] p-4 sm:p-6 md:p-12"
         >
 
           {/* Top grid: stacked images + text */}
@@ -215,10 +215,10 @@ export default function About() {
             </motion.div>
 
             {/* Text column */}
-            <div ref={textBlockRef} className="flex flex-col justify-start gap-7 text-left">
+            <div ref={textBlockRef} className="relative flex flex-col justify-start gap-7 text-left">
               <motion.h3
                 className="text-4xl font-semibold leading-[1.05] text-neutral-900 md:text-5xl"
-                style={{ fontFamily: '"MADE Grotesk", "Play Grotesk", "Figtree", sans-serif', letterSpacing: "-0.025em" }}
+                style={{ fontFamily: '"MADE Grotesk", "Play Grotesk", "Google Sans", sans-serif', letterSpacing: "-0.025em" }}
                 variants={{ hidden: { opacity: 0, y: 24, filter: "blur(10px)" }, visible: { opacity: 1, y: 0, filter: "blur(0px)", transition: { duration: 0.85, ease: [0.16,1,0.3,1] } } }}
               >
                 Where theatre becomes<br />a living classroom
@@ -273,7 +273,7 @@ export default function About() {
                 transition: { duration: 0.85, ease, delay: 0 },
               },
             }}
-            className="mx-auto mt-16 max-w-4xl text-center text-[1.18rem] leading-[1.55] text-neutral-800 md:text-[1.3rem] font-semibold"
+            className="mx-auto mt-16 max-w-4xl text-justify text-[1.18rem] leading-[1.55] text-neutral-800 md:text-[1.3rem] font-semibold"
             style={{ fontFamily: GS }}
           >
             With more than 15 years of experience in the performing arts and teaching, we promote an innovative
@@ -283,7 +283,7 @@ export default function About() {
           </motion.p>
 
           {/* Mission / Vision cards + valor pills */}
-          <div className="mt-12 flex flex-col gap-8">
+          <div className="mt-6 flex flex-col gap-4 md:mt-12 md:gap-8">
             <FlipCardsBlock />
             <ValorPillsBlock />
           </div>

@@ -203,7 +203,7 @@ function FanCard({
               <span
                 className="text-[13px] font-semibold tracking-[0.14em] uppercase"
                 style={{
-                  fontFamily: '"Figtree", sans-serif',
+                  fontFamily: '"Google Sans", sans-serif',
                   color: "rgba(235,185,185,0.88)",
                 }}
               >
@@ -213,7 +213,7 @@ function FanCard({
                 <span
                   className="text-[12px] font-medium tracking-[0.12em] uppercase"
                   style={{
-                    fontFamily: '"Figtree", sans-serif',
+                    fontFamily: '"Google Sans", sans-serif',
                     color: "rgba(210,148,148,0.62)",
                   }}
                 >
@@ -224,7 +224,7 @@ function FanCard({
             <p
               className="text-white font-bold leading-tight"
               style={{
-                fontFamily: '"Play Grotesk", "Figtree", sans-serif',
+                fontFamily: '"Play Grotesk", "Google Sans", sans-serif',
                 fontSize: 30,
                 letterSpacing: "-0.02em",
               }}
@@ -396,7 +396,7 @@ export default function FanCarousel({
       <p
         className="text-[11px] tracking-[0.18em]"
         style={{
-          fontFamily: '"Figtree", sans-serif',
+          fontFamily: '"Google Sans", sans-serif',
           color: "rgba(255,255,255,0.3)",
         }}
         aria-live="polite"

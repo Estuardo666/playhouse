@@ -22,14 +22,16 @@ type WaveCarouselProps = {
   gap?: number
   /** px / second */
   speed?: number
+  /** reverse horizontal direction */
+  reverse?: boolean
   /** vertical sine amplitude in px */
   amplitude?: number
 }
 
 /* ─────────────── constants ─────────────── */
 
-const PG = '"Play Grotesk", "Figtree", sans-serif'
-const GS = '"Figtree", "Inter", sans-serif'
+const PG = '"Play Grotesk", "Google Sans", sans-serif'
+const GS = '"Google Sans", "Inter", sans-serif'
 
 /* ─────────────── component ─────────────── */
 
@@ -39,6 +41,7 @@ export default function WaveCarousel({
   cardHeight = 400,
   gap = 36,
   speed = 90,
+  reverse = false,
   amplitude = 18,
 }: WaveCarouselProps) {
   // Responsive: smaller on mobile
@@ -72,7 +75,8 @@ export default function WaveCarousel({
   /* ─── animation loop ─── */
   useAnimationFrame((_, delta) => {
     if (!isDragging.current) {
-      scrollRef.current -= (speed * delta) / 1000
+      const step = (speed * delta) / 1000
+      scrollRef.current += reverse ? step : -step
       // seamless wrap
       if (scrollRef.current <= -totalWidth) scrollRef.current += totalWidth
       if (scrollRef.current > 0) scrollRef.current -= totalWidth

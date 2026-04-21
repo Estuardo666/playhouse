@@ -1,13 +1,13 @@
 "use client"
 
-import { useRef, useState, useCallback } from "react"
+import { useRef, useState, useCallback, useEffect, useMemo } from "react"
 import { motion, AnimatePresence } from "framer-motion"
 import WaveCarousel, { type WaveCarouselItem } from "@/components/ui/wave-carousel"
 import { TEAM_MEMBERS } from "@/content/playhouse/team"
 
 /* ─────────────── tokens ─────────────── */
-const PG = '"Play Grotesk", "Figtree", sans-serif'
-const GS = '"Figtree", "Inter", sans-serif'
+const PG = '"Play Grotesk", "Google Sans", sans-serif'
+const GS = '"Google Sans", "Inter", sans-serif'
 const ease = [0.34, 1.56, 0.64, 1] as const
 
 const blurFade = (delay = 0) => ({
@@ -30,9 +30,27 @@ const carouselItems: WaveCarouselItem[] = TEAM_MEMBERS.map((m) => ({
 export default function Team() {
   const carouselRef = useRef<HTMLDivElement>(null)
   const [cursor, setCursor] = useState({ x: 0, y: 0, visible: false })
+  const [isMobileViewport, setIsMobileViewport] = useState(false)
   const rafRef = useRef<number | null>(null)
   const targetRef = useRef({ x: 0, y: 0 })
   const posRef = useRef({ x: 0, y: 0 })
+
+  const splitIndex = Math.ceil(carouselItems.length / 2)
+  const topCarouselItems = useMemo(() => carouselItems.slice(0, splitIndex), [splitIndex])
+  const bottomCarouselItems = useMemo(() => carouselItems.slice(splitIndex), [splitIndex])
+
+  useEffect(() => {
+    const updateViewport = () => {
+      setIsMobileViewport(window.innerWidth < 768)
+    }
+
+    updateViewport()
+    window.addEventListener("resize", updateViewport)
+
+    return () => {
+      window.removeEventListener("resize", updateViewport)
+    }
+  }, [])
 
   const animateCursor = useCallback(() => {
     posRef.current.x += (targetRef.current.x - posRef.current.x) * 0.12
@@ -77,7 +95,7 @@ export default function Team() {
       />
 
       {/* header — stays in container */}
-      <div className="relative z-10 container mx-auto px-6 pt-32 pb-16 flex flex-col items-center">
+      <div className="relative z-10 container mx-auto px-6 pt-24 pb-12 flex flex-col items-center">
         <div className="flex flex-col items-center gap-5 text-center max-w-2xl">
 
           <motion.div {...blurFade(0)}>
@@ -121,7 +139,7 @@ export default function Team() {
             className="leading-relaxed text-balance"
             style={{
               fontFamily: GS,
-              fontSize: "clamp(1.05rem, 1.5vw, 1.22rem)",
+              fontSize: "1.22rem",
               color: "rgba(255,255,255,0.72)",
               lineHeight: 1.4,
               textAlign: "justify",
@@ -140,16 +158,23 @@ export default function Team() {
         {...blurFade(0.28)}
         ref={carouselRef}
         className="relative z-10 pb-24"
-        style={{ cursor: "none" }}
+        style={{ cursor: isMobileViewport ? "default" : "none" }}
         onMouseMove={handleMouseMove}
         onMouseEnter={handleMouseEnter}
         onMouseLeave={handleMouseLeave}
       >
-        <WaveCarousel items={carouselItems} />
+        {isMobileViewport ? (
+          <div className="flex flex-col gap-2">
+            <WaveCarousel items={topCarouselItems} />
+            <WaveCarousel items={bottomCarouselItems} reverse />
+          </div>
+        ) : (
+          <WaveCarousel items={carouselItems} />
+        )}
 
         {/* custom drag cursor */}
         <AnimatePresence>
-          {cursor.visible && (
+          {!isMobileViewport && cursor.visible && (
             <motion.div
               key="drag-cursor"
               initial={{ opacity: 0, scale: 0.6 }}
