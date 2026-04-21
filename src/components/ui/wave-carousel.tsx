@@ -135,10 +135,12 @@ export default function WaveCarousel({
         overflowY: "visible",
         position: "relative",
         cursor: "grab",
+        touchAction: "pan-y",
       }}
       onPointerDown={onPointerDown}
       onPointerMove={onPointerMove}
       onPointerUp={onPointerUp}
+      onPointerCancel={onPointerUp}
       onPointerLeave={onPointerUp}
     >
       {/* left fade */}

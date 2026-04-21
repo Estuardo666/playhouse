@@ -1,8 +1,7 @@
 "use client"
 
 import Image from "next/image"
-import React, { useEffect, useRef, useState } from "react"
-import { motion, useMotionValueEvent, useScroll, useSpring, useTransform } from "framer-motion"
+import { motion } from "framer-motion"
 import ShiftButton from "@/components/ui/shift-button"
 import { FlipCardsBlock, ValorPillsBlock } from "@/components/sections/mission-vision"
 
@@ -15,87 +14,6 @@ const fadeUp = (delay = 0) => ({
   viewport: { once: true, margin: "-60px" },
   transition: { duration: 0.9, ease, delay },
 })
-
-function FadeBlurParagraph({ children, delay = 0, className = "", style = {} }: {
-  children: React.ReactNode
-  delay?: number
-  className?: string
-  style?: React.CSSProperties
-}) {
-  const ref = useRef<HTMLParagraphElement>(null)
-  const { scrollYProgress } = useScroll({ target: ref, offset: ["start 0.92", "start 0.45"] })
-  const opacity = useTransform(scrollYProgress, [0, 1], [0, 1])
-  const y = useTransform(scrollYProgress, [0, 1], [22, 0])
-  const filter = useTransform(scrollYProgress, [0, 1], ["blur(12px)", "blur(0px)"])
-
-  return (
-    <motion.p ref={ref} style={{ opacity, y, filter, ...style }} className={`relative ${className}`.trim()}>
-      {children}
-    </motion.p>
-  )
-}
-
-type BlurScrollTextProps = {
-  text: string
-  className?: string
-  style?: React.CSSProperties
-  progress: import("framer-motion").MotionValue<number>
-  start?: number
-  end?: number
-}
-
-const BlurScrollText = React.forwardRef<HTMLParagraphElement, BlurScrollTextProps>(
-  ({ text, className = "", style = {}, progress, start = 0, end = 1 }, ref) => {
-    const localProgress = useTransform(progress, [start, end], [0, 1])
-    const smoothProgress = useSpring(localProgress, { stiffness: 70, damping: 24, mass: 0.8 })
-
-    const setRefs = (el: HTMLParagraphElement | null) => {
-      if (ref) {
-        if (typeof ref === "function") ref(el)
-        else (ref as React.MutableRefObject<HTMLParagraphElement | null>).current = el
-      }
-    }
-
-    const words = text.split(" ")
-
-    return (
-      <p ref={setRefs} className={className} style={{ ...style, lineHeight: 1.4 }}>
-        {words.map((word, i) => {
-          const start = i / words.length
-          const end = Math.min(1, (i + 7) / words.length)
-          return (
-            <LetterMask key={`${word}-${i}`} progress={smoothProgress} start={start} end={end}>
-              {word}
-            </LetterMask>
-          )
-        })}
-      </p>
-    )
-  }
-)
-BlurScrollText.displayName = "BlurScrollText"
-
-function LetterMask({
-  children,
-  progress,
-  start,
-  end,
-}: {
-  children: string
-  progress: import("framer-motion").MotionValue<number>
-  start: number
-  end: number
-}) {
-  const opacity = useTransform(progress, [start, end], [0, 1])
-  const filter = useTransform(progress, [start, end], ["blur(12px)", "blur(0px)"])
-  return (
-    <motion.span
-      style={{ opacity, filter, display: "inline" }}
-    >
-      {children}{" "}
-    </motion.span>
-  )
-}
 
 const topImages = [
   { src: "/media/test/3editada-265.jpg", alt: "PlayHouse performance 1" },
@@ -110,37 +28,6 @@ const stackedImages = [
 
 
 export default function About() {
-  const textBlockRef = useRef<HTMLDivElement>(null)
-  const { scrollYProgress: textProgress } = useScroll({ target: textBlockRef, offset: ["start 0.98", "end 0.62"] })
-  const smoothedTextProgress = useSpring(textProgress, { stiffness: 60, damping: 22, mass: 0.9 })
-  const thirdParagraphProgress = useTransform(smoothedTextProgress, [0.66, 1], [0, 1])
-  const [showBottomParagraph, setShowBottomParagraph] = useState(false)
-  const bottomParagraphTimer = useRef<number | null>(null)
-
-  useMotionValueEvent(thirdParagraphProgress, "change", (latest) => {
-    if (bottomParagraphTimer.current !== null) {
-      window.clearTimeout(bottomParagraphTimer.current)
-      bottomParagraphTimer.current = null
-    }
-
-    if (latest >= 0.92) {
-      bottomParagraphTimer.current = window.setTimeout(() => {
-        setShowBottomParagraph(true)
-      }, 500)
-      return
-    }
-
-    setShowBottomParagraph(false)
-  })
-
-  useEffect(() => {
-    return () => {
-      if (bottomParagraphTimer.current !== null) {
-        window.clearTimeout(bottomParagraphTimer.current)
-      }
-    }
-  }, [])
-
   return (
     <section
       id="about"
@@ -215,7 +102,7 @@ export default function About() {
             </motion.div>
 
             {/* Text column */}
-            <div ref={textBlockRef} className="relative flex flex-col justify-start gap-7 text-left">
+            <div className="relative flex flex-col justify-start gap-7 text-left">
               <motion.h3
                 className="text-4xl font-semibold leading-[1.05] text-neutral-900 md:text-5xl"
                 style={{ fontFamily: '"MADE Grotesk", "Play Grotesk", "Google Sans", sans-serif', letterSpacing: "-0.025em" }}
@@ -231,48 +118,31 @@ export default function About() {
                 Art, pedagogy &amp; the English language on one stage
               </motion.p>
 
-              <BlurScrollText
-                text="PLAYHOUSE - Educational Theatre was founded with the mission of bringing together the performing arts and English learning on the same stage. We are a theatre production company committed to creating unique experiences that inspire, educate, and entertain audiences of all ages."
+              <p
                 className="text-[1.22rem] font-semibold text-neutral-800 text-justify"
-                style={{ fontFamily: GS }}
-                progress={smoothedTextProgress}
-                start={0}
-                end={0.33}
-              />
+                style={{ fontFamily: GS, lineHeight: 1.4 }}
+              >
+                PLAYHOUSE - Educational Theatre was founded with the mission of bringing together the performing arts and English learning on the same stage. We are a theatre production company committed to creating unique experiences that inspire, educate, and entertain audiences of all ages.
+              </p>
 
-              <BlurScrollText
-                text="We believe that theatre is a powerful bridge for learning: every play is an opportunity to dive into a new language, a culture, and a story. Through workshops, musicals and performances in English, we offer students, families, teachers, and art lovers a space where English comes to life in a natural, fun, and exciting way."
+              <p
                 className="text-[1.22rem] text-neutral-700 text-justify"
-                style={{ fontFamily: GS }}
-                progress={smoothedTextProgress}
-                start={0.33}
-                end={0.66}
-              />
+                style={{ fontFamily: GS, lineHeight: 1.4 }}
+              >
+                We believe that theatre is a powerful bridge for learning: every play is an opportunity to dive into a new language, a culture, and a story. Through workshops, musicals and performances in English, we offer students, families, teachers, and art lovers a space where English comes to life in a natural, fun, and exciting way.
+              </p>
 
-              <BlurScrollText
-                text="Our work combines a passion for theatre with an innovative pedagogical approach. At PLAYHOUSE, we bring together actors, directors, musicians, choreographers, and creatives who share the same vision: to turn the stage into a living classroom and the audience into an active participant."
+              <p
                 className="text-[1.22rem] text-neutral-700 text-justify"
-                style={{ fontFamily: GS }}
-                progress={smoothedTextProgress}
-                start={0.66}
-                end={1}
-              />
+                style={{ fontFamily: GS, lineHeight: 1.4 }}
+              >
+                Our work combines a passion for theatre with an innovative pedagogical approach. At PLAYHOUSE, we bring together actors, directors, musicians, choreographers, and creatives who share the same vision: to turn the stage into a living classroom and the audience into an active participant.
+              </p>
             </div>
           </div>
 
           {/* Wide bottom paragraph */}
-          <motion.p
-            initial="hidden"
-            animate={showBottomParagraph ? "visible" : "hidden"}
-            variants={{
-              hidden: { opacity: 0, y: 28, filter: "blur(10px)" },
-              visible: {
-                opacity: 1,
-                y: 0,
-                filter: "blur(0px)",
-                transition: { duration: 0.85, ease, delay: 0 },
-              },
-            }}
+          <p
             className="mx-auto mt-16 max-w-4xl text-justify text-[1.18rem] leading-[1.55] text-neutral-800 md:text-[1.3rem] font-semibold"
             style={{ fontFamily: GS }}
           >
@@ -280,7 +150,7 @@ export default function About() {
             proposal that unites entertainment and education, turning theatre into a powerful tool for linguistic,
             cultural, and social development. More than just shows, we create experiences that leave a mark, foster
             creativity, and build confidence in using English—all while celebrating the magic of theatre.
-          </motion.p>
+          </p>
 
           {/* Mission / Vision cards + valor pills */}
           <div className="mt-6 flex flex-col gap-4 md:mt-12 md:gap-8">
