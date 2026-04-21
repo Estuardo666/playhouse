@@ -175,15 +175,15 @@ export default function Navigation() {
         {/* ── Mobile: floating pill that expands into menu ── */}
         <motion.div
           layout
-          transition={{ layout: { duration: 0.42, ease: [0.22, 1, 0.36, 1] } }}
+          animate={{ borderRadius: mobileOpen ? 28 : 9999 }}
+          transition={{ layout: { duration: 0.42, ease: [0.22, 1, 0.36, 1] }, borderRadius: { duration: 0.42, ease: [0.22, 1, 0.36, 1] } }}
           className="flex md:hidden w-full flex-col overflow-hidden shadow-2xl"
           style={{
-            borderRadius: mobileOpen ? 28 : 9999,
             background: mobileOpen ? "#1a1a18" : scrolled ? "#181815" : "rgba(92,16,16,0.82)",
             border: (scrolled || mobileOpen) ? "1px solid rgba(255,255,255,0.12)" : "none",
             backdropFilter: "blur(20px)",
             WebkitBackdropFilter: "blur(20px)",
-            transition: "background 0.4s ease, border-color 0.4s ease, border-radius 0.42s cubic-bezier(0.22,1,0.36,1)",
+            transition: "background 0.4s ease, border-color 0.4s ease",
           }}
         >
           {/* Top row — logo + hamburger */}
