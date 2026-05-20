@@ -56,50 +56,50 @@
 
 @layer base {
   :root {
-    --background: 0 0% 100%;
-    --foreground: 240 10% 3.9%;
-    --card: 0 0% 100%;
-    --card-foreground: 240 10% 3.9%;
-    --popover: 0 0% 100%;
-    --popover-foreground: 240 10% 3.9%;
-    --primary: 240 5.3% 10%;
-    --primary-foreground: 0 0% 98%;
-    --secondary: 240 4.8% 95.9%;
-    --secondary-foreground: 240 5.9% 10%;
-    --muted: 240 4.8% 95.9%;
-    --muted-foreground: 240 3.8% 46.1%;
-    --accent: 240 4.8% 95.9%;
-    --accent-foreground: 240 5.9% 10%;
+    --background: 44 40% 97%;
+    --foreground: 48 10% 9%;
+    --card: 44 30% 96%;
+    --card-foreground: 48 10% 9%;
+    --popover: 44 40% 97%;
+    --popover-foreground: 48 10% 9%;
+    --primary: 0 71% 21%;
+    --primary-foreground: 44 100% 94%;
+    --secondary: 44 20% 92%;
+    --secondary-foreground: 48 10% 9%;
+    --muted: 44 20% 92%;
+    --muted-foreground: 0 0% 33%;
+    --accent: 44 60% 50%;
+    --accent-foreground: 48 10% 9%;
     --destructive: 0 84.2% 60.2%;
     --destructive-foreground: 0 0% 98%;
-    --border: 240 5.9% 90%;
-    --input: 240 5.9% 90%;
-    --ring: 240 5.9% 10%;
+    --border: 44 20% 88%;
+    --input: 44 20% 88%;
+    --ring: 0 71% 21%;
     --radius: 0.5rem;
     --font-inter: "Inter", ui-sans-serif, system-ui, sans-serif;
     --font-playfair: "Playfair Display", ui-serif, Georgia, serif;
   }
 
   .dark {
-    --background: 240 10% 3.9%;
-    --foreground: 0 0% 98%;
-    --card: 240 10% 3.9%;
-    --card-foreground: 0 0% 98%;
-    --popover: 240 10% 3.9%;
-    --popover-foreground: 0 0% 98%;
-    --primary: 0 0% 98%;
-    --primary-foreground: 240 5.3% 10%;
-    --secondary: 240 3.7% 15.9%;
-    --secondary-foreground: 0 0% 98%;
-    --muted: 240 3.7% 15.9%;
-    --muted-foreground: 240 5% 64.9%;
-    --accent: 240 3.7% 15.9%;
-    --accent-foreground: 0 0% 98%;
+    --background: 240 10% 3.5%;
+    --foreground: 0 0% 100%;
+    --card: 0 0% 12%; /* gris muy oscuro neutro #1f1f1f */
+    --card-foreground: 0 0% 100%;
+    --popover: 0 0% 15%; /* gris oscuro neutro #262626 */
+    --popover-foreground: 0 0% 100%;
+    --primary: 0 71% 21%;
+    --primary-foreground: 44 100% 94%;
+    --secondary: 240 5% 22%;
+    --secondary-foreground: 44 100% 94%;
+    --muted: 240 5% 22%;
+    --muted-foreground: 0 0% 100%;
+    --accent: 44 60% 45%;
+    --accent-foreground: 44 100% 94%;
     --destructive: 0 62.8% 30.6%;
     --destructive-foreground: 0 0% 98%;
-    --border: 240 3.7% 15.9%;
-    --input: 240 3.7% 15.9%;
-    --ring: 240 4.9% 83.9%;
+    --border: 0 0% 20%;
+    --input: 0 0% 20%;
+    --ring: 44 100% 70%;
   }
 }
 
@@ -107,6 +107,7 @@
   html {
     scrollbar-gutter: stable;
     scroll-behavior: smooth;
+    transition: background-color 0.4s ease, color 0.4s ease;
   }
 
   * {
@@ -123,10 +124,21 @@
     color: #fdf6e3;
   }
 
+  .dark ::selection {
+    background: #fdf6e3;
+    color: #181815;
+  }
+
+  .dark ::-moz-selection {
+    background: #fdf6e3;
+    color: #181815;
+  }
+
   body {
     @apply bg-background text-foreground antialiased;
     font-family: "Google Sans", "Inter", ui-sans-serif, system-ui, sans-serif;
     font-feature-settings: "rlig" 1, "calt" 1;
+    transition: background-color 0.4s ease, color 0.4s ease;
   }
 
   h1 {
@@ -156,6 +168,10 @@
   pointer-events: none;
   z-index: 79;
   background: radial-gradient(circle at 50% -20%, rgba(140, 16, 16, 0.12), transparent 52%);
+}
+
+.dark .global-tint-overlay {
+  background: radial-gradient(circle at 50% -20%, rgba(140, 16, 16, 0.22), transparent 52%);
 }
 
 /* Theatrical stage lighting effect */

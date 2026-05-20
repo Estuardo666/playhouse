@@ -251,7 +251,7 @@ function AccordionTab({
       >
         {/* show logo */}
         <motion.div
-          className="flex-shrink-0 overflow-hidden rounded-lg bg-white/70"
+          className="flex-shrink-0 overflow-hidden rounded-lg bg-background/70"
           style={{ width: logoSize, height: logoSize }}
           animate={{ scale: logoScale }}
           transition={{ duration: 0.28, ease: [0.22, 1, 0.36, 1] }}
@@ -267,7 +267,7 @@ function AccordionTab({
 
         {/* show title — red when open, dark when closed */}
         <motion.span
-          animate={{ color: isOpen ? "#5C1010" : "#181815" }}
+          animate={{ color: isOpen ? "hsl(var(--primary))" : "hsl(var(--foreground))" }}
           transition={{ duration: 0.3 }}
           className="flex-1 min-w-0 leading-none"
           style={{
@@ -325,7 +325,7 @@ function AccordionTab({
                       fontFamily: GS,
                       fontSize: "clamp(1.35rem, 3vw, 1.9rem)",
                       fontWeight: 600,
-                      color: "#545454",
+                      color: "hsl(var(--muted-foreground))",
                       letterSpacing: "-0.025em",
                       lineHeight: 0.9,
                       marginBottom: "0.75rem",
@@ -341,7 +341,7 @@ function AccordionTab({
                     style={{
                       fontFamily: GS,
                       fontSize: "1.22rem",
-                      color: "#5a6370",
+                      color: "hsl(var(--muted-foreground))",
                       lineHeight: 1.4,
                       textAlign: "justify",
                       whiteSpace: "pre-line",
@@ -412,8 +412,7 @@ export default function Shows({ lang, dict }: ShowsProps) {
   return (
     <section
       id="shows"
-      className="relative w-full overflow-hidden"
-      style={{ background: "#fff" }}
+      className="relative w-full overflow-hidden bg-background"
       aria-labelledby="shows-heading"
     >
 
@@ -422,11 +421,9 @@ export default function Shows({ lang, dict }: ShowsProps) {
         <div className="flex flex-col gap-4 max-w-2xl mb-16">
           <motion.div {...blurFade(0)}>
             <span
-              className="inline-flex items-center px-5 py-1.5 rounded-full text-[11px] font-semibold uppercase"
+              className="inline-flex items-center rounded-full bg-primary px-5 py-1.5 text-[11px] font-semibold uppercase text-primary-foreground"
               style={{
                 fontFamily: GS,
-                background: "#5C1010",
-                color: "#fff",
                 letterSpacing: "0.16em",
               }}
             >
@@ -437,9 +434,8 @@ export default function Shows({ lang, dict }: ShowsProps) {
           <motion.h2
             {...blurFade(0.08)}
             id="shows-heading"
-            className="text-balance"
+            className="text-balance text-foreground"
             style={{
-              color: "#181815",
               fontFamily: PG,
               fontSize: "clamp(2.4rem, 5.5vw, 4rem)",
               fontWeight: 700,
@@ -452,18 +448,18 @@ export default function Shows({ lang, dict }: ShowsProps) {
 
           <motion.p
             {...blurFade(0.12)}
-            style={{ fontFamily: GS, fontSize: "1rem", fontWeight: 400, color: "#545454" }}
+            className="text-muted-foreground"
+            style={{ fontFamily: GS, fontSize: "1rem", fontWeight: 400 }}
           >
             {dict.subheading}
           </motion.p>
 
           <motion.p
             {...blurFade(0.16)}
-            className="leading-relaxed"
+            className="leading-relaxed text-foreground"
             style={{
               fontFamily: GS,
               fontSize: "1.22rem",
-              color: "#181815",
               lineHeight: 1.4,
               textAlign: "justify",
             }}

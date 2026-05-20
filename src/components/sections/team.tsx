@@ -85,8 +85,7 @@ export default function Team({ dict }: TeamProps) {
   return (
     <section
       id="team"
-      className="relative w-full overflow-hidden"
-      style={{ background: "#181815" }}
+      className="relative w-full overflow-hidden bg-background"
       aria-labelledby="team-heading"
     >
       {/* subtle radial glow */}
@@ -105,13 +104,8 @@ export default function Team({ dict }: TeamProps) {
 
           <motion.div {...blurFade(0)}>
             <span
-              className="inline-flex items-center px-5 py-1.5 rounded-full text-[11px] font-semibold tracking-[0.18em] uppercase"
-              style={{
-                fontFamily: GS,
-                background: "#5C1010",
-                color: "#fff",
-                letterSpacing: "0.16em",
-              }}
+              className="inline-flex items-center rounded-full bg-primary px-5 py-1.5 text-[11px] font-semibold uppercase tracking-[0.18em] text-primary-foreground"
+              style={{ fontFamily: GS, letterSpacing: "0.16em" }}
             >
               {dict.pill}
             </span>
@@ -120,7 +114,7 @@ export default function Team({ dict }: TeamProps) {
           <motion.h2
             {...blurFade(0.08)}
             id="team-heading"
-            className="text-white text-balance"
+            className="text-foreground text-balance"
             style={{
               fontFamily: PG,
               fontSize: "clamp(2.4rem, 5.5vw, 4rem)",
@@ -136,18 +130,18 @@ export default function Team({ dict }: TeamProps) {
 
           <motion.p
             {...blurFade(0.12)}
-            style={{ fontFamily: GS, fontSize: "1rem", fontWeight: 400, color: "rgba(255,255,255,0.55)" }}
+            className="text-muted-foreground"
+            style={{ fontFamily: GS, fontSize: "1rem", fontWeight: 400 }}
           >
             {dict.subheading}
           </motion.p>
 
           <motion.p
             {...blurFade(0.16)}
-            className="leading-relaxed text-balance"
+            className="leading-relaxed text-balance text-muted-foreground"
             style={{
               fontFamily: GS,
               fontSize: "1.22rem",
-              color: "rgba(255,255,255,0.72)",
               lineHeight: 1.4,
               textAlign: "justify",
             }}

@@ -6,9 +6,11 @@ import SexyScroll from "@/components/layout/sexy-scroll"
 import { DirectionalCursor } from "@/components/ui/directional-cursor"
 import ClickSpark from "@/components/ui/click-spark"
 import { cn } from "@/lib/utils"
+import { ThemeProvider } from "@/components/theme-provider"
 import { locales, isValidLocale, type SupportedLocale } from "@/content/config"
 import { notFound } from "next/navigation"
 import { getDict } from "@/lib/i18n"
+import { PosterPopup } from "@/components/ui/poster-popup"
 
 const inter = Inter({
   subsets: ["latin"],
@@ -152,38 +154,41 @@ export default function LangLayout({
     <html lang={lang} suppressHydrationWarning className="scroll-smooth">
       <body
         className={cn(
-          "min-h-screen bg-[#181815] antialiased",
+          "min-h-screen bg-background antialiased",
           inter.variable,
           playfair.variable
         )}
       >
-        <SexyScroll />
-        <DirectionalCursor
-          color="#181815"
-          cursorSize={0.7}
-          keepBrowserCursor={false}
-          keepPointerCursor={false}
-          keepTextCursor={true}
-          stiffness={520}
-          damping={38}
-          mass={0.6}
-          hideOnMobile={true}
-          hideOnTablet={true}
-        />
-        <ClickSpark
-          sparkColor="#5C1010"
-          sparkSize={11}
-          sparkRadius={22}
-          sparkCount={9}
-          duration={420}
-          easing="ease-out"
-        />
-        <div aria-hidden="true" className="global-tint-overlay" />
-        <div aria-hidden="true" className="global-grain-overlay" />
-        <div className="relative z-10">
-          <Navigation lang={lang} dict={dict.nav} />
-          <main className="flow-root bg-white">{children}</main>
-        </div>
+        <ThemeProvider>
+          <SexyScroll />
+          <DirectionalCursor
+            color="#181815"
+            cursorSize={0.7}
+            keepBrowserCursor={false}
+            keepPointerCursor={false}
+            keepTextCursor={true}
+            stiffness={520}
+            damping={38}
+            mass={0.6}
+            hideOnMobile={true}
+            hideOnTablet={true}
+          />
+          <ClickSpark
+            sparkColor="#5C1010"
+            sparkSize={11}
+            sparkRadius={22}
+            sparkCount={9}
+            duration={420}
+            easing="ease-out"
+          />
+          <div aria-hidden="true" className="global-tint-overlay" />
+          <div aria-hidden="true" className="global-grain-overlay" />
+          <div className="relative z-10">
+            <Navigation lang={lang} dict={dict.nav} />
+            <main className="flow-root bg-background">{children}</main>
+          </div>
+          <PosterPopup />
+        </ThemeProvider>
       </body>
     </html>
   )

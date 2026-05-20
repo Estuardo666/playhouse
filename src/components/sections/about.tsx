@@ -39,7 +39,7 @@ export default function About({ dict, missionDict }: AboutProps) {
   return (
     <section
       id="about"
-      className="bg-white px-4 py-24 md:px-10"
+      className="bg-background px-4 py-24 md:px-10"
       aria-labelledby="about-heading"
     >
       <div className="mx-auto flex flex-col items-center gap-12 text-center" style={{ maxWidth: "1260px" }}>
@@ -47,8 +47,8 @@ export default function About({ dict, missionDict }: AboutProps) {
         {/* Pill */}
         <motion.div {...fadeUp(0)}>
           <span
-            className="rounded-full px-5 py-1.5 text-[0.72rem] font-semibold uppercase tracking-[0.18em] text-white"
-            style={{ background: "#5c1010", fontFamily: GS }}
+            className="rounded-full bg-primary px-5 py-1.5 text-[0.72rem] font-semibold uppercase tracking-[0.18em] text-primary-foreground"
+            style={{ fontFamily: GS }}
           >
             {dict.pill}
           </span>
@@ -70,7 +70,7 @@ export default function About({ dict, missionDict }: AboutProps) {
         <motion.h2
           id="about-heading"
           {...fadeUp(0.18)}
-          className="max-w-4xl text-[1.9rem] font-light leading-[1.2] text-neutral-700 md:text-[2.2rem]"
+          className="max-w-4xl text-[1.9rem] font-light leading-[1.2] text-muted-foreground md:text-[2.2rem]"
           style={{ fontFamily: GS, letterSpacing: "-0.03em" }}
         >
           {dict.headline}
@@ -96,7 +96,7 @@ export default function About({ dict, missionDict }: AboutProps) {
               {stackedImages.map((img) => (
                 <div
                   key={img.src}
-                  className="relative flex-1 min-h-[220px] overflow-hidden rounded-[2rem] bg-[#272c36]"
+                  className="relative flex-1 min-h-[220px] overflow-hidden rounded-[2rem] bg-muted"
                 >
                   <Image
                     src={img.src}
@@ -112,7 +112,7 @@ export default function About({ dict, missionDict }: AboutProps) {
             {/* Text column */}
             <div className="relative flex flex-col justify-start gap-7 text-left">
               <motion.h3
-                className="text-4xl font-semibold leading-[1.05] text-neutral-900 md:text-5xl"
+                className="text-4xl font-semibold leading-[1.05] text-foreground md:text-5xl"
                 style={{ fontFamily: '"MADE Grotesk", "Play Grotesk", "Google Sans", sans-serif', letterSpacing: "-0.025em" }}
                 variants={{ hidden: { opacity: 0, y: 24, filter: "blur(10px)" }, visible: { opacity: 1, y: 0, filter: "blur(0px)", transition: { duration: 0.85, ease: [0.16,1,0.3,1] } } }}
               >
@@ -122,28 +122,29 @@ export default function About({ dict, missionDict }: AboutProps) {
               </motion.h3>
 
               <motion.p
-                style={{ fontFamily: GS, fontSize: "1rem", fontWeight: 400, color: "#545454" }}
+                style={{ fontFamily: GS, fontSize: "1rem", fontWeight: 400 }}
+                className="text-muted-foreground"
                 variants={{ hidden: { opacity: 0, y: 16, filter: "blur(8px)" }, visible: { opacity: 1, y: 0, filter: "blur(0px)", transition: { duration: 0.7, ease: [0.16,1,0.3,1], delay: 0.08 } } }}
               >
                 {dict.subline}
               </motion.p>
 
               <p
-                className="text-[1.22rem] font-semibold text-neutral-800 text-justify"
+                className="text-[1.22rem] font-semibold text-foreground text-justify"
                 style={{ fontFamily: GS, lineHeight: 1.4 }}
               >
                 {dict.p1}
               </p>
 
               <p
-                className="text-[1.22rem] text-neutral-700 text-justify"
+                className="text-[1.22rem] text-muted-foreground text-justify"
                 style={{ fontFamily: GS, lineHeight: 1.4 }}
               >
                 {dict.p2}
               </p>
 
               <p
-                className="text-[1.22rem] text-neutral-700 text-justify"
+                className="text-[1.22rem] text-muted-foreground text-justify"
                 style={{ fontFamily: GS, lineHeight: 1.4 }}
               >
                 {dict.p3}
@@ -153,7 +154,7 @@ export default function About({ dict, missionDict }: AboutProps) {
 
           {/* Wide bottom paragraph */}
           <p
-            className="mx-auto mt-16 max-w-4xl text-justify text-[1.18rem] leading-[1.55] text-neutral-800 md:text-[1.3rem] font-semibold"
+            className="mx-auto mt-16 max-w-4xl text-justify text-[1.18rem] leading-[1.55] text-foreground md:text-[1.3rem] font-semibold"
             style={{ fontFamily: GS }}
           >
             {dict.bottom}

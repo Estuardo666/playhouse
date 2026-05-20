@@ -145,7 +145,7 @@ function WorkshopDetailModal({
           />
 
           <motion.div
-            className="relative z-[121] flex max-h-[calc(100dvh-7.5rem)] w-full max-w-[1240px] flex-col overflow-hidden rounded-[1.45rem] bg-[#f3f1ee] md:max-h-[calc(100dvh-9rem)] md:rounded-[2rem]"
+            className="relative z-[121] flex max-h-[calc(100dvh-7.5rem)] w-full max-w-[1240px] flex-col overflow-hidden rounded-[1.45rem] bg-card md:max-h-[calc(100dvh-9rem)] md:rounded-[2rem]"
             initial={{ opacity: 0, y: 32, scale: 0.93, filter: "blur(8px)" }}
             animate={{ opacity: 1, y: 0, scale: 1, filter: "blur(0px)" }}
             exit={{
@@ -160,7 +160,7 @@ function WorkshopDetailModal({
             <div className="overflow-y-auto overscroll-contain p-4 md:p-8">
             <button
               onClick={onClose}
-              className="absolute right-4 top-4 rounded-full bg-black/10 px-3 py-1.5 text-sm font-semibold text-[#181815] transition-colors hover:bg-black/15"
+              className="absolute right-4 top-4 rounded-full bg-black/10 px-3 py-1.5 text-sm font-semibold text-foreground transition-colors hover:bg-black/15"
               style={{ fontFamily: GS }}
             >
               {dict.closeLabel}
@@ -183,35 +183,35 @@ function WorkshopDetailModal({
                 </motion.div>
               </div>
 
-              <div className="rounded-[1.9rem] bg-[#ece9e6] p-5 md:p-8">
+              <div className="rounded-[1.9rem] bg-popover p-5 md:p-8">
                 <h3
+                  className="text-foreground"
                   style={{
                     fontFamily: GS,
                     fontSize: "clamp(2rem, 3vw, 3.3rem)",
                     fontWeight: 700,
                     lineHeight: 0.9,
                     letterSpacing: "-0.05em",
-                    color: "#5C1010",
                   }}
                 >
                   {displayed!.title}
                 </h3>
 
                 <p
-                  className="mt-3"
-                  style={{ fontFamily: GS, color: "#545454", fontSize: "1.12rem", fontWeight: 400 }}
+                  className="mt-3 text-muted-foreground"
+                  style={{ fontFamily: GS, fontSize: "1.12rem", fontWeight: 400 }}
                 >
                   {displayed!.subtitle}
                 </p>
 
                 <p
-                  className="mt-4"
-                  style={{ fontFamily: GS, color: "#181815", fontSize: "clamp(1.05rem,1.8vw,1.15rem)", lineHeight: 1.4 }}
+                  className="mt-4 text-foreground"
+                  style={{ fontFamily: GS, fontSize: "clamp(1.05rem,1.8vw,1.15rem)", lineHeight: 1.4 }}
                 >
                   {displayed!.description}
                 </p>
 
-                <div className="mt-6 w-full rounded-[1rem] border border-black/10 bg-white/40 p-1 md:rounded-full">
+                <div className="mt-6 w-full rounded-[1rem] border border-border bg-background/40 p-1 md:rounded-full">
                   <div className="flex w-full flex-col items-stretch gap-1 md:flex-row md:flex-wrap md:items-center">
                     {[
                       { key: "objectives", label: dict.tabs.objectives },
@@ -226,8 +226,8 @@ function WorkshopDetailModal({
                           className="relative w-full rounded-[0.8rem] px-4 py-2 text-center text-[0.69rem] font-bold uppercase tracking-[0.16em] md:w-auto md:rounded-full"
                           style={{
                             fontFamily: GS,
-                            color: isActive ? "#fff" : "#686868",
-                            background: isActive ? "#5C1010" : "transparent",
+                            color: isActive ? "hsl(var(--primary-foreground))" : "hsl(var(--muted-foreground))",
+                            background: isActive ? "hsl(var(--primary))" : "transparent",
                           }}
                         >
                           {tab.label}
@@ -258,8 +258,8 @@ function WorkshopDetailModal({
                           />
                         </div>
                         <p
-                          className="rounded-2xl bg-white px-4 py-4"
-                          style={{ fontFamily: GS, fontSize: "1rem", color: "#181815", lineHeight: 1.35 }}
+                          className="rounded-2xl bg-background px-4 py-4"
+                          style={{ fontFamily: GS, fontSize: "1rem", lineHeight: 1.35 }}
                         >
                           {displayed!.methodology}
                         </p>
@@ -278,8 +278,8 @@ function WorkshopDetailModal({
                               />
                             </div>
                             <p
-                              className="flex-1 rounded-2xl bg-white px-3 py-3"
-                              style={{ fontFamily: GS, fontSize: "0.98rem", color: "#181815", lineHeight: 1.2 }}
+                              className="flex-1 rounded-2xl bg-background px-3 py-3"
+                              style={{ fontFamily: GS, fontSize: "0.98rem", lineHeight: 1.2 }}
                             >
                               {text}
                             </p>
@@ -291,15 +291,15 @@ function WorkshopDetailModal({
                 </AnimatePresence>
 
                 {/* Booking CTA */}
-                <div className="mt-6 flex flex-col items-center border-t border-black/10 pt-6 text-center">
-                  <p style={{ fontFamily: GS, fontSize: "0.95rem", color: "#545454" }}>
+                <div className="mt-6 flex flex-col items-center border-t border-border pt-6 text-center">
+                  <p className="text-muted-foreground" style={{ fontFamily: GS, fontSize: "0.95rem" }}>
                     {dict.bookingNote}
                   </p>
                   <a
                     href="https://forms.gle/DQ4ELJyu9vaFp6ax9"
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="mt-3 inline-block rounded-full bg-[#5C1010] px-6 py-2.5 text-sm font-semibold text-white transition-opacity hover:opacity-80"
+                    className="mt-3 inline-block rounded-full bg-primary px-6 py-2.5 text-sm font-semibold text-primary-foreground transition-opacity hover:opacity-80"
                     style={{ fontFamily: GS }}
                   >
                     {dict.bookCta}
@@ -397,7 +397,7 @@ function OverlappingSlider({
             return (
               <motion.article
                 key={workshop.id}
-                className="absolute top-0 overflow-hidden rounded-[1.95rem] bg-white shadow-[0_28px_80px_rgba(0,0,0,0.2)]"
+                className="absolute top-0 overflow-hidden rounded-[1.95rem] bg-card shadow-[0_28px_80px_rgba(0,0,0,0.2)]"
                 animate={{
                   x: slot.x,
                   scale: slot.scale,
@@ -500,7 +500,7 @@ function OverlappingSlider({
           <button
             onClick={goPrev}
             aria-label="Previous workshop"
-            className="flex h-10 w-10 items-center justify-center rounded-full border border-black/15 bg-white text-[#181815] shadow-sm transition-colors hover:bg-[#f3f1ee]"
+            className="flex h-10 w-10 items-center justify-center rounded-full border border-border bg-background text-foreground shadow-sm transition-colors hover:bg-muted"
           >
             ←
           </button>
@@ -515,7 +515,7 @@ function OverlappingSlider({
                 style={{
                   width: i === activeIndex ? 20 : 6,
                   height: 6,
-                  background: i === activeIndex ? "#5C1010" : "#D8D1CB",
+                  background: i === activeIndex ? "hsl(var(--primary))" : "hsl(var(--border))",
                 }}
               />
             ))}
@@ -524,7 +524,7 @@ function OverlappingSlider({
           <button
             onClick={goNext}
             aria-label="Next workshop"
-            className="flex h-10 w-10 items-center justify-center rounded-full border border-black/15 bg-white text-[#181815] shadow-sm transition-colors hover:bg-[#f3f1ee]"
+            className="flex h-10 w-10 items-center justify-center rounded-full border border-border bg-background text-foreground shadow-sm transition-colors hover:bg-muted"
           >
             →
           </button>
@@ -546,15 +546,15 @@ export default function Workshops({ lang, dict }: WorkshopsProps) {
   return (
     <section
       id="workshops"
-      className="relative w-full bg-white"
+      className="relative w-full bg-background"
       aria-labelledby="workshops-heading"
     >
       <div className="relative z-10 mx-auto max-w-[1260px] px-6 pb-24 pt-24">
         <div className="mx-auto mb-14 flex max-w-3xl flex-col items-center gap-6 text-center">
           <motion.div {...blurFade(0)}>
             <span
-              className="inline-flex items-center rounded-full px-5 py-1.5 text-[0.72rem] font-semibold uppercase tracking-[0.18em]"
-              style={{ fontFamily: GS, background: "#5C1010", color: "#fff" }}
+              className="inline-flex items-center rounded-full bg-primary px-5 py-1.5 text-[0.72rem] font-semibold uppercase tracking-[0.18em] text-primary-foreground"
+              style={{ fontFamily: GS }}
             >
               {dict.pill}
             </span>
@@ -563,13 +563,13 @@ export default function Workshops({ lang, dict }: WorkshopsProps) {
           <motion.h2
             {...blurFade(0.08)}
             id="workshops-heading"
+            className="text-foreground"
             style={{
               fontFamily: PG,
               fontSize: "clamp(2.4rem, 5.5vw, 4rem)",
               fontWeight: 700,
               lineHeight: 0.9,
               letterSpacing: "-0.045em",
-              color: "#181815",
             }}
           >
             {dict.heading}
@@ -577,17 +577,18 @@ export default function Workshops({ lang, dict }: WorkshopsProps) {
 
           <motion.p
             {...blurFade(0.11)}
-            style={{ fontFamily: GS, fontSize: "1rem", fontWeight: 400, color: "#545454" }}
+            className="text-muted-foreground"
+            style={{ fontFamily: GS, fontSize: "1rem", fontWeight: 400 }}
           >
             {dict.subheading}
           </motion.p>
 
           <motion.p
             {...blurFade(0.14)}
+            className="text-foreground"
             style={{
               fontFamily: GS,
               fontSize: "1.22rem",
-              color: "#181815",
               lineHeight: 1.4,
               textAlign: "justify",
             }}
@@ -606,10 +607,10 @@ export default function Workshops({ lang, dict }: WorkshopsProps) {
             className="mt-8 flex flex-col items-center gap-1 text-center"
           >
             <p
+              className="text-foreground"
               style={{
                 fontFamily: GS,
                 fontSize: "clamp(1.25rem, 2.2vw, 1.55rem)",
-                color: "#181815",
                 fontWeight: 700,
                 lineHeight: 1.2,
               }}
@@ -617,10 +618,10 @@ export default function Workshops({ lang, dict }: WorkshopsProps) {
               {dict.bookingLine1}
             </p>
             <p
+              className="text-muted-foreground"
               style={{
                 fontFamily: GS,
                 fontSize: "clamp(1.25rem, 2.2vw, 1.55rem)",
-                color: "#282830",
                 fontWeight: 400,
                 lineHeight: 1.2,
               }}

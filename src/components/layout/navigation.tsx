@@ -6,6 +6,7 @@ import { MouseEvent, useEffect, useState } from "react"
 import { usePathname, useRouter } from "next/navigation"
 import { motion, AnimatePresence } from "framer-motion"
 import { GradualBlur } from "@/components/ui/gradual-blur"
+import ThemeToggle from "@/components/ui/theme-toggle"
 import { switchLocalePath, type SupportedLocale } from "@/content/config"
 import type { Dict } from "@/lib/i18n"
 
@@ -201,6 +202,11 @@ export default function Navigation({ lang, dict }: NavigationProps) {
             <span className="text-white/25">|</span>
             <span className={lang === "es" ? "text-white" : "text-white/40"}>ES</span>
           </button>
+
+          {/* Theme toggle */}
+          <div className="ml-1">
+            <ThemeToggle />
+          </div>
         </div>
 
         {/* ── Mobile: floating pill that expands into menu ── */}
@@ -302,6 +308,11 @@ export default function Navigation({ lang, dict }: NavigationProps) {
                     <span className="text-white/25">|</span>
                     <span className={lang === "es" ? "text-white" : "text-white/40"}>ES</span>
                   </button>
+                </div>
+                {/* Mobile theme toggle */}
+                <div className="flex items-center gap-3 px-5 pb-4 pt-1">
+                  <span className="text-xs uppercase tracking-widest text-white/30" style={{ fontFamily: '"MADE Grotesk", sans-serif' }}>Theme</span>
+                  <ThemeToggle />
                 </div>
                 <div style={{ height: 8 }} />
               </motion.div>

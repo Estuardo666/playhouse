@@ -18,7 +18,7 @@ export default function LangPage({ params }: { params: { lang: string } }) {
   const dict = getDict(lang)
 
   return (
-    <div className="relative bg-white">
+    <div className="relative bg-background">
       <CustomScrollbarPro
         thumbStyle="gradient"
         thumbGradientStart="#7A1515"
@@ -28,14 +28,14 @@ export default function LangPage({ params }: { params: { lang: string } }) {
         borderRadius={10}
         autoHide={false}
       />
-      <div className="relative z-10 isolate bg-white">
+      <div className="relative z-10 isolate bg-background">
         <Hero lang={lang} dict={dict.hero} />
         <About lang={lang} dict={dict.about} missionDict={dict.mission} />
         <Team lang={lang} dict={dict.team} />
         <Shows lang={lang} dict={dict.shows} />
-        <SectionDivider bg="#fff" />
+        <SectionDivider />
         <Workshops lang={lang} dict={dict.workshops} />
-        <SectionDivider bg="#fff" />
+        <SectionDivider />
         <Materials lang={lang} dict={dict.materials} />
         <Footer lang={lang} dict={dict.footer} />
       </div>

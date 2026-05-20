@@ -6,23 +6,13 @@ import { motion } from "framer-motion"
  * Theatrical ornamental section divider.
  *
  * Props:
- *   bg      – background color of this divider strip (match the section above it)
  *   opacity – opacity of the line + ornament (default 0.22)
  */
 export default function SectionDivider({
-  bg = "#fff",
   opacity = 0.22,
 }: {
-  bg?: string
   opacity?: number
 }) {
-  // Line and ornament color: white on dark, near-black on light
-  const isDark =
-    bg === "#181815" || bg === "#282830" || bg === "#000" || bg === "black"
-  const color = isDark
-    ? `rgba(255,255,255,${opacity})`
-    : `rgba(0,0,0,${opacity})`
-
   return (
     <motion.div
       initial={{ opacity: 0 }}
@@ -30,24 +20,18 @@ export default function SectionDivider({
       viewport={{ once: true, margin: "-40px" }}
       transition={{ duration: 0.7, ease: "easeOut" }}
       aria-hidden
-      style={{ background: bg, paddingTop: 0, paddingBottom: 0 }}
+      className="bg-background"
+      style={{ paddingTop: 0, paddingBottom: 0 }}
     >
       <div
-        style={{
-          display: "flex",
-          alignItems: "center",
-          gap: 18,
-          maxWidth: 560,
-          margin: "0 auto",
-          padding: "18px 32px",
-        }}
+        className="flex items-center gap-[18px] mx-auto px-8 py-[18px]"
+        style={{ maxWidth: 560 }}
       >
         {/* left arm */}
         <div
+          className="flex-1 h-px"
           style={{
-            flex: 1,
-            height: 1,
-            background: `linear-gradient(to right, transparent, ${color})`,
+            background: `linear-gradient(to right, transparent, hsl(var(--foreground) / ${opacity}))`,
           }}
         />
 
@@ -62,16 +46,15 @@ export default function SectionDivider({
         >
           <path
             d="M6 0 L7.2 4.8 L12 6 L7.2 7.2 L6 12 L4.8 7.2 L0 6 L4.8 4.8 Z"
-            fill={color}
+            fill={`hsl(var(--foreground) / ${opacity})`}
           />
         </svg>
 
         {/* right arm */}
         <div
+          className="flex-1 h-px"
           style={{
-            flex: 1,
-            height: 1,
-            background: `linear-gradient(to left, transparent, ${color})`,
+            background: `linear-gradient(to left, transparent, hsl(var(--foreground) / ${opacity}))`,
           }}
         />
       </div>
