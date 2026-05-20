@@ -94,6 +94,9 @@ export interface Dict {
     online: string
     phone: string
   }
+  whatsapp: {
+    label: string
+  }
 }
 
 const en: Dict = {
@@ -206,6 +209,9 @@ const en: Dict = {
     online: "Online",
     phone: "Phone",
   },
+  whatsapp: {
+    label: "Chat with us",
+  },
 }
 
 const es: Dict = {
@@ -317,6 +323,9 @@ const es: Dict = {
     followUs: "Síguenos",
     online: "Online",
     phone: "Teléfono",
+  },
+  whatsapp: {
+    label: "Contáctanos",
   },
 }
 

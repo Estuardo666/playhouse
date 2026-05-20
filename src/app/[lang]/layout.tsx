@@ -11,6 +11,7 @@ import { locales, isValidLocale, type SupportedLocale } from "@/content/config"
 import { notFound } from "next/navigation"
 import { getDict } from "@/lib/i18n"
 import { PosterPopup } from "@/components/ui/poster-popup"
+import WhatsAppFloat from "@/components/ui/whatsapp-float"
 
 const inter = Inter({
   subsets: ["latin"],
@@ -188,6 +189,7 @@ export default function LangLayout({
             <main className="flow-root bg-background">{children}</main>
           </div>
           <PosterPopup />
+          <WhatsAppFloat label={dict.whatsapp.label} />
         </ThemeProvider>
       </body>
     </html>
