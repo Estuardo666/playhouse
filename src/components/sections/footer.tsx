@@ -34,7 +34,7 @@ export default function Footer({ dict }: FooterProps) {
 
   return (
     <footer
-      className="relative w-full bg-background"
+      className="relative w-full bg-[#181815]"
       id="footer"
       aria-label="Footer"
     >
@@ -46,12 +46,12 @@ export default function Footer({ dict }: FooterProps) {
           {/* ═══ LEFT column ═══ */}
           <div className="flex flex-col">
             {/* top divider */}
-            <div className="h-px w-full bg-foreground/10 mb-8" />
+            <div className="h-px w-full bg-white/10 mb-8" />
 
             {/* tagline */}
             <motion.p
               {...blurFade(0)}
-              className="text-[1.1rem] leading-[1.55] mb-10 text-muted-foreground"
+              className="text-[1.1rem] leading-[1.55] mb-10 text-white/70"
               style={{ fontFamily: GS }}
             >
               {dict.tagline}
@@ -71,7 +71,7 @@ export default function Footer({ dict }: FooterProps) {
             {/* description */}
             <motion.div {...blurFade(0.12)} className="mb-8">
               <p
-                className="text-[0.92rem] leading-[1.65] max-w-xs text-muted-foreground"
+                className="text-[0.92rem] leading-[1.65] max-w-xs text-white/65"
                 style={{ fontFamily: GS }}
               >
                 {dict.description}
@@ -81,14 +81,14 @@ export default function Footer({ dict }: FooterProps) {
             {/* copyright */}
             <motion.p
               {...blurFade(0.16)}
-              className="text-[0.82rem] mb-10 text-muted-foreground"
+              className="text-[0.82rem] mb-10 text-white/55"
               style={{ fontFamily: GS }}
             >
               © {year} PlayHouse — {dict.copyright}
             </motion.p>
 
             {/* bottom divider */}
-            <div className="h-px w-full bg-foreground/10 mb-6" />
+            <div className="h-px w-full bg-white/10 mb-6" />
 
             {/* socials row */}
             <motion.div {...blurFade(0.2)} className="flex flex-wrap gap-x-5 gap-y-2">
@@ -98,7 +98,7 @@ export default function Footer({ dict }: FooterProps) {
                   href={s.href}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="text-[0.82rem] font-medium text-muted-foreground transition-colors hover:text-foreground"
+                  className="text-[0.82rem] font-medium text-white/60 transition-colors hover:text-white"
                   style={{ fontFamily: GS }}
                 >
                   {s.label}
@@ -117,12 +117,12 @@ export default function Footer({ dict }: FooterProps) {
               <div>
                 <motion.div {...blurFade(0.06)} className="flex flex-col gap-3 mb-6">
                   <span
-                    className="text-[0.72rem] font-semibold tracking-[0.18em] uppercase text-muted-foreground"
+                    className="text-[0.72rem] font-semibold tracking-[0.18em] uppercase text-white/55"
                     style={{ fontFamily: GS }}
                   >
                     {dict.followUs}
                   </span>
-                  <div className="h-px w-full bg-foreground/10" />
+                  <div className="h-px w-full bg-white/10" />
                 </motion.div>
                 <ul className="flex flex-col gap-3">
                   {SOCIALS.map((s, i) => (
@@ -131,7 +131,7 @@ export default function Footer({ dict }: FooterProps) {
                         href={s.href}
                         target="_blank"
                         rel="noopener noreferrer"
-                        className="text-[1rem] text-muted-foreground transition-colors hover:text-foreground"
+                        className="text-[1rem] text-white/80 transition-colors hover:text-white"
                         style={{ fontFamily: GS }}
                       >
                         {s.handle}
@@ -145,17 +145,17 @@ export default function Footer({ dict }: FooterProps) {
               <div>
                 <motion.div {...blurFade(0.08)} className="flex flex-col gap-3 mb-6">
                   <span
-                    className="text-[0.72rem] font-semibold tracking-[0.18em] uppercase text-muted-foreground"
+                    className="text-[0.72rem] font-semibold tracking-[0.18em] uppercase text-white/55"
                     style={{ fontFamily: GS }}
                   >
                     {dict.online}
                   </span>
-                  <div className="h-px w-full bg-foreground/10" />
+                  <div className="h-px w-full bg-white/10" />
                 </motion.div>
                 <motion.div {...blurFade(0.14)}>
                   <a
                     href="mailto:vaplayhouse@gmail.com"
-                    className="text-[1rem] font-medium text-primary transition-colors hover:text-primary-foreground"
+                    className="text-[1rem] font-medium text-[#d06060] transition-colors hover:text-[#ff8080]"
                     style={{ fontFamily: GS }}
                   >
                     vaplayhouse@gmail.com
@@ -167,19 +167,19 @@ export default function Footer({ dict }: FooterProps) {
             {/* PHONE row */}
             <motion.div {...blurFade(0.12)} className="flex flex-col gap-3 mb-8">
               <span
-                className="text-[0.72rem] font-semibold tracking-[0.18em] uppercase text-muted-foreground"
+                className="text-[0.72rem] font-semibold tracking-[0.18em] uppercase text-white/28"
                 style={{ fontFamily: GS }}
               >
                 Phone
               </span>
-              <div className="h-px w-full bg-foreground/10" />
+              <div className="h-px w-full bg-white/10" />
             </motion.div>
 
             <div className="flex items-center justify-between">
               <motion.a
                 {...blurFade(0.18)}
                 href="tel:+593939576825"
-                className="text-[clamp(2rem,4.5vw,3.2rem)] font-light leading-none tracking-tight text-muted-foreground transition-colors hover:text-foreground"
+                className="text-[clamp(2rem,4.5vw,3.2rem)] font-light leading-none tracking-tight text-white/90 transition-colors hover:text-white"
                 style={{ fontFamily: GS }}
               >
                 0939 576 825
@@ -196,7 +196,7 @@ export default function Footer({ dict }: FooterProps) {
                 transition={{ type: "spring", stiffness: 400, damping: 20 }}
               >
                 <svg width="24" height="24" viewBox="0 0 24 24" fill="none" strokeLinecap="round" strokeLinejoin="round">
-                  <path d="M12 19V5M5 12l7-7 7 7" stroke="#9E3030" strokeWidth="2" />
+                  <path d="M12 19V5M5 12l7-7 7 7" stroke="#d06060" strokeWidth="2" />
                 </svg>
               </motion.button>
             </div>
@@ -204,7 +204,7 @@ export default function Footer({ dict }: FooterProps) {
         </div>
 
         {/* ── final divider ── */}
-        <div className="h-px w-full bg-foreground/10 mt-12" />
+        <div className="h-px w-full bg-white/10 mt-12" />
       </div>
     </footer>
   )

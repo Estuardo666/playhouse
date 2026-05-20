@@ -85,7 +85,7 @@ export default function Team({ dict }: TeamProps) {
   return (
     <section
       id="team"
-      className="relative w-full overflow-hidden bg-background"
+      className="relative w-full overflow-hidden bg-[#181815]"
       aria-labelledby="team-heading"
     >
       {/* subtle radial glow */}
@@ -114,7 +114,7 @@ export default function Team({ dict }: TeamProps) {
           <motion.h2
             {...blurFade(0.08)}
             id="team-heading"
-            className="text-foreground text-balance"
+            className="text-white text-balance"
             style={{
               fontFamily: PG,
               fontSize: "clamp(2.4rem, 5.5vw, 4rem)",
@@ -130,7 +130,7 @@ export default function Team({ dict }: TeamProps) {
 
           <motion.p
             {...blurFade(0.12)}
-            className="text-muted-foreground"
+            className="text-white/75"
             style={{ fontFamily: GS, fontSize: "1rem", fontWeight: 400 }}
           >
             {dict.subheading}
@@ -138,7 +138,7 @@ export default function Team({ dict }: TeamProps) {
 
           <motion.p
             {...blurFade(0.16)}
-            className="leading-relaxed text-balance text-muted-foreground"
+            className="leading-relaxed text-balance text-white/90"
             style={{
               fontFamily: GS,
               fontSize: "1.22rem",
