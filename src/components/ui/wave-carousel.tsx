@@ -2,7 +2,7 @@
 
 import React from "react"
 import Image from "next/image"
-import { useRef } from "react"
+import { useRef, useEffect } from "react"
 import { motion, useAnimationFrame } from "framer-motion"
 
 /* ─────────────── types ─────────────── */
@@ -69,6 +69,8 @@ export default function WaveCarousel({
   const containerRef = useRef<HTMLDivElement>(null)
   const trackRef = useRef<HTMLDivElement>(null)
   const cardRefs = useRef<(HTMLDivElement | null)[]>([])
+  const totalWidthRef = useRef(totalWidth)
+  totalWidthRef.current = totalWidth
 
   const scrollRef = useRef(0)
   const isDragging = useRef(false)
@@ -107,6 +109,63 @@ export default function WaveCarousel({
     })
   })
 
+  /* ─── native touch listeners (non-passive) ─── */
+  useEffect(() => {
+    const container = containerRef.current
+    if (!container) return
+
+    const handleTouchStart = (e: TouchEvent) => {
+      const touch = e.touches[0]
+      if (!touch) return
+      isDragging.current = true
+      dragStartX.current = touch.clientX
+      dragStartY.current = touch.clientY
+      dragStartScroll.current = scrollRef.current
+      dragAxis.current = null
+    }
+
+    const handleTouchMove = (e: TouchEvent) => {
+      if (!isDragging.current) return
+      const touch = e.touches[0]
+      if (!touch) return
+
+      const dx = touch.clientX - dragStartX.current
+      const dy = touch.clientY - dragStartY.current
+
+      if (!dragAxis.current) {
+        if (Math.abs(dx) < 6 && Math.abs(dy) < 6) return
+        dragAxis.current = Math.abs(dx) > Math.abs(dy) ? "x" : "y"
+      }
+
+      if (dragAxis.current !== "x") return
+
+      e.preventDefault()
+
+      const tw = totalWidthRef.current
+      let next = dragStartScroll.current + dx
+      if (next > 0) next -= tw
+      if (next < -tw * 2) next += tw
+      scrollRef.current = next
+    }
+
+    const handleTouchEnd = () => {
+      isDragging.current = false
+      dragAxis.current = null
+    }
+
+    container.addEventListener("touchstart", handleTouchStart, { passive: false })
+    container.addEventListener("touchmove", handleTouchMove, { passive: false })
+    container.addEventListener("touchend", handleTouchEnd)
+    container.addEventListener("touchcancel", handleTouchEnd)
+
+    return () => {
+      container.removeEventListener("touchstart", handleTouchStart)
+      container.removeEventListener("touchmove", handleTouchMove)
+      container.removeEventListener("touchend", handleTouchEnd)
+      container.removeEventListener("touchcancel", handleTouchEnd)
+    }
+  }, [totalWidth])
+
   /* ─── pointer handlers ─── */
   const onPointerDown = (e: React.PointerEvent<HTMLDivElement>) => {
     isDragging.current = true
@@ -143,45 +202,6 @@ export default function WaveCarousel({
     dragAxis.current = null
   }
 
-  const onTouchStart = (e: React.TouchEvent<HTMLDivElement>) => {
-    const touch = e.touches[0]
-    if (!touch) return
-    isDragging.current = true
-    dragStartX.current = touch.clientX
-    dragStartY.current = touch.clientY
-    dragStartScroll.current = scrollRef.current
-    dragAxis.current = null
-  }
-
-  const onTouchMove = (e: React.TouchEvent<HTMLDivElement>) => {
-    if (!isDragging.current) return
-
-    const touch = e.touches[0]
-    if (!touch) return
-
-    const dx = touch.clientX - dragStartX.current
-    const dy = touch.clientY - dragStartY.current
-
-    if (!dragAxis.current) {
-      if (Math.abs(dx) < 6 && Math.abs(dy) < 6) return
-      dragAxis.current = Math.abs(dx) > Math.abs(dy) ? "x" : "y"
-    }
-
-    if (dragAxis.current !== "x") return
-
-    e.preventDefault()
-
-    let next = dragStartScroll.current + dx
-    if (next > 0) next -= totalWidth
-    if (next < -totalWidth * 2) next += totalWidth
-    scrollRef.current = next
-  }
-
-  const onTouchEnd = () => {
-    isDragging.current = false
-    dragAxis.current = null
-  }
-
   /* ─── render ─── */
   return (
     <div
@@ -202,10 +222,6 @@ export default function WaveCarousel({
       onPointerUp={onPointerUp}
       onPointerCancel={onPointerUp}
       onPointerLeave={onPointerUp}
-      onTouchStart={onTouchStart}
-      onTouchMove={onTouchMove}
-      onTouchEnd={onTouchEnd}
-      onTouchCancel={onTouchEnd}
     >
       {/* left fade */}
       <div
