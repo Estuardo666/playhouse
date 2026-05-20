@@ -80,48 +80,63 @@ export default function WaveCarousel({
   const dragAxis = useRef<"x" | "y" | null>(null)
 
   /* ─── animation loop ─── */
-  useAnimationFrame((_, delta) => {
-    if (autoScroll && !isDragging.current) {
-      const step = (speed * delta) / 1000
-      scrollRef.current += reverse ? step : -step
-      // seamless wrap
-      if (scrollRef.current <= -totalWidth) scrollRef.current += totalWidth
-      if (scrollRef.current > 0) scrollRef.current -= totalWidth
+  useEffect(() => {
+    let rafId: number
+    let lastTime = 0
+
+    const loop = (time: number) => {
+      if (!lastTime) lastTime = time
+      const delta = time - lastTime
+      lastTime = time
+
+      if (autoScroll && !isDragging.current) {
+        const step = (speed * delta) / 1000
+        scrollRef.current += reverse ? step : -step
+        // seamless wrap
+        if (scrollRef.current <= -totalWidth) scrollRef.current += totalWidth
+        if (scrollRef.current > 0) scrollRef.current -= totalWidth
+      }
+
+      const track = trackRef.current
+      if (track) {
+        track.style.transform = `translateX(${scrollRef.current}px)`
+      }
+
+      // wave Y per card — computed from viewport X position
+      const vw = window.innerWidth
+      cardRefs.current.forEach((wrapper, i) => {
+        if (!wrapper) return
+        const cardCenterX = scrollRef.current + i * ITEM_W + rCardWidth / 2
+        const phase = (cardCenterX / vw) * Math.PI * 2 * 2.5
+        const y = rAmplitude * Math.sin(phase)
+        const tilt = (isMobile ? 2 : 5) * Math.cos(phase)
+        wrapper.style.transform = `translateY(${y}px) rotateZ(${tilt}deg)`
+      })
+
+      rafId = requestAnimationFrame(loop)
     }
 
-    const track = trackRef.current
-    if (!track) return
-
-    // horizontal scroll
-    track.style.transform = `translateX(${scrollRef.current}px)`
-
-    // wave Y per card — computed from viewport X position
-    const vw = window.innerWidth
-    cardRefs.current.forEach((wrapper, i) => {
-      if (!wrapper) return
-      const cardCenterX = scrollRef.current + i * ITEM_W + rCardWidth / 2
-      // normalise to 0–2π across one viewport width — *2.5 = more cycles = faster bounce
-      const phase = (cardCenterX / vw) * Math.PI * 2 * 2.5
-      const y = rAmplitude * Math.sin(phase)
-      // tilt follows wave slope — reduced on mobile
-      const tilt = (isMobile ? 2 : 5) * Math.cos(phase)
-      wrapper.style.transform = `translateY(${y}px) rotateZ(${tilt}deg)`
-    })
-  })
+    rafId = requestAnimationFrame(loop)
+    return () => cancelAnimationFrame(rafId)
+  }, [autoScroll, speed, reverse, totalWidth, rCardWidth, ITEM_W, rAmplitude, isMobile])
 
   /* ─── native touch listeners (non-passive) ─── */
   useEffect(() => {
     const container = containerRef.current
     if (!container) return
 
+    let originalBodyOverflow = ""
+
     const handleTouchStart = (e: TouchEvent) => {
       const touch = e.touches[0]
       if (!touch) return
+      e.stopPropagation()
       isDragging.current = true
       dragStartX.current = touch.clientX
       dragStartY.current = touch.clientY
       dragStartScroll.current = scrollRef.current
       dragAxis.current = null
+      originalBodyOverflow = document.body.style.overflow
     }
 
     const handleTouchMove = (e: TouchEvent) => {
@@ -133,13 +148,15 @@ export default function WaveCarousel({
       const dy = touch.clientY - dragStartY.current
 
       if (!dragAxis.current) {
-        if (Math.abs(dx) < 6 && Math.abs(dy) < 6) return
+        if (Math.abs(dx) < 3 && Math.abs(dy) < 3) return
         dragAxis.current = Math.abs(dx) > Math.abs(dy) ? "x" : "y"
       }
 
       if (dragAxis.current !== "x") return
 
       e.preventDefault()
+      e.stopPropagation()
+      document.body.style.overflow = "hidden"
 
       const tw = totalWidthRef.current
       let next = dragStartScroll.current + dx
@@ -151,6 +168,7 @@ export default function WaveCarousel({
     const handleTouchEnd = () => {
       isDragging.current = false
       dragAxis.current = null
+      document.body.style.overflow = originalBodyOverflow
     }
 
     container.addEventListener("touchstart", handleTouchStart, { passive: false })
@@ -163,11 +181,13 @@ export default function WaveCarousel({
       container.removeEventListener("touchmove", handleTouchMove)
       container.removeEventListener("touchend", handleTouchEnd)
       container.removeEventListener("touchcancel", handleTouchEnd)
+      document.body.style.overflow = originalBodyOverflow
     }
   }, [totalWidth])
 
   /* ─── pointer handlers ─── */
   const onPointerDown = (e: React.PointerEvent<HTMLDivElement>) => {
+    if (e.pointerType === "touch") return
     isDragging.current = true
     dragStartX.current = e.clientX
     dragStartY.current = e.clientY
@@ -177,13 +197,14 @@ export default function WaveCarousel({
   }
 
   const onPointerMove = (e: React.PointerEvent) => {
+    if (e.pointerType === "touch") return
     if (!isDragging.current) return
 
     const dx = e.clientX - dragStartX.current
     const dy = e.clientY - dragStartY.current
 
     if (!dragAxis.current) {
-      if (Math.abs(dx) < 6 && Math.abs(dy) < 6) return
+      if (Math.abs(dx) < 3 && Math.abs(dy) < 3) return
       dragAxis.current = Math.abs(dx) > Math.abs(dy) ? "x" : "y"
     }
 
@@ -210,18 +231,24 @@ export default function WaveCarousel({
         width: "100vw",
         /* +30 for hover lift headroom */
         height: rCardHeight + rAmplitude * 2 + 48 + 30,
-        overflowX: "clip",
+        overflowX: "hidden",
         overflowY: "visible",
         position: "relative",
         cursor: "grab",
         touchAction: "pan-y",
-        overscrollBehaviorX: "contain",
-      }}
-      onPointerDown={onPointerDown}
-      onPointerMove={onPointerMove}
-      onPointerUp={onPointerUp}
-      onPointerCancel={onPointerUp}
-      onPointerLeave={onPointerUp}
+        WebkitUserDrag: "none",
+        WebkitTouchCallout: "none",
+        userSelect: "none",
+      } as React.CSSProperties}
+      {...(!isMobile
+        ? {
+            onPointerDown: onPointerDown,
+            onPointerMove: onPointerMove,
+            onPointerUp: onPointerUp,
+            onPointerCancel: onPointerUp,
+            onPointerLeave: onPointerUp,
+          }
+        : {})}
     >
       {/* left fade */}
       <div
