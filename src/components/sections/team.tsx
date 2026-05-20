@@ -4,6 +4,8 @@ import { useRef, useState, useCallback, useEffect, useMemo } from "react"
 import { motion, AnimatePresence } from "framer-motion"
 import WaveCarousel, { type WaveCarouselItem } from "@/components/ui/wave-carousel"
 import { TEAM_MEMBERS } from "@/content/playhouse/team"
+import type { Dict } from "@/lib/i18n"
+import type { SupportedLocale } from "@/content/config"
 
 /* ─────────────── tokens ─────────────── */
 const PG = '"Play Grotesk", "Google Sans", sans-serif'
@@ -17,17 +19,20 @@ const blurFade = (delay = 0) => ({
   transition: { duration: 1.05, ease, delay },
 })
 
-/* ─────────────── data transform ─────────────── */
-const carouselItems: WaveCarouselItem[] = TEAM_MEMBERS.map((m) => ({
-  id: m.id,
-  image: m.image,
-  tag: m.role,
-  secondaryTag: m.secondaryRole,
-  title: m.name,
-}))
-
 /* ─────────────── section ─────────────── */
-export default function Team() {
+interface TeamProps {
+  lang: SupportedLocale
+  dict: Dict["team"]
+}
+
+export default function Team({ dict }: TeamProps) {
+  const carouselItems: WaveCarouselItem[] = TEAM_MEMBERS.map((m) => ({
+    id: m.id,
+    image: m.image,
+    tag: m.role,
+    secondaryTag: m.secondaryRole,
+    title: m.name,
+  }))
   const carouselRef = useRef<HTMLDivElement>(null)
   const [cursor, setCursor] = useState({ x: 0, y: 0, visible: false })
   const [isMobileViewport, setIsMobileViewport] = useState(false)
@@ -108,7 +113,7 @@ export default function Team() {
                 letterSpacing: "0.16em",
               }}
             >
-              Our Team
+              {dict.pill}
             </span>
           </motion.div>
 
@@ -124,14 +129,16 @@ export default function Team() {
               letterSpacing: "-0.045em",
             }}
           >
-            The ensemble<br />behind the magic
+            {dict.heading.split("\n").map((line, i, arr) => (
+              <span key={i}>{line}{i < arr.length - 1 && <br />}</span>
+            ))}
           </motion.h2>
 
           <motion.p
             {...blurFade(0.12)}
             style={{ fontFamily: GS, fontSize: "1rem", fontWeight: 400, color: "rgba(255,255,255,0.55)" }}
           >
-            Founders, performers, educators &amp; creators
+            {dict.subheading}
           </motion.p>
 
           <motion.p
@@ -145,9 +152,7 @@ export default function Team() {
               textAlign: "justify",
             }}
           >
-            From founders to performers to educators — every member of the
-            PlayHouse family brings a unique voice to the stage. Together, we
-            shape the experiences that transform young artists.
+            {dict.description}
           </motion.p>
 
         </div>
@@ -203,7 +208,7 @@ export default function Team() {
                   color: "#181815",
                 }}
               >
-                Drag
+                {dict.dragLabel}
               </span>
               <span style={{ fontSize: 16, lineHeight: 1, color: "#181815" }}>→</span>
             </motion.div>

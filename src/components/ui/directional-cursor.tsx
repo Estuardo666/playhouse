@@ -53,7 +53,8 @@ export function DirectionalCursor({
   style,
   color = "#09090b", // "oscuro playhouse"
 }: DirectionalCursorProps) {
-  const cursorHotspotVector = { x: 0, y: 17 };
+  const cursorHotspotVector = { x: 0, y: 20 };
+  const cursorRotation = 0; // El SVG ya apunta hacia arriba-izquierda como un cursor de PC
 
   const emitCursorTipPosition = useCallback((x: number, y: number) => {
     window.dispatchEvent(
@@ -94,10 +95,6 @@ export function DirectionalCursor({
   const moveEndTimeoutRef = useRef<ReturnType<typeof setTimeout> | null>(null);
 
   const lastMousePos = useRef(initialPosition);
-  const previousAngle = useRef(0);
-  const accumulatedRotation = useRef(0);
-  const directionalEnabledRef = useRef(true);
-  const justReenabledDirectionalRef = useRef(false);
 
   const mapRange = (
     value: number,
@@ -133,11 +130,6 @@ export function DirectionalCursor({
   const cursorOffsetX = useSpring(0, positionSpringConfig);
   const cursorOffsetY = useSpring(0, positionSpringConfig);
 
-  const rotation = useSpring(0, {
-    ...positionSpringConfig,
-    damping: 60,
-    stiffness: 300,
-  });
   const baseScale = useSpring(1, {
     ...positionSpringConfig,
     stiffness: 500,
@@ -149,29 +141,16 @@ export function DirectionalCursor({
     (value) => value * (cursorSize || 1)
   );
 
-  const positionCursorAtTip = useCallback(
-    (angle: number, currentPos: { x: number; y: number }) => {
-      const radians = (angle * Math.PI) / 180;
-      const scale = (cursorSize || 1) * targetScale.current;
-      const rotatedX =
-        cursorHotspotVector.x * Math.cos(radians) -
-        cursorHotspotVector.y * Math.sin(radians);
-      const rotatedY =
-        cursorHotspotVector.x * Math.sin(radians) +
-        cursorHotspotVector.y * Math.cos(radians);
-
-      cursorOffsetX.set(-rotatedX * scale);
-      cursorOffsetY.set(-rotatedY * scale);
-      emitCursorTipPosition(currentPos.x, currentPos.y);
-    },
-    [cursorOffsetX, cursorOffsetY, cursorHotspotVector.x, cursorHotspotVector.y, cursorSize, emitCursorTipPosition]
-  );
-
   const positionCenteredCursor = useCallback(
     (currentPos: { x: number; y: number }) => {
-      positionCursorAtTip(0, currentPos);
+      const scale = (cursorSize || 1) * targetScale.current;
+      // Offset para centrar la punta del cursor en la posición del mouse
+      // La punta del SVG está ~20px arriba del centro del viewBox
+      cursorOffsetX.set(0);
+      cursorOffsetY.set(20 * scale);
+      emitCursorTipPosition(currentPos.x, currentPos.y);
     },
-    [positionCursorAtTip]
+    [cursorOffsetX, cursorOffsetY, cursorSize, emitCursorTipPosition]
   );
 
   // ── Interactive hover state ──────────────────────────────────────────────
@@ -288,33 +267,9 @@ export function DirectionalCursor({
       cursorX.set(currentPos.x);
       cursorY.set(currentPos.y);
 
-      // In interactive link/button state, keep a neutral cursor (no directional rotation).
-      if (!directionalEnabledRef.current) {
-        rotation.set(0);
-        positionCenteredCursor(currentPos);
-        return;
-      }
+      positionCenteredCursor(currentPos);
 
       if (distanceSquared > 0.25) {
-        const currentAngle =
-          Math.atan2(deltaY, deltaX) * (180 / Math.PI) +
-          90;
-
-        if (justReenabledDirectionalRef.current) {
-          previousAngle.current = currentAngle;
-          accumulatedRotation.current = rotation.get();
-          justReenabledDirectionalRef.current = false;
-        }
-
-        let angleDiff = currentAngle - previousAngle.current;
-        if (angleDiff > 180) angleDiff -= 360;
-        if (angleDiff < -180) angleDiff += 360;
-        accumulatedRotation.current += angleDiff;
-        rotation.set(accumulatedRotation.current);
-        previousAngle.current = currentAngle;
-
-        positionCursorAtTip(currentAngle, currentPos);
-
         baseScale.set(targetScale.current * 0.95);
         setIsMoving(true);
         isMovingRef.current = true;
@@ -329,10 +284,7 @@ export function DirectionalCursor({
           isMovingRef.current = false;
           moveEndTimeoutRef.current = null;
         }, 150);
-        return;
       }
-
-      positionCursorAtTip(previousAngle.current, currentPos);
     };
 
     const handleMouseOver = (e: MouseEvent) => {
@@ -343,12 +295,8 @@ export function DirectionalCursor({
       );
 
       if (overCard) {
-        if (!directionalEnabledRef.current) {
-          justReenabledDirectionalRef.current = true;
-        }
-        directionalEnabledRef.current = true;
         targetScale.current = 1.55;
-        positionCursorAtTip(previousAngle.current, lastMousePos.current);
+        positionCenteredCursor(lastMousePos.current);
         if (!isMovingRef.current) baseScale.set(1.55);
         animate(fillColor, "#ffffff", { duration: 0.2, ease: "easeOut" });
         animate(strokeColor, "white", { duration: 0.2, ease: "easeOut" });
@@ -356,11 +304,6 @@ export function DirectionalCursor({
         ringDiameter.set(70);
         ringGlow.set(1);
       } else if (overInteractive) {
-        directionalEnabledRef.current = false;
-        justReenabledDirectionalRef.current = false;
-        previousAngle.current = 0;
-        accumulatedRotation.current = 0;
-        rotation.set(0);
         targetScale.current = 1.3;
         positionCenteredCursor(lastMousePos.current);
         if (!isMovingRef.current) baseScale.set(1.3);
@@ -370,12 +313,8 @@ export function DirectionalCursor({
         ringDiameter.set(44);
         ringGlow.set(0);
       } else {
-        if (!directionalEnabledRef.current) {
-          justReenabledDirectionalRef.current = true;
-        }
-        directionalEnabledRef.current = true;
         targetScale.current = 1;
-        positionCursorAtTip(previousAngle.current, lastMousePos.current);
+        positionCenteredCursor(lastMousePos.current);
         if (!isMovingRef.current) baseScale.set(1);
         animate(fillColor, color, { duration: 0.25, ease: "easeOut" });
         animate(strokeColor, "white", { duration: 0.25, ease: "easeOut" });
@@ -417,7 +356,6 @@ export function DirectionalCursor({
   }, [
     cursorX,
     cursorY,
-    rotation,
     baseScale,
     cursorOffsetX,
     cursorOffsetY,
@@ -429,7 +367,6 @@ export function DirectionalCursor({
     color,
     cursorSize,
     emitCursorTipPosition,
-    positionCursorAtTip,
     positionCenteredCursor,
   ]);
 
@@ -474,7 +411,7 @@ export function DirectionalCursor({
           translateY: "-50%",
           x: cursorOffsetX,
           y: cursorOffsetY,
-          rotate: rotation,
+          rotate: cursorRotation,
           scale: combinedScale,
           zIndex: 9999,
           pointerEvents: "none",

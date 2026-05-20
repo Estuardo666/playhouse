@@ -3,7 +3,9 @@
 import { useEffect, useRef, useState } from "react"
 import Image from "next/image"
 import { motion, AnimatePresence, type PanInfo } from "framer-motion"
-import { WORKSHOPS, type Workshop } from "@/content/playhouse/workshops"
+import { WORKSHOPS, getLocalizedWorkshops, type LocalizedWorkshop } from "@/content/playhouse/workshops"
+import type { Dict } from "@/lib/i18n"
+import type { SupportedLocale } from "@/content/config"
 import ShiftButton from "@/components/ui/shift-button"
 
 const PG = '"Play Grotesk", "Google Sans", sans-serif'
@@ -97,14 +99,16 @@ function WorkshopDetailModal({
   workshop,
   isOpen,
   onClose,
+  dict,
 }: {
-  workshop: Workshop | null
+  workshop: LocalizedWorkshop | null
   isOpen: boolean
   onClose: () => void
+  dict: Dict["workshops"]
 }) {
   const [activeTab, setActiveTab] = useState<DetailTab>("objectives")
   // Keep last seen workshop so the exit animation has content to show
-  const [lastWorkshop, setLastWorkshop] = useState<Workshop | null>(workshop)
+  const [lastWorkshop, setLastWorkshop] = useState<LocalizedWorkshop | null>(workshop)
 
   if (workshop && workshop !== lastWorkshop) {
     setLastWorkshop(workshop)
@@ -131,7 +135,7 @@ function WorkshopDetailModal({
           transition={{ duration: 0.38, ease: [0.25, 0.1, 0.25, 1] }}
         >
           <motion.button
-            aria-label="Close workshop details"
+            aria-label={dict.closeLabel}
             onClick={onClose}
             className="absolute inset-0 bg-black/60"
             initial={{ backdropFilter: "blur(0px)" }}
@@ -159,7 +163,7 @@ function WorkshopDetailModal({
               className="absolute right-4 top-4 rounded-full bg-black/10 px-3 py-1.5 text-sm font-semibold text-[#181815] transition-colors hover:bg-black/15"
               style={{ fontFamily: GS }}
             >
-              Close
+              {dict.closeLabel}
             </button>
 
             <div className="grid grid-cols-1 gap-4 md:grid-cols-[0.95fr_1.85fr] md:gap-8">
@@ -210,9 +214,9 @@ function WorkshopDetailModal({
                 <div className="mt-6 w-full rounded-[1rem] border border-black/10 bg-white/40 p-1 md:rounded-full">
                   <div className="flex w-full flex-col items-stretch gap-1 md:flex-row md:flex-wrap md:items-center">
                     {[
-                      { key: "objectives", label: "Specific Objectives" },
-                      { key: "methodology", label: "Methodology" },
-                      { key: "outcomes", label: "Expected Outcomes" },
+                      { key: "objectives", label: dict.tabs.objectives },
+                      { key: "methodology", label: dict.tabs.methodology },
+                      { key: "outcomes", label: dict.tabs.outcomes },
                     ].map((tab) => {
                       const isActive = activeTab === tab.key
                       return (
@@ -289,7 +293,7 @@ function WorkshopDetailModal({
                 {/* Booking CTA */}
                 <div className="mt-6 flex flex-col items-center border-t border-black/10 pt-6 text-center">
                   <p style={{ fontFamily: GS, fontSize: "0.95rem", color: "#545454" }}>
-                    To book any of the workshops, please fill out the following form:
+                    {dict.bookingNote}
                   </p>
                   <a
                     href="https://forms.gle/DQ4ELJyu9vaFp6ax9"
@@ -298,7 +302,7 @@ function WorkshopDetailModal({
                     className="mt-3 inline-block rounded-full bg-[#5C1010] px-6 py-2.5 text-sm font-semibold text-white transition-opacity hover:opacity-80"
                     style={{ fontFamily: GS }}
                   >
-                    Book a Workshop
+                    {dict.bookCta}
                   </a>
                 </div>
               </div>
@@ -315,10 +319,12 @@ function OverlappingSlider({
   items,
   initialIndex = 2,
   onLearnMore,
+  learnMoreLabel,
 }: {
-  items: Workshop[]
+  items: LocalizedWorkshop[]
   initialIndex?: number
-  onLearnMore: (workshop: Workshop) => void
+  onLearnMore: (workshop: LocalizedWorkshop) => void
+  learnMoreLabel: string
 }) {
   const total = items.length
   const [activeIndex, setActiveIndex] = useState(() => {
@@ -482,7 +488,7 @@ function OverlappingSlider({
                       onLearnMore(workshop)
                     }}
                   >
-                    Learn more
+                    {learnMoreLabel}
                   </button>
                 </div>
               </motion.article>
@@ -528,8 +534,14 @@ function OverlappingSlider({
   )
 }
 
-export default function Workshops() {
-  const [selectedWorkshop, setSelectedWorkshop] = useState<Workshop | null>(null)
+interface WorkshopsProps {
+  lang: SupportedLocale
+  dict: Dict["workshops"]
+}
+
+export default function Workshops({ lang, dict }: WorkshopsProps) {
+  const localizedWorkshops = getLocalizedWorkshops(WORKSHOPS, lang)
+  const [selectedWorkshop, setSelectedWorkshop] = useState<LocalizedWorkshop | null>(null)
 
   return (
     <section
@@ -544,7 +556,7 @@ export default function Workshops() {
               className="inline-flex items-center rounded-full px-5 py-1.5 text-[0.72rem] font-semibold uppercase tracking-[0.18em]"
               style={{ fontFamily: GS, background: "#5C1010", color: "#fff" }}
             >
-              Workshops
+              {dict.pill}
             </span>
           </motion.div>
 
@@ -560,14 +572,14 @@ export default function Workshops() {
               color: "#181815",
             }}
           >
-            Theatre Workshops in English
+            {dict.heading}
           </motion.h2>
 
           <motion.p
             {...blurFade(0.11)}
             style={{ fontFamily: GS, fontSize: "1rem", fontWeight: 400, color: "#545454" }}
           >
-            Hands-on learning through theatre and performance
+            {dict.subheading}
           </motion.p>
 
           <motion.p
@@ -580,10 +592,10 @@ export default function Workshops() {
               textAlign: "justify",
             }}
           >
-            At PLAYHOUSE - Educational Theatre, our workshops use the power of theatre to make learning English fun, creative, and memorable. Through games, improvisation, storytelling, music, and stage performance, students explore new ways of expressing themselves while building confidence in their language skills.
+            {dict.intro}
             <br />
             <br />
-            Whether discovering the basics of theatre, creating original stories, trying out musical theatre, or learning to speak with clarity, each workshop is designed to inspire imagination, teamwork, and communication. From stepping onto the stage to welcoming a guest into the classroom, every experience is interactive, dynamic, and tailored to help students grow both as performers and as confident English speakers.
+            {dict.intro2}
           </motion.p>
 
           <motion.div
@@ -602,7 +614,7 @@ export default function Workshops() {
                 lineHeight: 1.2,
               }}
             >
-              To book any of the workshops,
+              {dict.bookingLine1}
             </p>
             <p
               style={{
@@ -613,11 +625,11 @@ export default function Workshops() {
                 lineHeight: 1.2,
               }}
             >
-              please fill out the following form:
+              {dict.bookingLine2}
             </p>
             <div className="mt-4">
               <ShiftButton
-                label="Book a Workshop"
+                label={dict.bookCta}
                 href="https://forms.gle/DQ4ELJyu9vaFp6ax9"
                 bgColor="#5C1010"
                 textColor="#fff"
@@ -629,9 +641,10 @@ export default function Workshops() {
         </div>
 
         <OverlappingSlider
-          items={WORKSHOPS}
+          items={localizedWorkshops}
           initialIndex={2}
           onLearnMore={(workshop) => setSelectedWorkshop(workshop)}
+          learnMoreLabel={dict.learnMore}
         />
       </div>
 
@@ -639,6 +652,7 @@ export default function Workshops() {
         workshop={selectedWorkshop}
         isOpen={Boolean(selectedWorkshop)}
         onClose={() => setSelectedWorkshop(null)}
+        dict={dict}
       />
     </section>
   )

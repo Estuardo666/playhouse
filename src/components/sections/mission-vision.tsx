@@ -9,43 +9,16 @@ import {
   animate,
   useMotionValue,
 } from "framer-motion";
+import type { Dict } from "@/lib/i18n";
+import type { SupportedLocale } from "@/content/config";
 
 /* ─────────────── tokens ─────────────── */
 const ease = [0.34, 1.56, 0.64, 1] as const;
 const GS = '"Google Sans", "Inter", sans-serif';
 const PG = '"Play Grotesk", "Google Sans", sans-serif';
 
-/* ─────────────── content ─────────────── */
-const VALORES = [
-  "Creativity",
-  "Immersion",
-  "Collaboration",
-  "Expression",
-  "Pedagogical Innovation",
-  "Stage Confidence",
-];
-
-const CARDS = [
-  {
-    id: "mision",
-    badge: "Mission",
-    shortTitle: "What we do,\nand whom we do it for",
-    expandedTitle: "Mission",
-    expandedBody:
-      "To promote English learning and artistic development through musical theatre, creating immersive and fun stage experiences that inspire children, youth, and adults to express themselves, communicate, and grow in a creative and bilingual environment.",
-    image:
-      "/media/test/depositphotos_74798951-stock-photo-group-of-children-enjoying-drama.jpg",
-  },
-  {
-    id: "vision",
-    badge: "Vision",
-    shortTitle: "Where the stage\nis heading",
-    expandedTitle: "Vision",
-    expandedBody:
-      "PLAYHOUSE - Educational Theatre will be a national benchmark in educational theatre in English, with annual productions reaching various cities. We stand out by combining art and pedagogy in innovative stage proposals, aiming to grow through strategic partnerships and our own educational materials.",
-    image: "/media/test/Foto-muestra-4.jpg",
-  },
-];
+/* ─────────────── types ─────────────── */
+type MissionDict = Dict["mission"];
 
 /* ─────────────── animation helpers ─────────────── */
 const blurFade = (delay = 0) => ({
@@ -445,12 +418,30 @@ function FlipCard({
 }
 
 /* ─────────────── exported sub-blocks ─────────────── */
-export function FlipCardsBlock() {
+export function FlipCardsBlock({ dict }: { dict: MissionDict }) {
   const [activeId, setActiveId] = useState<string | null>(null);
+  const cards = [
+    {
+      id: "mision",
+      badge: dict.missionBadge,
+      shortTitle: dict.missionShortTitle,
+      expandedTitle: dict.missionExpandedTitle,
+      expandedBody: dict.missionBody,
+      image: "/media/test/depositphotos_74798951-stock-photo-group-of-children-enjoying-drama.jpg",
+    },
+    {
+      id: "vision",
+      badge: dict.visionBadge,
+      shortTitle: dict.visionShortTitle,
+      expandedTitle: dict.visionExpandedTitle,
+      expandedBody: dict.visionBody,
+      image: "/media/test/Foto-muestra-4.jpg",
+    },
+  ];
   return (
     <LayoutGroup id="flipcards-embedded">
       <div className="flex flex-col gap-6 md:flex-row md:gap-8">
-        {CARDS.map((card, i) => (
+        {cards.map((card, i) => (
           <FlipCard
             key={card.id}
             index={i}
@@ -465,7 +456,8 @@ export function FlipCardsBlock() {
   );
 }
 
-export function ValorPillsBlock() {
+export function ValorPillsBlock({ dict }: { dict: MissionDict }) {
+  const VALORES = dict.valores;
   const splitIndex = Math.ceil(VALORES.length / 2);
   const topValues = VALORES.slice(0, splitIndex);
   const bottomValues = VALORES.slice(splitIndex);
@@ -501,8 +493,26 @@ export function ValorPillsBlock() {
 }
 
 /* ─────────────── main component ─────────────── */
-export default function MissionVision() {
+export default function MissionVision({ lang, dict }: { lang: SupportedLocale; dict: MissionDict }) {
   const [activeId, setActiveId] = useState<string | null>(null);
+  const cards = [
+    {
+      id: "mision",
+      badge: dict.missionBadge,
+      shortTitle: dict.missionShortTitle,
+      expandedTitle: dict.missionExpandedTitle,
+      expandedBody: dict.missionBody,
+      image: "/media/test/depositphotos_74798951-stock-photo-group-of-children-enjoying-drama.jpg",
+    },
+    {
+      id: "vision",
+      badge: dict.visionBadge,
+      shortTitle: dict.visionShortTitle,
+      expandedTitle: dict.visionExpandedTitle,
+      expandedBody: dict.visionBody,
+      image: "/media/test/Foto-muestra-4.jpg",
+    },
+  ];
 
   return (
     <section
@@ -537,7 +547,7 @@ export default function MissionVision() {
               className="inline-block rounded-full border border-white/15 bg-white/[0.06] px-5 py-1.5 text-[0.72rem] font-semibold uppercase tracking-[0.18em] text-white/60 backdrop-blur-sm"
               style={{ fontFamily: GS }}
             >
-              Nuestra esencia
+              {dict.pill}
             </span>
           </motion.div>
 
@@ -546,8 +556,7 @@ export default function MissionVision() {
             className="max-w-3xl text-[2.2rem] font-medium leading-[0.98] text-white md:text-[2.8rem] lg:text-[3.2rem]"
             style={{ fontFamily: PG, letterSpacing: "-0.045em" }}
           >
-            An Artistic and Pedagogical Proposal with a Vision for National
-            Growth
+            {dict.heading}
           </motion.h2>
 
           {/* Scenic divider */}
@@ -561,7 +570,7 @@ export default function MissionVision() {
         {/* ── Mission / Vision cards ── */}
         <LayoutGroup id="flipcards">
           <div className="mb-16 flex flex-col gap-6 md:flex-row md:gap-8">
-            {CARDS.map((card, i) => (
+            {cards.map((card, i) => (
               <FlipCard
                 key={card.id}
                 index={i}
@@ -583,7 +592,7 @@ export default function MissionVision() {
           viewport={{ once: true, margin: "-60px" }}
           className="flex w-full flex-wrap items-center justify-center gap-3"
         >
-          {VALORES.map((valor, i) => (
+          {dict.valores.map((valor, i) => (
             <motion.div key={`${valor}-${i}`} variants={valoreItem} className="flex-shrink-0">
               <ValorPill valor={valor} />
             </motion.div>

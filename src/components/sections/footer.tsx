@@ -2,6 +2,8 @@
 
 import Image from "next/image"
 import { motion } from "framer-motion"
+import type { Dict } from "@/lib/i18n"
+import type { SupportedLocale } from "@/content/config"
 
 /* ─────────────── tokens ─────────────── */
 const GS = '"Google Sans", "Inter", sans-serif'
@@ -22,7 +24,12 @@ const SOCIALS = [
 ]
 
 /* ─────────────── component ─────────────── */
-export default function Footer() {
+interface FooterProps {
+  lang: SupportedLocale
+  dict: Dict["footer"]
+}
+
+export default function Footer({ dict }: FooterProps) {
   const year = new Date().getFullYear()
 
   return (
@@ -48,8 +55,7 @@ export default function Footer() {
               className="text-[1.1rem] leading-[1.55] mb-10"
               style={{ fontFamily: GS, color: "rgba(255,255,255,0.45)" }}
             >
-              Immersive educational theatre<br />
-              that inspires and transforms.
+              {dict.tagline}
             </motion.p>
 
             {/* large logo */}
@@ -69,7 +75,7 @@ export default function Footer() {
                 className="text-[0.92rem] leading-[1.65] max-w-xs"
                 style={{ fontFamily: GS, color: "rgba(255,255,255,0.38)" }}
               >
-                A pioneering project in educational theatre in English that combines art, music, and pedagogy.
+                {dict.description}
               </p>
             </motion.div>
 
@@ -79,7 +85,7 @@ export default function Footer() {
               className="text-[0.82rem] mb-10"
               style={{ fontFamily: GS, color: "rgba(255,255,255,0.22)" }}
             >
-              © {year} PlayHouse — All rights reserved.
+              © {year} PlayHouse — {dict.copyright}
             </motion.p>
 
             {/* bottom divider */}
@@ -115,7 +121,7 @@ export default function Footer() {
                     className="text-[0.72rem] font-semibold tracking-[0.18em] uppercase"
                     style={{ fontFamily: GS, color: "rgba(255,255,255,0.28)" }}
                   >
-                    Follow Us
+                    {dict.followUs}
                   </span>
                   <div className="h-px w-full bg-white/10" />
                 </motion.div>
@@ -143,7 +149,7 @@ export default function Footer() {
                     className="text-[0.72rem] font-semibold tracking-[0.18em] uppercase"
                     style={{ fontFamily: GS, color: "rgba(255,255,255,0.28)" }}
                   >
-                    Online
+                    {dict.online}
                   </span>
                   <div className="h-px w-full bg-white/10" />
                 </motion.div>

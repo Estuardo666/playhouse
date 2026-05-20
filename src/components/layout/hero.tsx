@@ -5,15 +5,20 @@ import { useEffect, useRef, useState } from "react"
 import { AnimatePresence, motion, useReducedMotion, useScroll, useTransform } from "framer-motion"
 import { gsap } from "gsap"
 import { ScrollTrigger } from "gsap/ScrollTrigger"
+import type { Dict } from "@/lib/i18n"
+import type { SupportedLocale } from "@/content/config"
 
 gsap.registerPlugin(ScrollTrigger)
 
-const HERO_TEXT =
-  "Educational theatre that inspires learning and creates unforgettable experiences."
 const revealEase = [0.22, 1, 0.36, 1] as const
 const contentEase = [0.16, 1, 0.3, 1] as const
 
-export default function Hero() {
+interface HeroProps {
+  lang: SupportedLocale
+  dict: Dict["hero"]
+}
+
+export default function Hero({ dict }: HeroProps) {
   const heroRef = useRef<HTMLElement>(null)
   const titleRef = useRef<HTMLHeadingElement>(null)
   const pillRef = useRef<HTMLDivElement>(null)
@@ -173,7 +178,7 @@ export default function Hero() {
             ref={pillRef}
             className="inline-flex items-center rounded-full border border-white/25 px-4 py-1.5 text-[0.65rem] font-medium uppercase tracking-[0.18em] text-white sm:text-xs"
           >
-            Where English comes alive on stage
+            {dict.pill}
           </div>
         </motion.div>
         <motion.div
@@ -190,7 +195,7 @@ export default function Hero() {
             className="max-w-3xl font-bold leading-[0.95] text-white"
             style={{ fontFamily: '"Play Grotesk", "Figtree", sans-serif', letterSpacing: '-0.025em', fontSize: 'clamp(1.6rem, 4.8vw, 3.1rem)', opacity: 0.9 }}
           >
-            {HERO_TEXT}
+            {dict.title}
           </h1>
         </motion.div>
       </div>

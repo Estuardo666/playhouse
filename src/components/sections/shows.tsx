@@ -3,7 +3,9 @@
 import { useState, useRef, useEffect, useCallback } from "react"
 import { motion, AnimatePresence } from "framer-motion"
 import Image from "next/image"
-import { SHOWS, type Show, type ShowGalleryImage } from "@/content/playhouse/shows"
+import { SHOWS, getLocalizedShow, type LocalizedShow, type ShowGalleryImage } from "@/content/playhouse/shows"
+import type { Dict } from "@/lib/i18n"
+import type { SupportedLocale } from "@/content/config"
 
 /* ─────────────── tokens ─────────────── */
 const PG = '"Play Grotesk", "Google Sans", sans-serif'
@@ -220,7 +222,7 @@ function AccordionTab({
   tabRef,
   index,
 }: {
-  show: Show
+  show: LocalizedShow
   isOpen: boolean
   onToggle: () => void
   isLast: boolean
@@ -368,7 +370,13 @@ function AccordionTab({
 }
 
 /* ─────────────── section ─────────────── */
-export default function Shows() {
+interface ShowsProps {
+  lang: SupportedLocale
+  dict: Dict["shows"]
+}
+
+export default function Shows({ lang, dict }: ShowsProps) {
+  const localizedShows = SHOWS.map((s) => getLocalizedShow(s, lang))
   const [openIndex, setOpenIndex] = useState<number | null>(null)
   const tabRefs = useRef<React.RefObject<HTMLDivElement>[]>(
     SHOWS.map(() => ({ current: null } as React.RefObject<HTMLDivElement>))
@@ -422,7 +430,7 @@ export default function Shows() {
                 letterSpacing: "0.16em",
               }}
             >
-              Our Shows
+              {dict.pill}
             </span>
           </motion.div>
 
@@ -439,14 +447,14 @@ export default function Shows() {
               letterSpacing: "-0.045em",
             }}
           >
-            Musical Shows in English for All Ages
+            {dict.heading}
           </motion.h2>
 
           <motion.p
             {...blurFade(0.12)}
             style={{ fontFamily: GS, fontSize: "1rem", fontWeight: 400, color: "#545454" }}
           >
-            Musical productions in English for all ages
+            {dict.subheading}
           </motion.p>
 
           <motion.p
@@ -460,8 +468,7 @@ export default function Shows() {
               textAlign: "justify",
             }}
           >
-            Each show is a unique world of music, movement, and language —
-            designed to make English feel natural, exciting, and unforgettable.
+            {dict.intro}
           </motion.p>
         </div>
 
@@ -473,13 +480,13 @@ export default function Shows() {
               <path d="M0,20 C40,-15 80,55 120,20 C160,-15 200,55 240,20 C280,-15 320,55 360,20 C400,-15 440,55 480,20 C520,-15 560,55 600,20 C640,-15 680,55 720,20 C760,-15 800,55 840,20 C880,-15 920,55 960,20 C1000,-15 1040,55 1080,20 C1120,-15 1160,55 1200,20" fill="none" stroke="rgba(0,0,0,0.1)" strokeWidth="1.5"/>
             </svg>
           </div>
-          {SHOWS.map((show, i) => (
+          {localizedShows.map((show, i) => (
             <AccordionTab
               key={show.id}
               show={show}
               isOpen={openIndex === i}
               onToggle={() => handleToggle(i)}
-              isLast={i === SHOWS.length - 1}
+              isLast={i === localizedShows.length - 1}
               tabRef={tabRefs.current[i]}
               index={i}
             />

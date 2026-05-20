@@ -4,6 +4,8 @@ import { useState, useEffect, useRef } from "react"
 import Image from "next/image"
 import { motion, AnimatePresence } from "framer-motion"
 import { MATERIALS, type MaterialItem } from "@/content/playhouse/materials"
+import type { Dict } from "@/lib/i18n"
+import type { SupportedLocale } from "@/content/config"
 
 const PG = '"Play Grotesk", "Google Sans", sans-serif'
 const GS = '"Google Sans", "Inter", sans-serif'
@@ -33,7 +35,7 @@ function DownloadIcon() {
 }
 
 /* ── Individual material card ──────────────────────────────── */
-function MaterialCard({ item }: { item: MaterialItem }) {
+function MaterialCard({ item, dict }: { item: MaterialItem; dict: Dict["materials"] }) {
   return (
     <motion.div
       initial={{ opacity: 0, y: 28, filter: "blur(10px)" }}
@@ -110,8 +112,7 @@ function MaterialCard({ item }: { item: MaterialItem }) {
       {/* Footer CTA */}
       <div className="flex flex-wrap items-center justify-center gap-3 rounded-b-[2rem] bg-[#ece9e6] px-6 py-4">
         <p style={{ fontFamily: GS, fontSize: "0.9rem", color: "#545454" }}>
-          <span style={{ fontWeight: 700, color: "#181815" }}>For further inquiries,</span>{" "}
-          please contact us through:
+          {dict.contactNote}
         </p>
         <a
           href={FORM_URL}
@@ -120,7 +121,7 @@ function MaterialCard({ item }: { item: MaterialItem }) {
           className="inline-block rounded-full bg-[#181815] px-5 py-2 text-xs font-bold uppercase tracking-widest text-white transition-opacity hover:opacity-80"
           style={{ fontFamily: GS, whiteSpace: "nowrap" }}
         >
-          Contact Form
+          {dict.contactCta}
         </a>
       </div>
     </motion.div>
@@ -128,7 +129,7 @@ function MaterialCard({ item }: { item: MaterialItem }) {
 }
 
 /* ── Email gate form ───────────────────────────────────────── */
-function UnlockForm({ onUnlock }: { onUnlock: () => void }) {
+function UnlockForm({ onUnlock, dict }: { onUnlock: () => void; dict: Dict["materials"] }) {
   const [email, setEmail] = useState("")
   const [error, setError] = useState("")
   const inputRef = useRef<HTMLInputElement>(null)
@@ -140,7 +141,7 @@ function UnlockForm({ onUnlock }: { onUnlock: () => void }) {
   function handleSubmit(e: React.FormEvent) {
     e.preventDefault()
     if (!validate(email)) {
-      setError("Please enter a valid email address.")
+      setError(dict.emailError)
       inputRef.current?.focus()
       return
     }
@@ -155,12 +156,12 @@ function UnlockForm({ onUnlock }: { onUnlock: () => void }) {
         <p
           style={{ fontFamily: PG, fontWeight: 700, fontSize: "clamp(1.5rem,2.6vw,2rem)", color: "#181815", lineHeight: 1.1, letterSpacing: "-0.03em" }}
         >
-          Subscribe to unlock
+          {dict.unlockTitle}
         </p>
         <p
           style={{ fontFamily: GS, fontWeight: 400, fontSize: "1rem", color: "#545454", marginTop: "0.35rem" }}
         >
-          Activity kits, songs &amp; classroom videos — free.
+          {dict.unlockSubtitle}
         </p>
 
         <div className="mt-5 flex flex-col gap-3 sm:flex-row">
@@ -168,7 +169,7 @@ function UnlockForm({ onUnlock }: { onUnlock: () => void }) {
             ref={inputRef}
             type="email"
             autoComplete="email"
-            placeholder="your@email.com"
+            placeholder={dict.emailPlaceholder}
             value={email}
             onChange={(e) => { setEmail(e.target.value); setError("") }}
             aria-label="Email address"
@@ -182,7 +183,7 @@ function UnlockForm({ onUnlock }: { onUnlock: () => void }) {
             className="rounded-full bg-[#5C1010] px-8 py-3.5 text-base font-semibold text-white transition-opacity hover:opacity-80 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#5C1010]"
             style={{ fontFamily: GS }}
           >
-            Unlock Resources
+            {dict.unlockCta}
           </button>
         </div>
 
@@ -197,7 +198,12 @@ function UnlockForm({ onUnlock }: { onUnlock: () => void }) {
 }
 
 /* ── Section ───────────────────────────────────────────────── */
-export default function Materials() {
+interface MaterialsProps {
+  lang: SupportedLocale
+  dict: Dict["materials"]
+}
+
+export default function Materials({ lang, dict }: MaterialsProps) {
   const [unlocked, setUnlocked] = useState(false)
   const materialsRef = useRef<HTMLDivElement>(null)
 
@@ -231,7 +237,7 @@ export default function Materials() {
               className="inline-flex items-center rounded-full px-5 py-1.5 text-[0.72rem] font-semibold uppercase tracking-[0.18em]"
               style={{ fontFamily: GS, background: "#5C1010", color: "#fff" }}
             >
-              Resources
+              {dict.pill}
             </span>
           </motion.div>
 
@@ -247,7 +253,9 @@ export default function Materials() {
               color: "#181815",
             }}
           >
-            Teaching<br />Materials
+            {dict.heading.split("\n").map((line, i, arr) => (
+              <span key={i}>{line}{i < arr.length - 1 && <br />}</span>
+            ))}
           </motion.h2>
 
           <motion.p
@@ -259,11 +267,7 @@ export default function Materials() {
               lineHeight: 1.55,
             }}
           >
-            In this section you will find the materials you need to prepare your students for our
-            shows. You will find an{" "}
-            <strong>Activity Kit</strong> (which includes activities for before and after the show).
-            Additionally, you will find the <strong>videos and songs</strong> to work with during
-            your lessons.
+            {dict.body}
           </motion.p>
 
           <motion.div {...blurFade(0.17)}>
@@ -275,10 +279,10 @@ export default function Materials() {
                 <svg width={16} height={16} viewBox="0 0 24 24" fill="none" aria-hidden>
                   <path d="M5 13l4 4L19 7" stroke="#5C1010" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round" />
                 </svg>
-                Resources unlocked
+                {dict.unlockedMsg}
               </p>
             ) : (
-              <UnlockForm onUnlock={() => setUnlocked(true)} />
+              <UnlockForm onUnlock={() => setUnlocked(true)} dict={dict} />
             )}
           </motion.div>
         </div>
@@ -311,7 +315,7 @@ export default function Materials() {
             className="mt-14 space-y-8"
           >
             {MATERIALS.map((item) => (
-              <MaterialCard key={item.id} item={item} />
+              <MaterialCard key={item.id} item={item} dict={dict} />
             ))}
           </motion.div>
         )}

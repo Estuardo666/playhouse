@@ -3,17 +3,18 @@
 import Image from "next/image"
 import Link from "next/link"
 import { MouseEvent, useEffect, useState } from "react"
+import { usePathname, useRouter } from "next/navigation"
 import { motion, AnimatePresence } from "framer-motion"
 import { GradualBlur } from "@/components/ui/gradual-blur"
+import { switchLocalePath, type SupportedLocale } from "@/content/config"
+import type { Dict } from "@/lib/i18n"
 
-const navLinks = [
-  { href: "#about", label: "About us", id: "about" },
-  { href: "#team", label: "Our team", id: "team" },
-  { href: "#shows", label: "Shows", id: "shows" },
-  { href: "#workshops", label: "Workshops", id: "workshops" },
-  { href: "#materials", label: "Resources", id: "materials" },
-  { href: "#footer", label: "Contact", id: "footer" },
-]
+const NAV_IDS = ["about", "team", "shows", "workshops", "materials", "footer"] as const
+
+interface NavigationProps {
+  lang: SupportedLocale
+  dict: Dict["nav"]
+}
 
 /* ─── Hamburger icon ─── */
 function HamburgerIcon({ open }: { open: boolean }) {
@@ -38,10 +39,28 @@ function HamburgerIcon({ open }: { open: boolean }) {
   )
 }
 
-export default function Navigation() {
+export default function Navigation({ lang, dict }: NavigationProps) {
   const [scrolled, setScrolled] = useState(false)
   const [activeSection, setActiveSection] = useState("")
   const [mobileOpen, setMobileOpen] = useState(false)
+  const pathname = usePathname()
+  const router = useRouter()
+
+  const navLinks = [
+    { href: "#about", label: dict.about, id: "about" },
+    { href: "#team", label: dict.team, id: "team" },
+    { href: "#shows", label: dict.shows, id: "shows" },
+    { href: "#workshops", label: dict.workshops, id: "workshops" },
+    { href: "#materials", label: dict.materials, id: "materials" },
+    { href: "#footer", label: dict.contact, id: "footer" },
+  ]
+
+  const otherLang: SupportedLocale = lang === "en" ? "es" : "en"
+
+  function handleLangSwitch() {
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
+    router.push(switchLocalePath(pathname, otherLang) as any)
+  }
 
   const handleNavClick = (e: MouseEvent<HTMLAnchorElement>, href: string) => {
     e.preventDefault()
@@ -82,8 +101,8 @@ export default function Navigation() {
     }
 
     const observer = new IntersectionObserver(observerCallback, observerOptions)
-    navLinks.forEach((link) => {
-      const element = document.getElementById(link.id)
+    NAV_IDS.forEach((id) => {
+      const element = document.getElementById(id)
       if (element) observer.observe(element)
     })
 
@@ -170,6 +189,18 @@ export default function Navigation() {
               </li>
             ))}
           </ul>
+
+          {/* Language toggle */}
+          <button
+            type="button"
+            onClick={handleLangSwitch}
+            aria-label={`Switch to ${otherLang === "en" ? "English" : "Español"}`}
+            className="ml-1 inline-flex items-center gap-1 rounded-full border border-white/20 px-3 py-1.5 text-xs font-semibold uppercase tracking-widest text-white/70 transition-all hover:border-white/40 hover:text-white"
+          >
+            <span className={lang === "en" ? "text-white" : "text-white/40"}>EN</span>
+            <span className="text-white/25">|</span>
+            <span className={lang === "es" ? "text-white" : "text-white/40"}>ES</span>
+          </button>
         </div>
 
         {/* ── Mobile: floating pill that expands into menu ── */}
@@ -258,6 +289,20 @@ export default function Navigation() {
                     </motion.li>
                   ))}
                 </ul>
+                {/* Mobile language toggle */}
+                <div className="flex items-center gap-3 px-5 pb-4 pt-1">
+                  <span className="text-xs uppercase tracking-widest text-white/30" style={{ fontFamily: '"MADE Grotesk", sans-serif' }}>Language</span>
+                  <button
+                    type="button"
+                    onClick={handleLangSwitch}
+                    aria-label={`Switch to ${otherLang === "en" ? "English" : "Español"}`}
+                    className="inline-flex items-center gap-1.5 rounded-full border border-white/20 px-4 py-1.5 text-xs font-semibold uppercase tracking-widest text-white/70 hover:border-white/40 hover:text-white transition-all"
+                  >
+                    <span className={lang === "en" ? "text-white" : "text-white/40"}>EN</span>
+                    <span className="text-white/25">|</span>
+                    <span className={lang === "es" ? "text-white" : "text-white/40"}>ES</span>
+                  </button>
+                </div>
                 <div style={{ height: 8 }} />
               </motion.div>
             )}
