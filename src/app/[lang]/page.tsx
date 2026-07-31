@@ -46,7 +46,7 @@ export default function LangPage({ params }: { params: { lang: string } }) {
             <LinkCard href={`/${lang}/clases-de-ingles-loja`} title={lang === "es" ? "Clases de inglés por edades" : "English classes by age"} text={lang === "es" ? "Niños, jóvenes y adultos con una metodología creativa." : "Children, young people, and adults through a creative methodology."} />
           </div>
         </SectionShell>
-        <SectionShell id="blog" title={lang === "es" ? "Ideas para aprender creando" : "Ideas for creative learning"}>
+                    <SectionShell compact id="blog" title={lang === "es" ? "Ideas para aprender creando" : "Ideas for creative learning"}>
           <BlogCardList lang={lang} />
         </SectionShell>
         <FaqSection lang={lang} />

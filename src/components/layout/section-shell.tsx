@@ -12,6 +12,7 @@ interface SectionShellProps {
   children: ReactNode
   className?: string
   variant?: "default" | "hero" | "featured" | "gallery"
+  compact?: boolean
 }
 
 export default function SectionShell({
@@ -21,10 +22,11 @@ export default function SectionShell({
   children,
   className = "",
   variant = "default",
+  compact = false,
 }: SectionShellProps) {
   const baseClasses = "w-full"
   const variantClasses = {
-    default: "py-24 lg:py-32",
+    default: compact ? "py-16 lg:py-20" : "py-24 lg:py-32",
     hero: "min-h-screen flex items-center justify-center",
     featured: "py-32 bg-gradient-to-b from-warm-cream/30 to-white",
     gallery: "py-24 lg:py-32 bg-white",
@@ -33,9 +35,9 @@ export default function SectionShell({
   return (
     <MotionSection id={id} className={cn(baseClasses, variantClasses[variant], className)}>
       <Container>
-        <div className="text-center mb-16 max-w-4xl mx-auto">
+        <div className={cn("text-center max-w-4xl mx-auto", compact ? "mb-8" : "mb-16")}>
           <h2 className={cn(
-            "text-5xl md:text-7xl lg:text-8xl font-display font-black",
+            compact ? "text-4xl md:text-5xl font-display font-black" : "text-5xl md:text-7xl lg:text-8xl font-display font-black",
             variant === "hero" ? "text-white drop-shadow-2xl" : "bg-gradient-to-r from-deep-red to-gold bg-clip-text text-transparent"
           )}>
             {title}
