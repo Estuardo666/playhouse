@@ -167,7 +167,7 @@ function WorkshopDetailModal({
             </button>
 
             <div className="grid grid-cols-1 gap-4 md:grid-cols-[0.95fr_1.85fr] md:gap-8">
-              <div className="relative hidden min-h-[620px] overflow-hidden rounded-[1.8rem] md:block">
+              <div className="relative hidden h-[500px] overflow-hidden rounded-[1.8rem] md:block">
                 <motion.div
                   className="absolute inset-0"
                   whileHover={{ scale: 1.04 }}
@@ -244,19 +244,10 @@ function WorkshopDetailModal({
                     animate={{ opacity: 1, y: 0 }}
                     exit={{ opacity: 0, y: -6 }}
                     transition={{ duration: 0.24 }}
-                    className="mt-5 min-h-[280px]"
+                    className="mt-5"
                   >
                     {activeTab === "methodology" ? (
-                      <div className="space-y-3">
-                        <div className="relative h-[200px] w-full overflow-hidden rounded-2xl">
-                          <Image
-                            src={displayed!.gallery[0]}
-                            alt={`${displayed!.title} methodology`}
-                            fill
-                            className="object-cover"
-                            sizes="(max-width:1024px) 100vw, 50vw"
-                          />
-                        </div>
+                      <div>
                         <p
                           className="rounded-2xl bg-background px-4 py-4"
                           style={{ fontFamily: GS, fontSize: "1rem", lineHeight: 1.35 }}
@@ -267,16 +258,7 @@ function WorkshopDetailModal({
                     ) : (
                       <div className="grid grid-cols-1 gap-3 sm:grid-cols-3">
                         {tabItems.slice(0, 3).map((text, idx) => (
-                          <div key={idx} className="flex h-full flex-col gap-2">
-                            <div className="relative h-[160px] overflow-hidden rounded-2xl">
-                              <Image
-                                src={displayed!.gallery[idx]}
-                                alt={`${displayed!.title} point ${idx + 1}`}
-                                fill
-                                className="object-cover"
-                                sizes="(max-width:768px) 100vw, 260px"
-                              />
-                            </div>
+                          <div key={idx} className="flex h-full flex-col">
                             <p
                               className="flex-1 rounded-2xl bg-background px-3 py-3"
                               style={{ fontFamily: GS, fontSize: "0.98rem", lineHeight: 1.2 }}
@@ -296,7 +278,7 @@ function WorkshopDetailModal({
                     {dict.bookingNote}
                   </p>
                   <a
-                    href="https://forms.gle/DQ4ELJyu9vaFp6ax9"
+                    href="https://forms.gle/WW3pxuo1ukHujp44A"
                     target="_blank"
                     rel="noopener noreferrer"
                     className="mt-3 inline-block rounded-full bg-primary px-6 py-2.5 text-sm font-semibold text-primary-foreground transition-opacity hover:opacity-80"
@@ -631,7 +613,7 @@ export default function Workshops({ lang, dict }: WorkshopsProps) {
             <div className="mt-4">
               <ShiftButton
                 label={dict.bookCta}
-                href="https://forms.gle/DQ4ELJyu9vaFp6ax9"
+                href="https://forms.gle/WW3pxuo1ukHujp44A"
                 bgColor="#5C1010"
                 textColor="#fff"
                 fontSize={18}

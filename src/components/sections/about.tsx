@@ -18,14 +18,14 @@ const fadeUp = (delay = 0) => ({
 })
 
 const topImages = [
-  { src: "/media/test/3editada-265.jpg", alt: "PlayHouse performance 1" },
-  { src: "/media/test/Foto-muestra-4.jpg", alt: "PlayHouse performance 2" },
-  { src: "/media/test/depositphotos_74798951-stock-photo-group-of-children-enjoying-drama.jpg", alt: "PlayHouse workshop" },
+  { src: "/media/updated/about/about-01.jpg", alt: "Playhouse performance 1" },
+  { src: "/media/updated/about/about-02.jpg", alt: "Playhouse performance 2" },
+  { src: "/media/updated/about/about-03.jpg", alt: "Playhouse workshop" },
 ]
 
 const stackedImages = [
-  { src: "/media/test/depositphotos_72162909-stock-photo-two-funny-children-acting-as.jpg", alt: "Cast on stage" },
-  { src: "/media/test/cc05861322e903b3259ebb0cc0a134af.jpg", alt: "Children acting" },
+  { src: "/media/updated/about/about-04.jpg", alt: "Cast on stage" },
+  { src: "/media/updated/about/about-05.jpg", alt: "Children acting" },
 ]
 
 

@@ -1,8 +1,8 @@
-# PlayHouse Compact Brief
+# Playhouse Compact Brief
 
 ## Purpose
 
-Build a fast, premium, one-page marketing site for PlayHouse: educational theatre blending theatre, music, pedagogy, and English learning.
+Build a fast, premium, one-page marketing site for Playhouse: educational theatre blending theatre, music, pedagogy, and English learning.
 
 ## Core Feel
 

@@ -1,4 +1,4 @@
-# PlayHouse Agent Rules
+# Playhouse Agent Rules
 
 Default mode: terse. Technical substance exact. Fluff die.
 
@@ -13,7 +13,7 @@ Default mode: terse. Technical substance exact. Fluff die.
 
 ## Project Brief
 
-- Project: PlayHouse marketing site.
+- Project: Playhouse marketing site.
 - Goal: premium one-page website for educational theatre in English.
 - Feel: theatrical, elegant, warm, dynamic, immersive, conversion-oriented.
 - Avoid: childish look, clutter, loud chaos, purposeless animation, generic corporate tone.

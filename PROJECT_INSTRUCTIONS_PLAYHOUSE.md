@@ -1,10 +1,10 @@
 # PROJECT_INSTRUCTIONS.md
 
 ## Project name
-PlayHouse — Educational Theatre One Page Website
+Playhouse — Educational Theatre One Page Website
 
 ## Project overview
-This repository contains the marketing website for **PlayHouse**, an educational theatre project that combines **theatre, music, pedagogy, and English learning** through shows, workshops, artistic residencies, educational materials, and immersive experiences for children, youth, schools, teachers, and families.
+This repository contains the marketing website for **Playhouse**, an educational theatre project that combines **theatre, music, pedagogy, and English learning** through shows, workshops, artistic residencies, educational materials, and immersive experiences for children, youth, schools, teachers, and families.
 
 The website must feel like a **living stage**: expressive, premium, playful, immersive, and emotionally engaging, while still being clear, structured, fast, and conversion-oriented.
 
@@ -15,12 +15,12 @@ Core brand foundations used in this repo:
 - Strong artistic identity with pedagogical credibility
 - More than 15 years of experience in performing arts and teaching
 
-Source content baseline for this repo comes from the PlayHouse project information provided by the client.
+Source content baseline for this repo comes from the Playhouse project information provided by the client.
 
 ---
 
 ## Main objective
-Build a **high-end interactive one page website** that presents PlayHouse as an innovative educational theatre brand and helps convert visitors into:
+Build a **high-end interactive one page website** that presents Playhouse as an innovative educational theatre brand and helps convert visitors into:
 - schools interested in shows or residencies
 - parents and families interested in workshops and performances
 - teachers and institutions looking for educational materials
@@ -34,7 +34,7 @@ The site must not feel like a generic corporate template. It must feel **theatri
 The one page should be modular and built around these sections:
 
 1. Hero / Opening stage moment
-2. About PlayHouse
+2. About Playhouse
 3. Mission / Vision
 4. Our Shows
 5. Workshops
@@ -385,7 +385,7 @@ A task is not done unless:
 - animations feel polished and intentional
 - accessibility basics are covered
 - performance remains reasonable
-- the result feels premium and aligned with the PlayHouse identity
+- the result feels premium and aligned with the Playhouse identity
 
 ---
 
@@ -396,4 +396,4 @@ This site should feel like:
 - an educational brand with artistic depth
 - a polished production, not a generic template
 
-The final result should make users feel that PlayHouse is creative, professional, memorable, and worth contacting.
+The final result should make users feel that Playhouse is creative, professional, memorable, and worth contacting.

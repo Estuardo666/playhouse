@@ -125,10 +125,12 @@ export function DirectionalCursor({
     }
   }, [followSpeed, springConfig, controlMode, keepBrowserCursor]);
 
-  const cursorX = useSpring(initialPosition.x, positionSpringConfig);
-  const cursorY = useSpring(initialPosition.y, positionSpringConfig);
-  const cursorOffsetX = useSpring(0, positionSpringConfig);
-  const cursorOffsetY = useSpring(0, positionSpringConfig);
+  // Keep the cursor position locked to the real pointer. Spring motion is
+  // reserved for visual states (scale/hover), so the cursor never lags behind.
+  const cursorX = useMotionValue(initialPosition.x);
+  const cursorY = useMotionValue(initialPosition.y);
+  const cursorOffsetX = useMotionValue(0);
+  const cursorOffsetY = useMotionValue(0);
 
   const baseScale = useSpring(1, {
     ...positionSpringConfig,

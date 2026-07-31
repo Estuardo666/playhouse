@@ -61,7 +61,7 @@ export default function Footer({ dict }: FooterProps) {
             <motion.div {...blurFade(0.06)} className="mb-10">
               <Image
                 src="/media/logo 2026.png"
-                alt="PlayHouse"
+                alt="Playhouse"
                 width={340}
                 height={90}
                 className="h-auto w-full max-w-[340px]"
@@ -84,7 +84,7 @@ export default function Footer({ dict }: FooterProps) {
               className="text-[0.82rem] mb-10 text-white/55"
               style={{ fontFamily: GS }}
             >
-              © {year} PlayHouse — {dict.copyright}
+              © {year} Playhouse — {dict.copyright}
             </motion.p>
 
             {/* bottom divider */}

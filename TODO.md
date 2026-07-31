@@ -1,4 +1,4 @@
-# PlayHouse Marketing Site - Implementation TODO
+# Playhouse Marketing Site - Implementation TODO
 
 ## Phase 1: Project Initialization [ ]
 - [ ] package.json (deps + scripts)

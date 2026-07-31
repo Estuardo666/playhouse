@@ -50,39 +50,6 @@ export default function Hero({ dict }: HeroProps) {
   )
 
   useEffect(() => {
-    if (prefersReducedMotion || introComplete) return
-
-    const lockedScrollY = window.scrollY
-    const preventDefault = (event: Event) => {
-      event.preventDefault()
-    }
-    const preventKeyboardScroll = (event: KeyboardEvent) => {
-      const blockedKeys = ["ArrowUp", "ArrowDown", "PageUp", "PageDown", "Home", "End", " "]
-      if (blockedKeys.includes(event.key)) {
-        event.preventDefault()
-      }
-    }
-    const resetScroll = () => {
-      if (window.scrollY !== lockedScrollY) {
-        window.scrollTo({ top: lockedScrollY, behavior: "auto" })
-      }
-    }
-
-    window.addEventListener("wheel", preventDefault, { passive: false })
-    window.addEventListener("touchmove", preventDefault, { passive: false })
-    window.addEventListener("keydown", preventKeyboardScroll)
-    window.addEventListener("scroll", resetScroll, { passive: true })
-    resetScroll()
-
-    return () => {
-      window.removeEventListener("wheel", preventDefault)
-      window.removeEventListener("touchmove", preventDefault)
-      window.removeEventListener("keydown", preventKeyboardScroll)
-      window.removeEventListener("scroll", resetScroll)
-    }
-  }, [introComplete, prefersReducedMotion])
-
-  useEffect(() => {
     if (prefersReducedMotion) {
       setIntroComplete(true)
     }
@@ -136,7 +103,7 @@ export default function Hero({ dict }: HeroProps) {
       id="hero"
       ref={heroRef}
       className="hero relative m-4 h-[calc(100svh-2rem)] min-h-[42rem] overflow-hidden rounded-[2rem] bg-[#181815]"
-      aria-label="Portada PlayHouse"
+      aria-label="Portada Playhouse"
     >
       <motion.div
         aria-hidden="true"
@@ -154,7 +121,7 @@ export default function Hero({ dict }: HeroProps) {
       >
         <Image
           src="/media/bg hero 3.jpg"
-          alt="Elenco de PlayHouse en escena teatral"
+          alt="Elenco de Playhouse en escena teatral"
           fill
           priority
           className="object-cover"

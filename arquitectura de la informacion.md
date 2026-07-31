@@ -1,6 +1,6 @@
 # PLAYHOUSE — Arquitectura de información y contenido base para one page
 
-> Documento listo para pasar a VSCode como base de maquetación y construcción de la landing page de **PlayHouse – Teatro Educativo**.
+> Documento listo para pasar a VSCode como base de maquetación y construcción de la landing page de **Playhouse – Teatro Educativo**.
 > 
 > En este archivo ya no se usan frases vagas como “contenido sugerido” o “bloques sugeridos”. Cada sección contiene **contenido concreto**, títulos, pretítulos, textos base, grupos de información, CTAs y estructura real a partir del material proporcionado.
 
@@ -10,7 +10,7 @@
 
 ```txt
 Inicio
-Sobre PlayHouse
+Sobre Playhouse
 Misión y Visión
 Espectáculos
 Talleres
@@ -30,7 +30,7 @@ Contacto
 **Título:** El inglés cobra vida en el escenario  
 
 **Texto base:**
-PlayHouse es un proyecto pionero en teatro educativo en inglés que combina arte, música y pedagogía para crear experiencias de aprendizaje inmersivas, creativas y memorables para niños, jóvenes, docentes, instituciones y familias.
+Playhouse es un proyecto pionero en teatro educativo en inglés que combina arte, música y pedagogía para crear experiencias de aprendizaje inmersivas, creativas y memorables para niños, jóvenes, docentes, instituciones y familias.
 
 **Texto de apoyo:**
 Más de 15 años de experiencia en artes escénicas y enseñanza respaldan una propuesta que transforma el escenario en un aula viva y convierte el aprendizaje del inglés en una experiencia real, emocionante y participativa.
@@ -56,14 +56,14 @@ Más de 15 años de experiencia en artes escénicas y enseñanza respaldan una p
 
 ---
 
-## 2. Sobre PlayHouse
+## 2. Sobre Playhouse
 
 **Section ID:** `about`  
 **Pretítulo:** Sobre nosotros  
 **Título:** Unimos artes escénicas y aprendizaje del inglés en un mismo escenario  
 
 **Párrafo 1:**
-PlayHouse fue fundada con la misión de integrar el teatro y el aprendizaje del inglés en una sola experiencia. Somos una productora teatral comprometida con crear propuestas que inspiran, educan y entretienen a públicos de todas las edades.
+Playhouse fue fundada con la misión de integrar el teatro y el aprendizaje del inglés en una sola experiencia. Somos una productora teatral comprometida con crear propuestas que inspiran, educan y entretienen a públicos de todas las edades.
 
 **Párrafo 2:**
 Creemos que el teatro es un puente poderoso para aprender. Cada obra es una oportunidad para sumergirse en un idioma, una cultura y una historia. A través de talleres, musicales y actuaciones en inglés, ofrecemos un espacio donde el idioma cobra vida de forma natural, divertida y emocionante.
@@ -165,7 +165,7 @@ La obra muestra cómo acciones pequeñas pueden generar cambios reales, promueve
 **Título:** Experiencias formativas que desarrollan voz, cuerpo, creatividad y confianza  
 
 **Texto introductorio:**
-En PlayHouse, los talleres usan el poder del teatro para hacer del aprendizaje del inglés una experiencia divertida, creativa y memorable. A través de juegos, improvisación, narración, música y actuación, los estudiantes descubren nuevas formas de expresarse mientras fortalecen sus habilidades comunicativas.
+En Playhouse, los talleres usan el poder del teatro para hacer del aprendizaje del inglés una experiencia divertida, creativa y memorable. A través de juegos, improvisación, narración, música y actuación, los estudiantes descubren nuevas formas de expresarse mientras fortalecen sus habilidades comunicativas.
 
 ---
 
@@ -312,13 +312,13 @@ La presencia de un artista docente introduce una dinámica novedosa en clase y a
 ### 5.8. Reserva de talleres
 
 **Pretítulo del bloque:** Reserva tu experiencia  
-**Título del bloque:** Agenda un taller con PlayHouse  
+**Título del bloque:** Agenda un taller con Playhouse  
 
 **Texto base:**
 Para reservar cualquiera de los talleres, completa el siguiente formulario.
 
 **Link de reserva:**
-- `https://forms.gle/DQ4ELJyu9vaFp6ax9`
+- `https://forms.gle/WW3pxuo1ukHujp44A`
 
 **Información de tarifas disponible en el archivo base:**
 - Taller de 3 horas con 1 pedagogo para grupos de menos de 15 participantes: `150.00 USD`
@@ -334,7 +334,7 @@ Para reservar cualquiera de los talleres, completa el siguiente formulario.
 **Título:** Una experiencia inmersiva de tres semanas que culmina en una presentación en la escuela  
 
 **Texto introductorio:**
-Aprender una lengua extranjera requiere experiencias inmersivas, dinámicas y significativas. La residencia artística de PlayHouse ofrece a los estudiantes una vivencia integral donde teatro, música, narración e improvisación se convierten en herramientas reales para aprender inglés.
+Aprender una lengua extranjera requiere experiencias inmersivas, dinámicas y significativas. La residencia artística de Playhouse ofrece a los estudiantes una vivencia integral donde teatro, música, narración e improvisación se convierten en herramientas reales para aprender inglés.
 
 **Descripción principal:**
 Durante tres semanas, los estudiantes participan en talleres combinados de teatro, storytelling, improvisación, teatro musical y speaking clearly, desarrollando habilidades lingüísticas a través de la creación de una presentación final que se realiza en la institución educativa.
@@ -417,7 +417,7 @@ En esta sección se reunirán los materiales necesarios para que docentes e inst
 - Links de YouTube de canciones: `pendiente de insertar`
 
 **Texto de apoyo:**
-Para más información sobre materiales o uso pedagógico de los recursos, PlayHouse puede ser contactado a través del formulario oficial.
+Para más información sobre materiales o uso pedagógico de los recursos, Playhouse puede ser contactado a través del formulario oficial.
 
 **Link de contacto:**
 - `https://forms.gle/ePJY7c7sok2NaBWBA`
@@ -431,7 +431,7 @@ Para más información sobre materiales o uso pedagógico de los recursos, PlayH
 **Título:** Artistas, pedagogos y creativos que convierten el escenario en una experiencia educativa  
 
 **Texto introductorio:**
-El equipo de PlayHouse reúne dirección artística, producción, música, coreografía, elenco y acompañamiento académico para asegurar una experiencia sólida, expresiva y formativa.
+El equipo de Playhouse reúne dirección artística, producción, música, coreografía, elenco y acompañamiento académico para asegurar una experiencia sólida, expresiva y formativa.
 
 ---
 
@@ -451,7 +451,7 @@ El equipo de PlayHouse reúne dirección artística, producción, música, coreo
 ### 8.2. Elenco
 
 **Pretítulo del bloque:** Intérpretes en escena  
-**Título del bloque:** Elenco PlayHouse  
+**Título del bloque:** Elenco Playhouse  
 
 **Miembros:**
 - Alexia Montoya
@@ -466,7 +466,7 @@ El equipo de PlayHouse reúne dirección artística, producción, música, coreo
 ### 8.3. Equipo académico
 
 **Pretítulo del bloque:** Acompañamiento pedagógico  
-**Título del bloque:** Equipo académico de PlayHouse  
+**Título del bloque:** Equipo académico de Playhouse  
 
 **Miembros:**
 - Michelle López
@@ -480,10 +480,10 @@ El equipo de PlayHouse reúne dirección artística, producción, música, coreo
 
 **Section ID:** `galeria`  
 **Pretítulo:** Galería  
-**Título:** Presentaciones, ensayos y momentos que muestran la energía de PlayHouse  
+**Título:** Presentaciones, ensayos y momentos que muestran la energía de Playhouse  
 
 **Texto base:**
-Esta sección debe mostrar la experiencia PlayHouse de forma visual, destacando la emoción del escenario, el trabajo del elenco y la participación de estudiantes y comunidades educativas.
+Esta sección debe mostrar la experiencia Playhouse de forma visual, destacando la emoción del escenario, el trabajo del elenco y la participación de estudiantes y comunidades educativas.
 
 **Bloques visuales a cargar en la web:**
 - Presentaciones en escena
@@ -502,10 +502,10 @@ Dejar esta sección preparada para una grilla visual o masonry gallery con light
 
 **Section ID:** `contacto`  
 **Pretítulo:** Contáctanos  
-**Título:** Lleva PlayHouse a tu institución, aula o comunidad  
+**Título:** Lleva Playhouse a tu institución, aula o comunidad  
 
 **Texto principal:**
-Si quieres llevar una función, taller, residencia artística o experiencia educativa de PlayHouse a tu escuela o comunidad, podemos ayudarte a diseñar una propuesta adecuada para tu grupo.
+Si quieres llevar una función, taller, residencia artística o experiencia educativa de Playhouse a tu escuela o comunidad, podemos ayudarte a diseñar una propuesta adecuada para tu grupo.
 
 **Canales de contacto:**
 - Teléfono: `0939576825`
@@ -523,7 +523,7 @@ Si quieres llevar una función, taller, residencia artística o experiencia educ
 ## 11. Footer
 
 **Section ID:** `footer`  
-**Pretítulo:** PlayHouse  
+**Pretítulo:** Playhouse  
 **Título:** Teatro educativo en inglés  
 
 **Texto corto de cierre:**
@@ -544,7 +544,7 @@ Arte, música y pedagogía para crear experiencias inmersivas, creativas y memor
 
 **Links internos de footer:**
 - Inicio
-- Sobre PlayHouse
+- Sobre Playhouse
 - Espectáculos
 - Talleres
 - Residencia Artística
@@ -554,7 +554,7 @@ Arte, música y pedagogía para crear experiencias inmersivas, creativas y memor
 - Contacto
 
 **Copyright sugerido:**
-`© PlayHouse – Teatro Educativo. Todos los derechos reservados.`
+`© Playhouse – Teatro Educativo. Todos los derechos reservados.`
 
 ---
 
@@ -562,7 +562,7 @@ Arte, música y pedagogía para crear experiencias inmersivas, creativas y memor
 
 ```txt
 1. Hero principal
-2. Sobre PlayHouse
+2. Sobre Playhouse
 3. Misión y Visión
 4. Espectáculos
 5. Talleres

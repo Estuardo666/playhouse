@@ -33,12 +33,12 @@ export const WORKSHOPS: Workshop[] = [
   {
     id: "introduction-to-theatre",
     title: "Introduction to Theatre",
-    image: "/media/test/depositphotos_74798951-stock-photo-group-of-children-enjoying-drama.jpg",
+    image: "/media/updated/workshops/workshop-01.jpg",
     imageAlt: "Introduction to theatre workshop",
     gallery: [
-      "/media/test/depositphotos_74798951-stock-photo-group-of-children-enjoying-drama.jpg",
-      "/media/test/depositphotos_72162909-stock-photo-two-funny-children-acting-as.jpg",
-      "/media/test/3editada-265.jpg",
+      "/media/updated/workshops/workshop-01.jpg",
+      "/media/updated/workshops/workshop-01.jpg",
+      "/media/updated/workshops/workshop-01.jpg",
     ],
     en: {
       subtitle: "Voice, body, space and character in English",
@@ -78,12 +78,12 @@ export const WORKSHOPS: Workshop[] = [
   {
     id: "storytelling",
     title: "Storytelling",
-    image: "/media/test/depositphotos_72162909-stock-photo-two-funny-children-acting-as.jpg",
+    image: "/media/updated/workshops/workshop-02.jpg",
     imageAlt: "Storytelling workshop",
     gallery: [
-      "/media/test/depositphotos_72162909-stock-photo-two-funny-children-acting-as.jpg",
-      "/media/test/Foto-muestra-4.jpg",
-      "/media/test/depositphotos_74798951-stock-photo-group-of-children-enjoying-drama.jpg",
+      "/media/updated/workshops/workshop-02.jpg",
+      "/media/updated/workshops/workshop-02.jpg",
+      "/media/updated/workshops/workshop-02.jpg",
     ],
     en: {
       subtitle: "Narrative creation to strengthen English communication",
@@ -123,12 +123,12 @@ export const WORKSHOPS: Workshop[] = [
   {
     id: "improv-theatre",
     title: "Improv Theatre",
-    image: "/media/test/3editada-265.jpg",
+    image: "/media/updated/workshops/workshop-03.jpg",
     imageAlt: "Improv theatre workshop",
     gallery: [
-      "/media/test/3editada-265.jpg",
-      "/media/test/depositphotos_74798951-stock-photo-group-of-children-enjoying-drama.jpg",
-      "/media/test/Foto-muestra-4.jpg",
+      "/media/updated/workshops/workshop-03.jpg",
+      "/media/updated/workshops/workshop-03.jpg",
+      "/media/updated/workshops/workshop-03.jpg",
     ],
     en: {
       subtitle: "Spontaneity, listening and fluency through improv",
@@ -168,12 +168,12 @@ export const WORKSHOPS: Workshop[] = [
   {
     id: "musical-theatre",
     title: "Introduction to Musical Theatre",
-    image: "/media/test/Foto-muestra-4.jpg",
+    image: "/media/updated/workshops/workshop-04.jpg",
     imageAlt: "Introduction to Musical Theatre workshop",
     gallery: [
-      "/media/test/depositphotos_72162909-stock-photo-two-funny-children-acting-as.jpg",
-      "/media/test/depositphotos_74798951-stock-photo-group-of-children-enjoying-drama.jpg",
-      "/media/test/3editada-265.jpg",
+      "/media/updated/workshops/workshop-04.jpg",
+      "/media/updated/workshops/workshop-04.jpg",
+      "/media/updated/workshops/workshop-04.jpg",
     ],
     en: {
       subtitle: "Acting, singing & movement in English",
@@ -211,59 +211,14 @@ export const WORKSHOPS: Workshop[] = [
     },
   },
   {
-    id: "speaking-clearly",
-    title: "Speaking Clearly",
-    image: "/media/test/teatro-infantil-La-Colmenita-wikipedia.jpg",
-    imageAlt: "Speaking clearly workshop",
-    gallery: [
-      "/media/test/teatro-infantil-La-Colmenita-wikipedia.jpg",
-      "/media/test/depositphotos_72162909-stock-photo-two-funny-children-acting-as.jpg",
-      "/media/test/3editada-265.jpg",
-    ],
-    en: {
-      subtitle: "Pronunciation, diction and vocal projection",
-      description:
-        "This workshop gives students practical vocal tools to improve diction, intonation, projection, and confidence when speaking English in public.",
-      objectives: [
-        "Identify key obstacles in pronunciation and speech clarity.",
-        "Develop breathing, diction, and vocal projection techniques.",
-        "Encourage self-confidence when speaking English in front of others.",
-      ],
-      methodology:
-        "Vocal drills, tongue twisters, dramatic readings, and projection games are used to apply theatre techniques for clearer spoken English.",
-      outcomes: [
-        "Greater clarity and precision in spoken English.",
-        "Conscious use of breath and voice.",
-        "Increased confidence when speaking in public.",
-      ],
-    },
-    es: {
-      subtitle: "Pronunciación, dicción y proyección vocal",
-      description:
-        "Este taller ofrece herramientas prácticas para mejorar la dicción, la entonación y la proyección vocal al hablar inglés en público.",
-      objectives: [
-        "Identificar obstáculos de pronunciación y claridad en el habla.",
-        "Desarrollar técnicas de respiración, dicción y proyección vocal.",
-        "Fomentar la autoconfianza al hablar en público en inglés.",
-      ],
-      methodology:
-        "Se utilizan ejercicios vocales, trabalenguas, lecturas dramáticas y juegos de proyección para aplicar técnicas teatrales al inglés hablado.",
-      outcomes: [
-        "Mayor claridad y precisión al hablar inglés.",
-        "Uso más consciente de la respiración y la voz.",
-        "Más seguridad en exposiciones e intervenciones orales.",
-      ],
-    },
-  },
-  {
     id: "students-on-stage",
     title: "Students on Stage",
-    image: "/media/test/Foto-muestra-4.jpg",
+    image: "/media/updated/workshops/workshop-05.jpg",
     imageAlt: "Students on stage workshop",
     gallery: [
-      "/media/test/Foto-muestra-4.jpg",
-      "/media/test/teatro-infantil-La-Colmenita-wikipedia.jpg",
-      "/media/test/depositphotos_74798951-stock-photo-group-of-children-enjoying-drama.jpg",
+      "/media/updated/workshops/workshop-05.jpg",
+      "/media/updated/workshops/workshop-05.jpg",
+      "/media/updated/workshops/workshop-05.jpg",
     ],
     en: {
       subtitle: "Performance-based learning in real audience settings",
@@ -303,12 +258,12 @@ export const WORKSHOPS: Workshop[] = [
   {
     id: "classroom-guest",
     title: "Classroom Guest",
-    image: "/media/test/depositphotos_74798951-stock-photo-group-of-children-enjoying-drama.jpg",
+    image: "/media/updated/workshops/workshop-06.jpg",
     imageAlt: "Classroom guest workshop",
     gallery: [
-      "/media/test/depositphotos_74798951-stock-photo-group-of-children-enjoying-drama.jpg",
-      "/media/test/3editada-265.jpg",
-      "/media/test/teatro-infantil-La-Colmenita-wikipedia.jpg",
+      "/media/updated/workshops/workshop-06.jpg",
+      "/media/updated/workshops/workshop-06.jpg",
+      "/media/updated/workshops/workshop-06.jpg",
     ],
     en: {
       subtitle: "A visiting teaching artist experience",

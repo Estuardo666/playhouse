@@ -1,6 +1,6 @@
-# PlayHouse Marketing Website
+# Playhouse Marketing Website
 
-Web marketing para **PlayHouse**, compañía de teatro educativo que combina teatro, música, pedagogía y aprendizaje de inglés para niños y jóvenes.
+Web marketing para **Playhouse**, compañía de teatro educativo que combina teatro, música, pedagogía y aprendizaje de inglés para niños y jóvenes.
 
 ## Stack
 

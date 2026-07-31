@@ -161,10 +161,10 @@ export default function Navigation({ lang, dict }: NavigationProps) {
           </ul>
 
           {/* Center logo */}
-          <Link href="/" className="flex shrink-0 items-center" aria-label="PlayHouse">
+          <Link href="/" className="flex shrink-0 items-center" aria-label="Playhouse">
             <Image
               src="/media/logo 2026.png"
-              alt="PlayHouse"
+              alt="Playhouse"
               width={168}
               height={44}
               priority
@@ -224,10 +224,10 @@ export default function Navigation({ lang, dict }: NavigationProps) {
         >
           {/* Top row — logo + hamburger */}
           <div className="flex items-center justify-between px-5 py-3">
-            <Link href="/" className="flex shrink-0 items-center" aria-label="PlayHouse">
+            <Link href="/" className="flex shrink-0 items-center" aria-label="Playhouse">
               <Image
                 src="/media/logo 2026.png"
-                alt="PlayHouse"
+                alt="Playhouse"
                 width={140}
                 height={36}
                 priority

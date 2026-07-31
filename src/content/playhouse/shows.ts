@@ -40,11 +40,11 @@ export const SHOWS: Show[] = [
         "En esta entrañable y humorística reinvención del cuento clásico, The Three Little Pigs – A Musical Tale presenta a tres hermanos cerditos que deben enfrentar los retos de crecer, construir sus propios hogares y burlar a un lobo hambriento. Con canciones originales y un enfoque renovado, la historia conecta con niños y adultos por igual. A través de la música, el trabajo en equipo y el ingenio, los cerditos encuentran la manera de enfrentarse al Lobo. Pero algo inesperado ocurre: el Lobo empieza a cuestionar su propio comportamiento.\n\n¿Derribará el lobo la casa de los cerditos? ¿Lograrán escapar una vez más? ¿Puede un Gran Lobo Feroz cambiar de verdad?",
     },
     gallery: [
-      { src: "/media/test/depositphotos_72162909-stock-photo-two-funny-children-acting-as.jpg", alt: "The Three Little Pigs — scene 1" },
-      { src: "/media/test/depositphotos_74798951-stock-photo-group-of-children-enjoying-drama.jpg", alt: "The Three Little Pigs — scene 2" },
-      { src: "/media/test/3editada-265.jpg", alt: "The Three Little Pigs — scene 3" },
-      { src: "/media/test/teatro-infantil-La-Colmenita-wikipedia.jpg", alt: "The Three Little Pigs — scene 4" },
-      { src: "/media/test/Foto-muestra-4.jpg", alt: "The Three Little Pigs — scene 5" },
+      { src: "/media/updated/shows/pigs/show-pigs-01.jpg", alt: "The Three Little Pigs — scene 1" },
+      { src: "/media/updated/shows/pigs/show-pigs-02.jpg", alt: "The Three Little Pigs — scene 2" },
+      { src: "/media/updated/shows/pigs/show-pigs-03.jpg", alt: "The Three Little Pigs — scene 3" },
+      { src: "/media/updated/shows/pigs/show-pigs-04.jpg", alt: "The Three Little Pigs — scene 4" },
+      { src: "/media/updated/shows/pigs/show-pigs-05.jpg", alt: "The Three Little Pigs — scene 5" },
     ],
   },
   {
@@ -61,11 +61,11 @@ export const SHOWS: Show[] = [
         "Dos estudiantes muy distintos reciben servicio comunitario y son enviados a limpiar un parque contaminado junto al río. Jake, obsesionado con el medio ambiente, se toma la tarea en serio. Leo, el bromista de la clase, preferiría hacer chistes antes que separar botellas y latas. Bajo la mirada del Sr. Torres, ambos pasan del conflicto al trabajo en equipo.\n\nAl ser testigos del impacto de la basura en el río y su fauna, sus peleas se convierten en colaboración. Lo que comenzó como castigo se transforma en un plan: iniciar un reto de limpieza que inspire a otros a cuidar el entorno.\n\n\"The Trash Talk\" es una obra humorística de 15 minutos que muestra cómo acciones pequeñas —como recoger una botella— pueden generar cambios reales para nuestro medio ambiente.",
     },
     gallery: [
-      { src: "/media/test/photo-1667386428097-74781c692dfb.jpg", alt: "The Trash Talk — scene 1" },
-      { src: "/media/test/6905e7822c8617aecdfbaaaca9f5649d.jpg", alt: "The Trash Talk — scene 2" },
-      { src: "/media/test/a59b7af9b27da8dd1fd72c96134dfc7e.jpg", alt: "The Trash Talk — scene 3" },
-      { src: "/media/test/c9c5db18825ebcfa1b9882dac62be4ca.jpg", alt: "The Trash Talk — scene 4" },
-      { src: "/media/test/cc05861322e903b3259ebb0cc0a134af.jpg", alt: "The Trash Talk — scene 5" },
+      { src: "/media/updated/shows/trash-talk/show-trash-01.jpg", alt: "The Trash Talk — scene 1" },
+      { src: "/media/updated/shows/trash-talk/show-trash-02.jpg", alt: "The Trash Talk — scene 2" },
+      { src: "/media/updated/shows/trash-talk/show-trash-03.jpg", alt: "The Trash Talk — scene 3" },
+      { src: "/media/updated/shows/trash-talk/show-trash-04.jpg", alt: "The Trash Talk — scene 4" },
+      { src: "/media/updated/shows/trash-talk/show-trash-05.jpg", alt: "The Trash Talk — scene 5" },
     ],
   },
 ]

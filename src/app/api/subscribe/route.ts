@@ -3,7 +3,7 @@ import { Resend } from "resend"
 
 // Initialize Resend
 const resend = new Resend(process.env.RESEND_API_KEY!)
-const FROM_EMAIL = process.env.RESEND_FROM_EMAIL || "PlayHouse <noreply@playhouseec.com>"
+const FROM_EMAIL = process.env.RESEND_FROM_EMAIL || "Playhouse <noreply@playhouseec.com>"
 const ADMIN_EMAIL = process.env.ADMIN_EMAIL || "vaplayhouse@gmail.com"
 
 export async function POST(request: Request) {
@@ -22,7 +22,7 @@ export async function POST(request: Request) {
           <meta charset="utf-8">
           <meta name="color-scheme" content="light">
           <meta name="supported-color-schemes" content="light">
-          <title>Bienvenido a PlayHouse</title>
+          <title>Bienvenido a Playhouse</title>
           <style>
             @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap');
             body { margin: 0; padding: 0; background-color: #f5f5f5; font-family: 'Inter', 'Helvetica Neue', Helvetica, Arial, sans-serif; color: #333333; -webkit-font-smoothing: antialiased; }
@@ -48,18 +48,18 @@ export async function POST(request: Request) {
           <div class="wrapper">
             <div class="container">
               <div class="header">
-                <img src="https://playhouseec.com/media/logo%20para%20fondo%20oscuro.png" alt="PlayHouse" width="160" />
+                <img src="https://playhouseec.com/media/logo%20para%20fondo%20oscuro.png" alt="Playhouse" width="160" />
               </div>
               <div class="content">
                 <h2>¡El escenario está listo! Bienvenido.</h2>
-                <p>Gracias por suscribirte a los recursos de PlayHouse. Estamos felices de tenerte en nuestra comunidad de educadores y mentes creativas.</p>
+                <p>Gracias por suscribirte a los recursos de Playhouse. Estamos felices de tenerte en nuestra comunidad de educadores y mentes creativas.</p>
                 <p>¡Tus materiales educativos ya están completamente desbloqueados! Puedes acceder a todos los Activity Kits, canciones y videos directamente en nuestro sitio web.</p>
                 <div class="btn-wrapper">
                   <a href="https://playhouseec.com#materials" class="btn">Explorar Materiales</a>
                 </div>
               </div>
               <div class="footer">
-                <p>© ${new Date().getFullYear()} PlayHouse Educational Theatre. Todos los derechos reservados.</p>
+                <p>© ${new Date().getFullYear()} Playhouse Educational Theatre. Todos los derechos reservados.</p>
               </div>
             </div>
           </div>
@@ -92,7 +92,7 @@ export async function POST(request: Request) {
         <body>
           <div class="card">
             <div class="header">
-              <img src="https://playhouseec.com/media/logo%20para%20fondo%20oscuro.png" alt="PlayHouse" width="120" />
+              <img src="https://playhouseec.com/media/logo%20para%20fondo%20oscuro.png" alt="Playhouse" width="120" />
             </div>
             <div class="content">
               <h2>¡Nuevo suscriptor! 🎉</h2>
@@ -113,7 +113,7 @@ export async function POST(request: Request) {
       resend.emails.send({
         from: FROM_EMAIL,
         to: email,
-        subject: "¡Bienvenido a la familia PlayHouse! 🎭",
+        subject: "¡Bienvenido a la familia Playhouse! 🎭",
         html: welcomeHtml,
       }),
       // To Admin

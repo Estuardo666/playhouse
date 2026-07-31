@@ -197,14 +197,14 @@ const en: Dict = {
     heading: "The ensemble\nbehind the magic",
     subheading: "Founders, performers, educators & creators",
     description:
-      "From founders to performers to educators — every member of the PlayHouse family brings a unique voice to the stage. Together, we shape the experiences that transform young artists.",
+      "From founders to performers to educators — every member of the Playhouse family brings a unique voice to the stage. Together, we shape the experiences that transform young artists.",
     dragLabel: "Drag",
   },
   footer: {
     tagline: "Immersive educational theatre\nthat inspires and transforms.",
     description:
       "A pioneering project in educational theatre in English that combines art, music, and pedagogy.",
-    copyright: "PlayHouse — All rights reserved.",
+    copyright: "Playhouse — All rights reserved.",
     followUs: "Follow Us",
     online: "Online",
     phone: "Phone",
@@ -234,7 +234,7 @@ const es: Dict = {
       "PLAYHOUSE – Teatro Educativo es un proyecto pionero en teatro educativo en inglés que combina arte, música y pedagogía para ofrecer experiencias de aprendizaje inmersivas y creativas.",
     h3: "Donde el inglés\nse vive en escena",
     subline: "Arte, pedagogía e inglés en un mismo escenario",
-    p1: "PlayHouse fue fundada con la misión de integrar el teatro y el aprendizaje del inglés en una sola experiencia. Somos una productora teatral comprometida con crear propuestas que inspiran, educan y entretienen a públicos de todas las edades.",
+    p1: "Playhouse fue fundada con la misión de integrar el teatro y el aprendizaje del inglés en una sola experiencia. Somos una productora teatral comprometida con crear propuestas que inspiran, educan y entretienen a públicos de todas las edades.",
     p2: "Creemos que el teatro es un puente poderoso para aprender. Cada obra es una oportunidad para sumergirse en un idioma, una cultura y una historia. A través de talleres, musicales y actuaciones en inglés, ofrecemos un espacio donde el idioma cobra vida de forma natural, divertida y emocionante.",
     p3: "Nuestro trabajo combina pasión por el teatro con un enfoque pedagógico innovador. Reunimos actores, directores, músicos, coreógrafos y creativos que comparten una misma visión: convertir el escenario en un aula viva y al público en un participante activo.",
     bottom:
@@ -312,14 +312,14 @@ const es: Dict = {
     heading: "El elenco\ndetrás de la magia",
     subheading: "Fundadores, intérpretes, educadores y creativos",
     description:
-      "Desde los fundadores hasta los intérpretes y educadores — cada miembro de la familia PlayHouse aporta una voz única al escenario. Juntos, damos forma a las experiencias que transforman a los jóvenes artistas.",
+      "Desde los fundadores hasta los intérpretes y educadores — cada miembro de la familia Playhouse aporta una voz única al escenario. Juntos, damos forma a las experiencias que transforman a los jóvenes artistas.",
     dragLabel: "Arrastra",
   },
   footer: {
     tagline: "Teatro educativo inmersivo\nque inspira y transforma.",
     description:
       "Un proyecto pionero en teatro educativo en inglés que combina arte, música y pedagogía.",
-    copyright: "PlayHouse — Todos los derechos reservados.",
+    copyright: "Playhouse — Todos los derechos reservados.",
     followUs: "Síguenos",
     online: "Online",
     phone: "Teléfono",

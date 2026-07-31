@@ -427,7 +427,7 @@ export function FlipCardsBlock({ dict }: { dict: MissionDict }) {
       shortTitle: dict.missionShortTitle,
       expandedTitle: dict.missionExpandedTitle,
       expandedBody: dict.missionBody,
-      image: "/media/test/depositphotos_74798951-stock-photo-group-of-children-enjoying-drama.jpg",
+      image: "/media/updated/about/mission.jpg",
     },
     {
       id: "vision",
@@ -435,7 +435,7 @@ export function FlipCardsBlock({ dict }: { dict: MissionDict }) {
       shortTitle: dict.visionShortTitle,
       expandedTitle: dict.visionExpandedTitle,
       expandedBody: dict.visionBody,
-      image: "/media/test/Foto-muestra-4.jpg",
+      image: "/media/updated/about/vision.jpg",
     },
   ];
   return (
@@ -502,7 +502,7 @@ export default function MissionVision({ lang, dict }: { lang: SupportedLocale; d
       shortTitle: dict.missionShortTitle,
       expandedTitle: dict.missionExpandedTitle,
       expandedBody: dict.missionBody,
-      image: "/media/test/depositphotos_74798951-stock-photo-group-of-children-enjoying-drama.jpg",
+      image: "/media/updated/about/mission.jpg",
     },
     {
       id: "vision",
@@ -510,7 +510,7 @@ export default function MissionVision({ lang, dict }: { lang: SupportedLocale; d
       shortTitle: dict.visionShortTitle,
       expandedTitle: dict.visionExpandedTitle,
       expandedBody: dict.visionBody,
-      image: "/media/test/Foto-muestra-4.jpg",
+      image: "/media/updated/about/vision.jpg",
     },
   ];
 

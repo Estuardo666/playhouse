@@ -58,7 +58,7 @@ export function PosterPopup() {
             <div className="relative aspect-[3/4] w-full">
               <Image
                 src="/media/poster.webp"
-                alt="PlayHouse Poster"
+                alt="Playhouse Poster"
                 fill
                 className="object-cover"
                 priority

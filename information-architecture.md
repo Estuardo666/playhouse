@@ -1,6 +1,6 @@
 # PLAYHOUSE — Information Architecture and Base Content for One Page
 
-> Document ready to be transferred to VSCode as a basis for layout and construction of the PlayHouse – Educational Theatre landing page.
+> Document ready to be transferred to VSCode as a basis for layout and construction of the Playhouse – Educational Theatre landing page.
 > 
 > This file no longer uses vague phrases like "suggested content" or "suggested blocks". Each section contains **concrete content**, titles, subtitles, base texts, information groups, CTAs, and real structure based on provided materials.
 
@@ -10,7 +10,7 @@
 
 ```txt
 Home
-About PlayHouse
+About Playhouse
 Mission & Vision
 Shows
 Workshops
@@ -30,7 +30,7 @@ Contact
 **Title:** English Comes to Life on Stage  
 
 **Base Text:**
-PlayHouse is a pioneering project in educational theatre in English that combines art, music, and pedagogy to create immersive, creative, and memorable learning experiences for children, youth, teachers, institutions, and families.
+Playhouse is a pioneering project in educational theatre in English that combines art, music, and pedagogy to create immersive, creative, and memorable learning experiences for children, youth, teachers, institutions, and families.
 
 **Support Text:**
 Over 15 years of experience in performing arts and education support a proposal that transforms the stage into a living classroom and makes English learning a real, exciting, and participatory experience.
@@ -56,14 +56,14 @@ Over 15 years of experience in performing arts and education support a proposal 
 
 ---
 
-## 2. About PlayHouse
+## 2. About Playhouse
 
 **Section ID:** `about`  
 **Subtitle:** About Us  
 **Title:** We Unite Performing Arts and English Learning on the Same Stage  
 
 **Paragraph 1:**
-PlayHouse was founded with the mission of integrating theatre and English learning into a single experience. We are a theatre production company committed to creating proposals that inspire, educate, and entertain audiences of all ages.
+Playhouse was founded with the mission of integrating theatre and English learning into a single experience. We are a theatre production company committed to creating proposals that inspire, educate, and entertain audiences of all ages.
 
 **Paragraph 2:**
 We believe that theatre is a powerful bridge for learning. Every play is an opportunity to immerse yourself in a language, a culture, and a story. Through workshops, musicals, and performances in English, we offer a space where language comes to life in a natural, fun, and exciting way.
@@ -165,7 +165,7 @@ The play shows how small actions can create real change, promotes environmental 
 **Title:** Formative Experiences That Develop Voice, Body, Creativity, and Confidence  
 
 **Introductory Text:**
-At PlayHouse, workshops use the power of theatre to make English learning a fun, creative, and memorable experience. Through games, improvisation, storytelling, music, and acting, students discover new ways to express themselves while strengthening their communication skills.
+At Playhouse, workshops use the power of theatre to make English learning a fun, creative, and memorable experience. Through games, improvisation, storytelling, music, and acting, students discover new ways to express themselves while strengthening their communication skills.
 
 ---
 
@@ -312,13 +312,13 @@ The presence of a teaching artist introduces a novel dynamic to class and activa
 ### 5.8. Workshop Booking
 
 **Block Subtitle:** Book Your Experience  
-**Block Title:** Schedule a Workshop with PlayHouse  
+**Block Title:** Schedule a Workshop with Playhouse  
 
 **Base Text:**
 To book any of the workshops, complete the following form.
 
 **Booking Link:**
-- `https://forms.gle/DQ4ELJyu9vaFp6ax9`
+- `https://forms.gle/WW3pxuo1ukHujp44A`
 
 **Available Pricing Information:**
 - 3-hour workshop with 1 teacher for groups under 15 participants: `$150.00 USD`
@@ -334,7 +334,7 @@ To book any of the workshops, complete the following form.
 **Title:** An Immersive Three-Week Experience That Culminates in a School Presentation  
 
 **Introductory Text:**
-Learning a foreign language requires immersive, dynamic, and meaningful experiences. PlayHouse's artistic residency offers students a comprehensive experience where theatre, music, storytelling, and improvisation become real tools for learning English.
+Learning a foreign language requires immersive, dynamic, and meaningful experiences. Playhouse's artistic residency offers students a comprehensive experience where theatre, music, storytelling, and improvisation become real tools for learning English.
 
 **Main Description:**
 Over three weeks, students participate in combined workshops in theatre, storytelling, improvisation, musical theatre, and speaking clearly, developing language skills through the creation of a final presentation that takes place at the educational institution.
@@ -417,7 +417,7 @@ In this section, the materials necessary for teachers and institutions to prepar
 - YouTube song links: `to be inserted`
 
 **Support Text:**
-For more information about materials or pedagogical use of resources, PlayHouse can be contacted through the official form.
+For more information about materials or pedagogical use of resources, Playhouse can be contacted through the official form.
 
 **Contact Link:**
 - `https://forms.gle/ePJY7c7sok2NaBWBA`
@@ -431,7 +431,7 @@ For more information about materials or pedagogical use of resources, PlayHouse 
 **Title:** Artists, Educators, and Creative Professionals Who Turn the Stage Into an Educational Experience  
 
 **Introductory Text:**
-PlayHouse's team brings together artistic direction, production, music, choreography, cast, and academic support to ensure a solid, expressive, and formative experience.
+Playhouse's team brings together artistic direction, production, music, choreography, cast, and academic support to ensure a solid, expressive, and formative experience.
 
 ---
 
@@ -451,7 +451,7 @@ PlayHouse's team brings together artistic direction, production, music, choreogr
 ### 8.2. Cast
 
 **Block Subtitle:** Stage Performers  
-**Block Title:** PlayHouse Cast  
+**Block Title:** Playhouse Cast  
 
 **Members:**
 - Alexia Montoya
@@ -466,7 +466,7 @@ PlayHouse's team brings together artistic direction, production, music, choreogr
 ### 8.3. Academic Team
 
 **Block Subtitle:** Pedagogical Support  
-**Block Title:** PlayHouse Academic Team  
+**Block Title:** Playhouse Academic Team  
 
 **Members:**
 - Michelle López
@@ -480,10 +480,10 @@ PlayHouse's team brings together artistic direction, production, music, choreogr
 
 **Section ID:** `gallery`  
 **Subtitle:** Gallery  
-**Title:** Presentations, Rehearsals, and Moments That Showcase PlayHouse Energy  
+**Title:** Presentations, Rehearsals, and Moments That Showcase Playhouse Energy  
 
 **Base Text:**
-This section should visually display the PlayHouse experience, highlighting the emotion of the stage, cast work, and participation of students and educational communities.
+This section should visually display the Playhouse experience, highlighting the emotion of the stage, cast work, and participation of students and educational communities.
 
 **Visual Blocks to Load on Web:**
 - Stage Presentations
@@ -502,10 +502,10 @@ Keep this section ready for a visual grid or masonry gallery with lightbox.
 
 **Section ID:** `contact`  
 **Subtitle:** Contact Us  
-**Title:** Bring PlayHouse to Your Institution, Classroom, or Community  
+**Title:** Bring Playhouse to Your Institution, Classroom, or Community  
 
 **Main Text:**
-If you want to bring a PlayHouse show, workshop, artistic residency, or educational experience to your school or community, we can help you design a suitable proposal for your group.
+If you want to bring a Playhouse show, workshop, artistic residency, or educational experience to your school or community, we can help you design a suitable proposal for your group.
 
 **Contact Channels:**
 - Phone: `0939576825`
@@ -523,7 +523,7 @@ If you want to bring a PlayHouse show, workshop, artistic residency, or educatio
 ## 11. Footer
 
 **Section ID:** `footer`  
-**Subtitle:** PlayHouse  
+**Subtitle:** Playhouse  
 **Title:** Educational Theatre in English  
 
 **Short Closing Text:**
@@ -544,7 +544,7 @@ Art, music, and pedagogy to create immersive, creative, and memorable experience
 
 **Footer Internal Links:**
 - Home
-- About PlayHouse
+- About Playhouse
 - Shows
 - Workshops
 - Artistic Residency
@@ -554,7 +554,7 @@ Art, music, and pedagogy to create immersive, creative, and memorable experience
 - Contact
 
 **Suggested Copyright:**
-`© PlayHouse – Educational Theatre. All rights reserved.`
+`© Playhouse – Educational Theatre. All rights reserved.`
 
 ---
 
@@ -562,7 +562,7 @@ Art, music, and pedagogy to create immersive, creative, and memorable experience
 
 ```txt
 1. Main Hero
-2. About PlayHouse
+2. About Playhouse
 3. Mission & Vision
 4. Shows
 5. Workshops

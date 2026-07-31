@@ -2,7 +2,6 @@ import type { Metadata, Viewport } from "next"
 import { Inter, Playfair_Display } from "next/font/google"
 import "../globals.css"
 import Navigation from "@/components/layout/navigation"
-import SexyScroll from "@/components/layout/sexy-scroll"
 import { DirectionalCursor } from "@/components/ui/directional-cursor"
 import ClickSpark from "@/components/ui/click-spark"
 import { cn } from "@/lib/utils"
@@ -10,7 +9,6 @@ import { ThemeProvider } from "@/components/theme-provider"
 import { locales, isValidLocale, type SupportedLocale } from "@/content/config"
 import { notFound } from "next/navigation"
 import { getDict } from "@/lib/i18n"
-import { PosterPopup } from "@/components/ui/poster-popup"
 import WhatsAppFloat from "@/components/ui/whatsapp-float"
 
 const inter = Inter({
@@ -42,12 +40,12 @@ export async function generateMetadata({
   const siteUrl = "https://playhouse.ec"
 
   const title = isEs
-    ? "PlayHouse – Teatro Educativo en Inglés | Loja, Ecuador"
-    : "PlayHouse | Educational Theatre & English Workshops in Loja, Ecuador"
+    ? "Playhouse – Teatro Educativo en Inglés | Loja, Ecuador"
+    : "Playhouse | Educational Theatre & English Workshops in Loja, Ecuador"
 
   const description = isEs
     ? "Teatro educativo en inglés en Loja. Shows musicales, talleres y experiencias escénicas para niños y jóvenes. Arte, pedagogía e inglés en un mismo escenario."
-    : "PlayHouse brings English learning through theatre, shows, and creative workshops for students in Loja, Ecuador. Inspiring experiences combining art and pedagogy."
+    : "Playhouse brings English learning through theatre, shows, and creative workshops for students in Loja, Ecuador. Inspiring experiences combining art and pedagogy."
 
   const keywords = isEs
     ? [
@@ -66,20 +64,23 @@ export async function generateMetadata({
         "English theatre workshops Ecuador",
         "theatre shows for schools Loja",
         "bilingual theatre Ecuador",
-        "PlayHouse educational theatre",
+        "Playhouse educational theatre",
         "performing arts education Ecuador",
         "English musical theatre children Ecuador",
       ]
 
   return {
+    verification: {
+      google: "yEvacsO7GLpoD8nD0cmrf0D4b0k6-irhN0scwNbHHK8",
+    },
     title: {
       default: title,
-      template: "%s | PlayHouse",
+      template: "%s | Playhouse",
     },
     description,
     keywords,
-    authors: [{ name: "PlayHouse Team" }],
-    creator: "PlayHouse",
+    authors: [{ name: "Playhouse Team" }],
+    creator: "Playhouse",
     icons: {
       icon: "/media/favicon.png",
       shortcut: "/media/favicon.png",
@@ -98,7 +99,7 @@ export async function generateMetadata({
       locale: isEs ? "es_EC" : "en_US",
       alternateLocale: isEs ? "en_US" : "es_EC",
       url: `${siteUrl}/${lang}`,
-      siteName: "PlayHouse",
+      siteName: "Playhouse",
       title,
       description,
       images: [
@@ -107,8 +108,8 @@ export async function generateMetadata({
           width: 1200,
           height: 630,
           alt: isEs
-            ? "PlayHouse – Teatro Educativo en Inglés, Loja Ecuador"
-            : "PlayHouse – Educational Theatre, Loja Ecuador",
+            ? "Playhouse – Teatro Educativo en Inglés, Loja Ecuador"
+            : "Playhouse – Educational Theatre, Loja Ecuador",
         },
       ],
     },
@@ -152,7 +153,7 @@ export default function LangLayout({
   const dict = getDict(lang)
 
   return (
-    <html lang={lang} suppressHydrationWarning className="scroll-smooth">
+    <html lang={lang} suppressHydrationWarning>
       <body
         className={cn(
           "min-h-screen bg-background antialiased",
@@ -161,7 +162,6 @@ export default function LangLayout({
         )}
       >
         <ThemeProvider>
-          <SexyScroll />
           <DirectionalCursor
             color="#181815"
             cursorSize={0.7}
@@ -188,7 +188,6 @@ export default function LangLayout({
             <Navigation lang={lang} dict={dict.nav} />
             <main className="flow-root bg-background">{children}</main>
           </div>
-          <PosterPopup />
           <WhatsAppFloat label={dict.whatsapp.label} />
         </ThemeProvider>
       </body>

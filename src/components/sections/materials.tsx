@@ -340,8 +340,8 @@ export default function Materials({ lang, dict }: MaterialsProps) {
           className="relative h-[420px] overflow-hidden rounded-[2rem] md:h-[520px]"
         >
           <Image
-            src="/media/test/3editada-265.jpg"
-            alt="PlayHouse theatre workshop performance"
+            src="/media/updated/materials.jpg"
+            alt="Playhouse theatre workshop performance"
             fill
             className="object-cover"
             sizes="(max-width:768px) 100vw, 50vw"
