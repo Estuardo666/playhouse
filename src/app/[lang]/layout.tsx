@@ -37,7 +37,9 @@ export async function generateMetadata({
   if (!isValidLocale(lang)) return {}
 
   const isEs = lang === "es"
-  const siteUrl = "https://playhouse.ec"
+  // Use the domain that is currently live and resolvable. Switch this value
+  // only after playhouse.ec has DNS, HTTPS, and a permanent redirect in place.
+  const siteUrl = "https://playhouseec.com"
 
   const title = isEs
     ? "Playhouse – Teatro Educativo en Inglés | Loja, Ecuador"
@@ -70,6 +72,7 @@ export async function generateMetadata({
       ]
 
   return {
+    metadataBase: new URL(siteUrl),
     verification: {
       google: "yEvacsO7GLpoD8nD0cmrf0D4b0k6-irhN0scwNbHHK8",
     },
@@ -151,6 +154,36 @@ export default function LangLayout({
 
   const lang = params.lang as SupportedLocale
   const dict = getDict(lang)
+  const siteUrl = "https://playhouseec.com"
+  const isEs = lang === "es"
+  const businessSchema = {
+    "@context": "https://schema.org",
+    "@type": ["EducationalOrganization", "LocalBusiness"],
+    "@id": `${siteUrl}/#organization`,
+    name: "Playhouse",
+    url: `${siteUrl}/${lang}`,
+    logo: `${siteUrl}/media/logo%202026.png`,
+    description: isEs
+      ? "Teatro educativo en inglés, shows musicales y talleres para escuelas, familias y estudiantes en Loja, Ecuador."
+      : "Educational theatre in English, musical shows, and workshops for schools, families, and students in Loja, Ecuador.",
+    email: "vaplayhouse@gmail.com",
+    telephone: "+593939576825",
+    address: {
+      "@type": "PostalAddress",
+      addressLocality: "Loja",
+      addressCountry: "EC",
+    },
+    areaServed: {
+      "@type": "City",
+      name: "Loja",
+    },
+    sameAs: [
+      "https://www.instagram.com/vaplayhouse/",
+      "https://www.facebook.com/playhousec",
+      "https://www.tiktok.com/@playhouse.ec",
+      "https://www.youtube.com/@playhouse_ec",
+    ],
+  }
 
   return (
     <html lang={lang} suppressHydrationWarning>
@@ -162,6 +195,10 @@ export default function LangLayout({
         )}
       >
         <ThemeProvider>
+          <script
+            type="application/ld+json"
+            dangerouslySetInnerHTML={{ __html: JSON.stringify(businessSchema) }}
+          />
           <DirectionalCursor
             color="#181815"
             cursorSize={0.7}

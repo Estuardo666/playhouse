@@ -184,9 +184,9 @@ export const playhouseContent = {
     contact: {
       title: "Bring Playhouse to Your Community",
       subtitle: "We collaborate with schools, cultural spaces, teachers, and families.",
-      email: "hello@Playhouse.com",
-      phone: "+34 600 000 000",
-      address: "Barcelona, Spain",
+      email: "vaplayhouse@gmail.com",
+      phone: "+593 939 576 825",
+      address: "Loja, Ecuador",
     },
   } as const,
   es: {
@@ -309,9 +309,9 @@ export const playhouseContent = {
     contact: {
       title: "Lleva Playhouse a Tu Comunidad",
       subtitle: "Colaboramos con escuelas, espacios culturales, docentes y familias.",
-      email: "hola@playhouse.com",
-      phone: "+34 600 000 000",
-      address: "Barcelona, España",
+      email: "vaplayhouse@gmail.com",
+      phone: "+593 939 576 825",
+      address: "Loja, Ecuador",
     },
   } as const,
 } satisfies Record<string, PlayhouseContent>
