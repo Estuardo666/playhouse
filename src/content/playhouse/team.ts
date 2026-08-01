@@ -72,7 +72,7 @@ export const TEAM_MEMBERS: TeamMember[] = [
     id: "michelle-lopez",
     name: "Michelle López",
     role: "Academic Team",
-    image: "/media/team/michelle-lopez.jpg",
+    image: "/media/updated/team/michelle-lopez.jpg",
     category: "academic",
   },
   {
@@ -97,3 +97,4 @@ export const TEAM_MEMBERS: TeamMember[] = [
     category: "leadership",
   },
 ]
+
