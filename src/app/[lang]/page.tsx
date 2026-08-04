@@ -11,7 +11,6 @@ import Materials from "@/components/sections/materials"
 import Footer from "@/components/sections/footer"
 import SectionDivider from "@/components/ui/section-divider"
 import FaqSection from "@/components/sections/faq"
-import SectionShell from "@/components/layout/section-shell"
 
 export default function LangPage({ params }: { params: { lang: string } }) {
   if (!isValidLocale(params.lang)) notFound()
@@ -39,19 +38,9 @@ export default function LangPage({ params }: { params: { lang: string } }) {
         <Workshops lang={lang} dict={dict.workshops} />
         <SectionDivider />
         <Materials lang={lang} dict={dict.materials} />
-        <SectionShell id="services" title={lang === "es" ? "Explora Playhouse" : "Explore Playhouse"}>
-          <div className="grid gap-5 md:grid-cols-2">
-            <LinkCard href={`/${lang}/teatro-en-ingles-loja`} title={lang === "es" ? "Teatro en inglés en Loja" : "English theatre in Loja"} text={lang === "es" ? "Shows, talleres y teatro musical para aprender haciendo." : "Shows, workshops, and musical theatre for active learning."} />
-            <LinkCard href={`/${lang}/clases-de-ingles-loja`} title={lang === "es" ? "Clases de inglés por edades" : "English classes by age"} text={lang === "es" ? "Niños, jóvenes y adultos con una metodología creativa." : "Children, young people, and adults through a creative methodology."} />
-          </div>
-        </SectionShell>
         <FaqSection lang={lang} />
         <Footer lang={lang} dict={dict.footer} />
       </div>
     </div>
   )
-}
-
-function LinkCard({ href, title, text }: { href: string; title: string; text: string }) {
-  return <a href={href} className="rounded-2xl border border-foreground/10 bg-background/70 p-7 transition-colors hover:border-deep-red"><h2 className="text-2xl font-semibold">{title}</h2><p className="mt-3 leading-7 text-foreground/70">{text}</p><span className="mt-5 inline-block font-semibold text-deep-red">Explore →</span></a>
 }
