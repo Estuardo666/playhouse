@@ -263,7 +263,7 @@ export default function Materials({ lang, dict }: MaterialsProps) {
     <section
       id="materials"
       aria-labelledby="materials-heading"
-      className="mx-auto max-w-[1400px] px-6 py-20 md:px-12 md:py-28 rounded-[2.5rem] bg-background/50 dark:bg-black/40 border border-border/10"
+      className="mx-auto max-w-[1400px] rounded-[2.5rem] bg-background/50 px-6 pb-8 pt-20 dark:bg-black/40 border border-border/10 md:px-12 md:pb-12 md:pt-28"
     >
       {/* ── Intro row ── */}
       <div className="grid grid-cols-1 items-center gap-12 md:grid-cols-[1fr_1fr] md:gap-16">

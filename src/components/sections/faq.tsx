@@ -12,7 +12,7 @@ export default function FaqSection({ lang }: { lang: SupportedLocale }) {
   const reducedMotion = useReducedMotion()
 
   return (
-    <SectionShell id="faq" title={lang === "es" ? "Preguntas frecuentes" : "Frequently asked questions"}>
+    <SectionShell id="faq" className="!pt-8 lg:!pt-12" title={lang === "es" ? "Preguntas frecuentes" : "Frequently asked questions"}>
       <div className="mx-auto max-w-3xl divide-y divide-foreground/10 border-y border-foreground/10">
         {items.map((item, index) => {
           const isOpen = openIndex === index
