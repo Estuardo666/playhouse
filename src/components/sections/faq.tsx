@@ -12,7 +12,12 @@ export default function FaqSection({ lang }: { lang: SupportedLocale }) {
   const reducedMotion = useReducedMotion()
 
   return (
-    <SectionShell id="faq" className="!pt-8 lg:!pt-12" title={lang === "es" ? "Preguntas frecuentes" : "Frequently asked questions"}>
+    <SectionShell
+      id="faq"
+      className="!pt-8 lg:!pt-12"
+      headingClassName="w-full bg-none text-center text-[clamp(2.4rem,5vw,3.8rem)] font-bold leading-[0.92] tracking-[-0.045em] text-foreground"
+      title={lang === "es" ? "Preguntas frecuentes" : "Frequently asked questions"}
+    >
       <div className="mx-auto max-w-3xl divide-y divide-foreground/10 border-y border-foreground/10">
         {items.map((item, index) => {
           const isOpen = openIndex === index

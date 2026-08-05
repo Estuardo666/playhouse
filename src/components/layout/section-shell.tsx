@@ -11,6 +11,7 @@ interface SectionShellProps {
   subtitle?: string
   children: ReactNode
   className?: string
+  headingClassName?: string
   variant?: "default" | "hero" | "featured" | "gallery"
   compact?: boolean
 }
@@ -21,6 +22,7 @@ export default function SectionShell({
   subtitle,
   children,
   className = "",
+  headingClassName = "",
   variant = "default",
   compact = false,
 }: SectionShellProps) {
@@ -38,7 +40,8 @@ export default function SectionShell({
         <div className={cn("text-center max-w-4xl mx-auto", compact ? "mb-8" : "mb-16")}>
           <h2 className={cn(
             compact ? "text-4xl md:text-5xl font-display font-black" : "text-5xl md:text-7xl lg:text-8xl font-display font-black",
-            variant === "hero" ? "text-white drop-shadow-2xl" : "bg-gradient-to-r from-deep-red to-gold bg-clip-text text-transparent"
+            variant === "hero" ? "text-white drop-shadow-2xl" : "bg-gradient-to-r from-deep-red to-gold bg-clip-text text-transparent",
+            headingClassName
           )}>
             {title}
           </h2>
