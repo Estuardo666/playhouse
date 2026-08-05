@@ -15,7 +15,14 @@ export default function FaqSection({ lang }: { lang: SupportedLocale }) {
     <SectionShell
       id="faq"
       className="!pt-8 lg:!pt-12"
-      headingClassName="w-full bg-none text-center text-[clamp(2.4rem,5vw,3.8rem)] font-bold leading-[0.92] tracking-[-0.045em] text-foreground"
+      headingClassName="w-full bg-none text-center text-foreground"
+      headingStyle={{
+        fontFamily: '"Play Grotesk", "Google Sans", sans-serif',
+        fontSize: "clamp(2.4rem, 5vw, 3.8rem)",
+        fontWeight: 700,
+        lineHeight: 0.92,
+        letterSpacing: "-0.045em",
+      }}
       title={lang === "es" ? "Preguntas frecuentes" : "Frequently asked questions"}
     >
       <div className="mx-auto max-w-3xl divide-y divide-foreground/10 border-y border-foreground/10">
