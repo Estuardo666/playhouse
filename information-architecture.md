@@ -534,7 +534,7 @@ Art, music, and pedagogy to create immersive, creative, and memorable experience
 - Email: `vaplayhouse@gmail.com`
 
 **Social Networks:**
-- Instagram: `https://www.instagram.com/vaplayhouse/`
+- Instagram: `https://www.instagram.com/playhouse.ec`
 - Facebook: `https://www.facebook.com/playhousec`
 - TikTok: `https://www.tiktok.com/@playhouse.ec`
 - YouTube: `https://www.youtube.com/@playhouse_ec`

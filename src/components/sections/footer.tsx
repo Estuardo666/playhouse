@@ -17,7 +17,7 @@ const blurFade = (delay = 0) => ({
 
 /* ─────────────── data ─────────────── */
 const SOCIALS = [
-  { label: "Instagram", handle: "@playhouse.ec", href: "https://www.instagram.com/vaplayhouse/" },
+  { label: "Instagram", handle: "@playhouse.ec", href: "https://www.instagram.com/playhouse.ec" },
   { label: "Facebook", handle: "playhousec", href: "https://www.facebook.com/playhousec" },
   { label: "TikTok", handle: "@playhouse.ec", href: "https://www.tiktok.com/@playhouse.ec" },
   { label: "YouTube", handle: "@playhouse_ec", href: "https://www.youtube.com/@playhouse_ec" },

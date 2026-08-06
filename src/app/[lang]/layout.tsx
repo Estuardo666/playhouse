@@ -178,7 +178,7 @@ export default function LangLayout({
       name: "Loja",
     },
     sameAs: [
-      "https://www.instagram.com/vaplayhouse/",
+      "https://www.instagram.com/playhouse.ec",
       "https://www.facebook.com/playhousec",
       "https://www.tiktok.com/@playhouse.ec",
       "https://www.youtube.com/@playhouse_ec",
